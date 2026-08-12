@@ -1,0 +1,197 @@
+{
+    "department": {
+        "id": "ECE001",
+        "title": "Electronics and Communication Engineering",
+        "keywords": [
+            "ECE",
+            "Electronics",
+            "Communication Engineering",
+            "Electronics and Communication Engineering",
+            "ECE Department",
+            "Government Polytechnic Proddatur",
+            "DECE"
+        ],
+        "content": [
+            {
+                "id": "ECE_Q001",
+                "question": "What is the Electronics and Communication Engineering department?",
+                "answer": "The Electronics and Communication Engineering (ECE) department is one of the engineering departments at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "ECE_Q002",
+                "question": "What is the vision of the ECE department?",
+                "answer": "The vision is to develop Electronics and Communication Engineering professionals competent to face global challenges in a progressive environment, with technical knowledge, skills, ethics and values, and to serve society."
+            },
+            {
+                "id": "ECE_Q003",
+                "question": "What is the mission of the ECE department?",
+                "answer": "The ECE department's mission is to provide a competitive learning environment, develop technical knowledge and skills, nurture leadership qualities and ethics, encourage innovation and entrepreneurship, and foster interaction with stakeholders for the growth and sustainability of society and the environment."
+            },
+            {
+                "id": "ECE_Q004",
+                "question": "What is the first mission of the ECE department?",
+                "answer": "M1 is to provide a competitive learning environment through a need-based curriculum designed in collaboration with industry, supporting high-quality education, knowledge transfer and skill development."
+            },
+            {
+                "id": "ECE_Q005",
+                "question": "What is the second mission of the ECE department?",
+                "answer": "M2 is to nurture higher-order leadership qualities, ethics and values in students so they can become leaders in their chosen professions while maintaining high ethical standards."
+            },
+            {
+                "id": "ECE_Q006",
+                "question": "What is the third mission of the ECE department?",
+                "answer": "M3 is to encourage inquiry and promote innovation and entrepreneurship strengthened with life skills to help students sustain professional challenges."
+            },
+            {
+                "id": "ECE_Q007",
+                "question": "What is the fourth mission of the ECE department?",
+                "answer": "M4 is to foster effective interactions and networking with stakeholders to work towards the growth and sustainability of society and the environment."
+            },
+            {
+                "id": "ECE_Q008",
+                "question": "Who is the Head of the ECE Department?",
+                "answer": "Dr. A. Veerabhadra Reddy is listed as the Head of the Electronics and Communication Engineering department."
+            },
+            {
+                "id": "ECE_Q009",
+                "question": "Who are the faculty members in the ECE department?",
+                "answer": "The faculty listed for the ECE department include Dr. A. Veerabhadra Reddy, B. Murali Krishna, Siddu Siddeswara Reddy, U. Krishna Divya, G. Babu, B. Priyanka, P. Haritha, B. Suresh Kumar and B. Ravaleela."
+            },
+            {
+                "id": "ECE_Q010",
+                "question": "Who is Dr. A. Veerabhadra Reddy?",
+                "answer": "Dr. A. Veerabhadra Reddy is listed as the Head of the Electronics and Communication Engineering department."
+            },
+            {
+                "id": "ECE_Q011",
+                "question": "Who is the Senior Lecturer in the ECE department?",
+                "answer": "B. Murali Krishna is listed as a Senior Lecturer in the ECE department."
+            },
+            {
+                "id": "ECE_Q012",
+                "question": "Which laboratories are available in the ECE department?",
+                "answer": "The ECE department has a Communication System Lab, Electronic Circuits Lab, Digital Electronics and Micro Controllers Lab, and Simulation/SDC Lab."
+            },
+            {
+                "id": "ECE_Q013",
+                "question": "Does the ECE department have a Communication System Lab?",
+                "answer": "Yes. The ECE department has a Communication System Lab."
+            },
+            {
+                "id": "ECE_Q014",
+                "question": "Does the ECE department have an Electronic Circuits Lab?",
+                "answer": "Yes. The ECE department has an Electronic Circuits Lab."
+            },
+            {
+                "id": "ECE_Q015",
+                "question": "Does the ECE department have a Digital Electronics and Micro Controllers Lab?",
+                "answer": "Yes. The department has a Digital Electronics and Micro Controllers Lab."
+            },
+            {
+                "id": "ECE_Q016",
+                "question": "Does the ECE department have a Simulation Lab?",
+                "answer": "Yes. The ECE department has a Simulation/SDC Lab."
+            },
+            {
+                "id": "ECE_Q017",
+                "question": "What events are associated with the ECE department?",
+                "answer": "Events and activities listed on the department page include the Merit Scholarship Ceremony, Independence Day celebrations, Engineers' Day, Polytechnic Awareness Program, Clean and Green Program, and recruitment drives."
+            },
+            {
+                "id": "ECE_Q018",
+                "question": "Does the ECE department conduct Engineers' Day celebrations?",
+                "answer": "Yes. Engineers' Day in September is listed among the department's events."
+            },
+            {
+                "id": "ECE_Q019",
+                "question": "Does the ECE department conduct a Polytechnic Awareness Program?",
+                "answer": "Yes. A Polytechnic Awareness Program is listed among the department's activities."
+            },
+            {
+                "id": "ECE_Q020",
+                "question": "Does the ECE department conduct a Clean and Green Program?",
+                "answer": "Yes. A Clean and Green Program is listed among the department's activities."
+            },
+            {
+                "id": "ECE_Q021",
+                "question": "Are recruitment drives conducted for ECE students?",
+                "answer": "The ECE department page lists recruitment drives of Effectronics Pvt Ltd and HL Mando Pvt Ltd among its events."
+            },
+            {
+                "id": "ECE_Q022",
+                "question": "When was Electronics and Communication Engineering introduced at Government Polytechnic Proddatur?",
+                "answer": "Electronics and Communication Engineering was introduced at Government Polytechnic Proddatur in 1985."
+            },
+            {
+                "id": "ECE_Q023",
+                "question": "What was the initial intake of the ECE department?",
+                "answer": "When the ECE branch was introduced in 1985, its intake capacity was around 50 students."
+            },
+            {
+                "id": "ECE_Q024",
+                "question": "What is the current intake for Electronics and Communication Engineering?",
+                "answer": "The admissions page lists an intake of 132 seats for Electronics and Communication Engineering."
+            },
+            {
+                "id": "ECE_Q025",
+                "question": "What is the branch code for Electronics and Communication Engineering?",
+                "answer": "The ECE branch is referred to as DECE on the college's ECET rank information page."
+            },
+            {
+                "id": "ECE_Q026",
+                "question": "Does the ECE department have ECET rankers?",
+                "answer": "Yes. Government Polytechnic Proddatur publishes ECET rank information for ECE students."
+            },
+            {
+                "id": "ECE_Q027",
+                "question": "Who were the top ECET rankers in ECE for the 2022-2025 batch?",
+                "answer": "The listed top three ECET rankers for the 2022-2025 ECE batch are Chintakayala Sai Kumar, Malabar Mohimeen and Talari Vijay Narasimha."
+            },
+            {
+                "id": "ECE_Q028",
+                "question": "What was Chintakayala Sai Kumar's ECE branch rank?",
+                "answer": "Chintakayala Sai Kumar secured an ECE branch rank of 265 for the 2022-2025 batch."
+            },
+            {
+                "id": "ECE_Q029",
+                "question": "What was Malabar Mohimeen's ECE branch rank?",
+                "answer": "Malabar Mohimeen secured an ECE branch rank of 297 for the 2022-2025 batch."
+            },
+            {
+                "id": "ECE_Q030",
+                "question": "What was Talari Vijay Narasimha's ECE branch rank?",
+                "answer": "Talari Vijay Narasimha secured an ECE branch rank of 451 for the 2022-2025 batch."
+            },
+            {
+                "id": "ECE_Q031",
+                "question": "Who were the top ECE ECET rankers from the 2021-2024 batch?",
+                "answer": "The ECE ECET rank information lists Uppari Lakshmanna and Edagottu Vamsi among the top rankers from the 2021-2024 batch."
+            },
+            {
+                "id": "ECE_Q032",
+                "question": "What skills does the ECE department aim to develop?",
+                "answer": "The department aims to develop technical knowledge, professional skills, leadership qualities, ethics, values, innovation, entrepreneurship and life skills in students."
+            },
+            {
+                "id": "ECE_Q033",
+                "question": "Does the ECE department encourage innovation?",
+                "answer": "Yes. The department's mission specifically encourages inquiry, innovation and entrepreneurship."
+            },
+            {
+                "id": "ECE_Q034",
+                "question": "Does the ECE department focus on ethics and values?",
+                "answer": "Yes. Ethics and values are an important part of the department's vision and mission."
+            },
+            {
+                "id": "ECE_Q035",
+                "question": "Does the ECE department collaborate with industry?",
+                "answer": "Yes. The department's mission emphasizes a need-based curriculum designed in collaboration with industry."
+            },
+            {
+                "id": "ECE_Q036",
+                "question": "What is the main goal of the ECE department?",
+                "answer": "The main goal is to prepare competent Electronics and Communication Engineering professionals with technical knowledge, practical skills, ethics and values who can face global challenges and serve society."
+            }
+        ]
+    }
+}

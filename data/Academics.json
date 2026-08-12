@@ -1,0 +1,236 @@
+{
+    "page": "Academics",
+    "website": "https://govtpolyproddatur.ac.in/academics",
+    "data": [
+        {
+            "id": "ACA001",
+            "title": "Academics Overview",
+            "keywords": [
+                "academics",
+                "academic information",
+                "academic section",
+                "college academics"
+            ],
+            "content": [
+                {
+                    "question": "What academic information is available on the college website?",
+                    "answer": "The Academics section of Government Polytechnic Proddatur provides information about academic calendars and academic activities."
+                },
+                {
+                    "question": "Where can I find academic information for Government Polytechnic Proddatur?",
+                    "answer": "Academic information is available in the Academics section of the official Government Polytechnic Proddatur website."
+                },
+                {
+                    "question": "What does the Academics section contain?",
+                    "answer": "The Academics section contains academic calendars for different academic years and a gallery showing academic activities."
+                }
+            ]
+        },
+        {
+            "id": "ACA002",
+            "title": "Academic Calendar 2025-26",
+            "keywords": [
+                "academic calendar",
+                "2025-26",
+                "academic year 2025-26",
+                "2025 calendar",
+                "college calendar"
+            ],
+            "content": [
+                {
+                    "question": "Does the college have an Academic Calendar for 2025-26?",
+                    "answer": "Yes. Government Polytechnic Proddatur provides an Academic Calendar for the academic year 2025-26."
+                },
+                {
+                    "question": "Where can I find the 2025-26 Academic Calendar?",
+                    "answer": "The 2025-26 Academic Calendar is available in the Academics section of the official Government Polytechnic Proddatur website."
+                },
+                {
+                    "question": "What is the academic calendar for 2025-26?",
+                    "answer": "The official website provides the Academic Calendar 2025-26 under the Academics section. Students can refer to the published calendar for academic schedules and activities."
+                },
+                {
+                    "question": "How can I access the 2025-26 academic calendar?",
+                    "answer": "You can access the 2025-26 Academic Calendar from the Academics page of the Government Polytechnic Proddatur website."
+                }
+            ]
+        },
+        {
+            "id": "ACA003",
+            "title": "Academic Calendar 2024-25",
+            "keywords": [
+                "academic calendar",
+                "2024-25",
+                "academic year 2024-25",
+                "2024 calendar",
+                "college calendar"
+            ],
+            "content": [
+                {
+                    "question": "Does the college have an Academic Calendar for 2024-25?",
+                    "answer": "Yes. Government Polytechnic Proddatur provides an Academic Calendar for the academic year 2024-25."
+                },
+                {
+                    "question": "Where can I find the 2024-25 Academic Calendar?",
+                    "answer": "The 2024-25 Academic Calendar is available in the Academics section of the official Government Polytechnic Proddatur website."
+                },
+                {
+                    "question": "How can I access the 2024-25 academic calendar?",
+                    "answer": "You can access the 2024-25 Academic Calendar from the Academics page of the Government Polytechnic Proddatur website."
+                }
+            ]
+        },
+        {
+            "id": "ACA004",
+            "title": "Academic Activities",
+            "keywords": [
+                "academic activities",
+                "activities",
+                "academic events",
+                "college activities",
+                "academic gallery"
+            ],
+            "content": [
+                {
+                    "question": "Does the college display its academic activities?",
+                    "answer": "Yes. The Academics section contains an Academic Activities Gallery displaying photographs of academic activities."
+                },
+                {
+                    "question": "Where can I see academic activities of the college?",
+                    "answer": "Academic activities can be viewed in the Academic Activities Gallery available on the Academics page of the official website."
+                },
+                {
+                    "question": "Does the college have an academic activities gallery?",
+                    "answer": "Yes. Government Polytechnic Proddatur has an Academic Activities Gallery on its Academics page."
+                },
+                {
+                    "question": "What is available in the Academic Activities Gallery?",
+                    "answer": "The Academic Activities Gallery contains images related to academic activities conducted at Government Polytechnic Proddatur."
+                }
+            ]
+        },
+        {
+            "id": "ACA005",
+            "title": "Academic Council",
+            "keywords": [
+                "academic council",
+                "academic committee",
+                "academic administration",
+                "council"
+            ],
+            "content": [
+                {
+                    "question": "Does Government Polytechnic Proddatur have an Academic Council?",
+                    "answer": "Yes. Government Polytechnic Proddatur has an Academic Council."
+                },
+                {
+                    "question": "Where can I find information about the Academic Council?",
+                    "answer": "Information about the Academic Council is available through the Academic Council section of the official college website."
+                },
+                {
+                    "question": "Who is the Chairman of the Academic Council?",
+                    "answer": "The Principal, P Gurumurthy Reddy, is listed as the Chairman of the Academic Council."
+                },
+                {
+                    "question": "Who is the Secretary of the Academic Council?",
+                    "answer": "Dr A Veerabhadra Reddy is listed as the Secretary of the Academic Council."
+                },
+                {
+                    "question": "Who are the members of the Academic Council?",
+                    "answer": "The Academic Council includes the Principal and faculty members representing different sections and departments of the institution."
+                }
+            ]
+        },
+        {
+            "id": "ACA006",
+            "title": "Academic Related Committees",
+            "keywords": [
+                "academic committees",
+                "committees",
+                "college committees",
+                "academic administration",
+                "academic support"
+            ],
+            "content": [
+                {
+                    "question": "What academic-related committees are available at the college?",
+                    "answer": "The college website lists committees including the Academic Council, Finance Committee, Grievance Redressal Cell, Student Counsellor Committee, Anti-Ragging Committee, Innovation Cell, Internal Quality Assurance Committee and other institutional committees."
+                },
+                {
+                    "question": "Is there an Internal Quality Assurance Committee?",
+                    "answer": "Yes. The college website lists an Internal Quality Assurance Committee among its committees."
+                },
+                {
+                    "question": "Is there an Innovation Cell in the college?",
+                    "answer": "Yes. An Innovation Cell is listed among the committees and institutional bodies of Government Polytechnic Proddatur."
+                },
+                {
+                    "question": "Does the college have a Student Counsellor Committee?",
+                    "answer": "Yes. The Student Counsellor Committee is listed on the college website."
+                },
+                {
+                    "question": "Does the college have an Anti-Ragging Committee?",
+                    "answer": "Yes. The Anti-Ragging Committee is listed among the college committees."
+                }
+            ]
+        },
+        {
+            "id": "ACA007",
+            "title": "Academic Support and Learning",
+            "keywords": [
+                "academic support",
+                "learning",
+                "technical education",
+                "student learning",
+                "education"
+            ],
+            "content": [
+                {
+                    "question": "What is the academic focus of Government Polytechnic Proddatur?",
+                    "answer": "The institution focuses on providing quality technical education and developing students' technical knowledge, practical skills, professional values and employability."
+                },
+                {
+                    "question": "Does the college focus on practical learning?",
+                    "answer": "Yes. The institution emphasizes practical and hands-on learning through laboratories, workshops and industry-oriented training."
+                },
+                {
+                    "question": "Does the college provide industry-oriented academic training?",
+                    "answer": "Yes. The institution promotes industry-oriented training through activities such as industrial visits, guest lectures, internships and industry interaction."
+                },
+                {
+                    "question": "Does the college support innovation in academics?",
+                    "answer": "Yes. The college encourages innovation, creativity, problem-solving and emerging technologies as part of student development."
+                }
+            ]
+        },
+        {
+            "id": "ACA008",
+            "title": "Academic Information Access",
+            "keywords": [
+                "academic page",
+                "academic details",
+                "academic website",
+                "college academic details",
+                "academic resources"
+            ],
+            "content": [
+                {
+                    "question": "Where can students find academic calendars?",
+                    "answer": "Students can find the available academic calendars in the Academics section of the official Government Polytechnic Proddatur website."
+                },
+                {
+                    "question": "Where can students find academic activity photos?",
+                    "answer": "Students can view academic activity photos in the Academic Activities Gallery on the Academics page."
+                },
+                {
+                    "question": "What academic years have calendars listed on the website?",
+                    "answer": "The Academics page currently lists Academic Calendars for 2025-26 and 2024-25."
+                },
+                {
+                    "question": "What is the official Academics page of Government Polytechnic Proddatur?",
+                    "answer": "The official Academics page is available at https://govtpolyproddatur.ac.in/academics."
+                }
+            ]
+        }
+    ]
+}

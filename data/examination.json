@@ -1,0 +1,338 @@
+{
+    "category": "Academics",
+    "subcategory": "Examinations",
+    "source": "https://govtpolyproddatur.ac.in/examinations",
+    "data": [
+        {
+            "id": "EXAM001",
+            "title": "AP SBTET Examinations",
+            "keywords": [
+                "AP SBTET",
+                "examinations",
+                "diploma exams",
+                "polytechnic exams",
+                "technical education"
+            ],
+            "content": [
+                {
+                    "question": "Who conducts examinations for diploma programmes?",
+                    "answer": "The State Board of Technical Education and Training, Andhra Pradesh (AP SBTET) is responsible for conducting examinations for diploma programmes offered by government and private polytechnic institutions in Andhra Pradesh."
+                },
+                {
+                    "question": "What is AP SBTET?",
+                    "answer": "AP SBTET is the State Board of Technical Education and Training, Andhra Pradesh. It functions as the statutory authority for curriculum implementation, academic regulation and examinations for diploma programmes."
+                },
+                {
+                    "question": "What is the role of AP SBTET in examinations?",
+                    "answer": "AP SBTET regulates and conducts examinations, ensures uniform evaluation and maintains academic standards for diploma programmes."
+                }
+            ]
+        },
+        {
+            "id": "EXAM002",
+            "title": "Examination Governance and Objectives",
+            "keywords": [
+                "examination objectives",
+                "exam governance",
+                "programme outcomes",
+                "course outcomes",
+                "evaluation",
+                "academic integrity"
+            ],
+            "content": [
+                {
+                    "question": "What are the objectives of the examination system?",
+                    "answer": "The examination system aims to assess students' attainment of Programme Outcomes and Course Outcomes, ensure standardized evaluation, promote outcome-based education and maintain academic fairness and integrity."
+                },
+                {
+                    "question": "Does the examination system assess Programme Outcomes?",
+                    "answer": "Yes. The examination system assesses students' attainment of Programme Outcomes (POs)."
+                },
+                {
+                    "question": "Does the examination system assess Course Outcomes?",
+                    "answer": "Yes. The examination system assesses students' attainment of Course Outcomes (COs)."
+                },
+                {
+                    "question": "How does AP SBTET maintain uniformity in examinations?",
+                    "answer": "AP SBTET maintains standardization and uniformity in evaluation across affiliated institutions."
+                },
+                {
+                    "question": "Does the examination system promote outcome-based education?",
+                    "answer": "Yes. The examination system promotes outcome-based education and competency-driven learning."
+                }
+            ]
+        },
+        {
+            "id": "EXAM003",
+            "title": "Types of Examinations",
+            "keywords": [
+                "exam types",
+                "end semester examination",
+                "theory exam",
+                "practical exam",
+                "supplementary exam",
+                "internal assessment",
+                "bridge exam"
+            ],
+            "content": [
+                {
+                    "question": "What types of examinations are conducted?",
+                    "answer": "The examinations include End Semester or End Examinations, Supplementary Examinations, Internal Continuous Assessment and Practical Evaluation, and Special or Bridge Examinations as notified by the Board."
+                },
+                {
+                    "question": "Are theory examinations conducted?",
+                    "answer": "Yes. Theory examinations are conducted as part of the End Semester or End Examination."
+                },
+                {
+                    "question": "Are practical examinations conducted?",
+                    "answer": "Yes. Practical examinations are conducted as part of the examination system."
+                },
+                {
+                    "question": "What are supplementary examinations?",
+                    "answer": "Supplementary examinations are conducted for candidates who are unsuccessful in the regular examinations."
+                },
+                {
+                    "question": "Are special or bridge examinations conducted?",
+                    "answer": "Yes. Special or Bridge Examinations may be conducted as notified by AP SBTET."
+                }
+            ]
+        },
+        {
+            "id": "EXAM004",
+            "title": "Examination Planning and Implementation",
+            "keywords": [
+                "exam notification",
+                "academic calendar",
+                "exam application",
+                "exam fee",
+                "exam centre",
+                "online application"
+            ],
+            "content": [
+                {
+                    "question": "How are examinations planned?",
+                    "answer": "Examination planning includes publication of examination notifications and academic calendars."
+                },
+                {
+                    "question": "How can students apply for examinations?",
+                    "answer": "Students can apply online and submit examination fees through the official examination portal."
+                },
+                {
+                    "question": "Where are examinations conducted?",
+                    "answer": "Examinations are conducted at examination centres approved by the Board."
+                },
+                {
+                    "question": "How are examination results processed?",
+                    "answer": "Examination results are processed through centralized evaluation, moderation and result processing."
+                }
+            ]
+        },
+        {
+            "id": "EXAM005",
+            "title": "Internal Assessment",
+            "keywords": [
+                "internal assessment",
+                "IA",
+                "internal marks",
+                "theory internal marks",
+                "practical internal marks",
+                "class tests",
+                "assignments"
+            ],
+            "content": [
+                {
+                    "question": "What is Internal Assessment?",
+                    "answer": "Internal Assessment (IA) is the continuous assessment component used to evaluate students during the academic period."
+                },
+                {
+                    "question": "How many internal assessment marks are allotted for theory subjects?",
+                    "answer": "Theory subjects carry 20 marks for Internal Assessment."
+                },
+                {
+                    "question": "How many internal assessment marks are allotted for practical subjects?",
+                    "answer": "Practical or laboratory subjects carry 40 marks for Internal Assessment."
+                },
+                {
+                    "question": "What are the components of Internal Assessment?",
+                    "answer": "Internal Assessment may include class tests or unit tests, assignments and tutorials, seminars or presentations where applicable, attendance and class participation, and continuous laboratory performance and records."
+                },
+                {
+                    "question": "Are class tests included in Internal Assessment?",
+                    "answer": "Yes. Class tests or unit tests are components of Internal Assessment."
+                },
+                {
+                    "question": "Are assignments included in Internal Assessment?",
+                    "answer": "Yes. Assignments and tutorials can be included in Internal Assessment."
+                },
+                {
+                    "question": "Is attendance considered for Internal Assessment?",
+                    "answer": "Attendance and class participation are among the components considered for Internal Assessment."
+                }
+            ]
+        },
+        {
+            "id": "EXAM006",
+            "title": "External End Examination",
+            "keywords": [
+                "external exam",
+                "end examination",
+                "EE",
+                "external marks",
+                "theory external marks",
+                "practical external marks"
+            ],
+            "content": [
+                {
+                    "question": "What is the External End Examination?",
+                    "answer": "The External End Examination (EE) is the external examination component conducted as part of the assessment system."
+                },
+                {
+                    "question": "How many external marks are allotted for theory subjects?",
+                    "answer": "Theory subjects carry 80 marks for the External End Examination."
+                },
+                {
+                    "question": "How many external marks are allotted for practical subjects?",
+                    "answer": "Practical or laboratory subjects carry 60 marks for the External End Examination."
+                }
+            ]
+        },
+        {
+            "id": "EXAM007",
+            "title": "Overall Marks Distribution",
+            "keywords": [
+                "marks distribution",
+                "total marks",
+                "theory marks",
+                "practical marks",
+                "IA marks",
+                "EE marks"
+            ],
+            "content": [
+                {
+                    "question": "What is the total marks distribution for theory subjects?",
+                    "answer": "Theory subjects have 20 marks for Internal Assessment and 80 marks for External End Examination, making a total of 100 marks."
+                },
+                {
+                    "question": "What is the total marks distribution for practical subjects?",
+                    "answer": "Practical subjects have 40 marks for Internal Assessment and 60 marks for External End Examination, making a total of 100 marks."
+                },
+                {
+                    "question": "How are theory marks divided?",
+                    "answer": "Theory marks are divided as IA 20 marks plus EE 80 marks, totaling 100 marks."
+                },
+                {
+                    "question": "How are practical marks divided?",
+                    "answer": "Practical marks are divided as IA 40 marks plus EE 60 marks, totaling 100 marks."
+                }
+            ]
+        },
+        {
+            "id": "EXAM008",
+            "title": "Evaluation and Results",
+            "keywords": [
+                "evaluation",
+                "exam results",
+                "result processing",
+                "marks memo",
+                "certificate",
+                "diploma certificate"
+            ],
+            "content": [
+                {
+                    "question": "How are examination papers evaluated?",
+                    "answer": "Evaluation is carried out according to prescribed norms to ensure objectivity and consistency."
+                },
+                {
+                    "question": "Where are examination results published?",
+                    "answer": "Examination results are published on the official AP SBTET website within the stipulated timeframe."
+                },
+                {
+                    "question": "What documents are issued to successful candidates?",
+                    "answer": "Successful candidates are issued Marks Memos, Provisional Certificates and Diploma Certificates."
+                },
+                {
+                    "question": "What is a Marks Memo?",
+                    "answer": "A Marks Memo is an official document showing the marks obtained by a student in the examination."
+                },
+                {
+                    "question": "What certificate is issued after successful completion?",
+                    "answer": "Successful candidates are issued a Diploma Certificate after completing the required programme and examination requirements."
+                }
+            ]
+        },
+        {
+            "id": "EXAM009",
+            "title": "Supplementary and Special Examinations",
+            "keywords": [
+                "supplementary examination",
+                "failed subjects",
+                "unsuccessful candidates",
+                "special examination",
+                "bridge examination"
+            ],
+            "content": [
+                {
+                    "question": "Who can attend supplementary examinations?",
+                    "answer": "Supplementary examinations are conducted for candidates who are unsuccessful in the regular examinations."
+                },
+                {
+                    "question": "Why are supplementary examinations conducted?",
+                    "answer": "Supplementary examinations provide an opportunity for unsuccessful candidates to appear again for their examinations."
+                },
+                {
+                    "question": "What are Special or Bridge Examinations?",
+                    "answer": "Special or Bridge Examinations are examinations conducted when notified by AP SBTET."
+                }
+            ]
+        },
+        {
+            "id": "EXAM010",
+            "title": "Official Examination Portals",
+            "keywords": [
+                "AP SBTET website",
+                "student portal",
+                "exam application",
+                "online exam application",
+                "results portal"
+            ],
+            "content": [
+                {
+                    "question": "What is the official AP SBTET website?",
+                    "answer": "The official AP SBTET website is https://sbtet.ap.gov.in"
+                },
+                {
+                    "question": "Where can students access the AP SBTET Student Portal?",
+                    "answer": "Students can access the AP SBTET Student Portal at https://apsbtet.net/studentportal/Screens/Mainhome.aspx"
+                },
+                {
+                    "question": "Where can students submit the online examination application?",
+                    "answer": "The online examination application can be accessed through https://apsbtet.net/DOFPPortal/UI/OnlineApplication.aspx"
+                },
+                {
+                    "question": "Where can students check examination results?",
+                    "answer": "Students can access examination results through the official AP SBTET website and its results section."
+                }
+            ]
+        },
+        {
+            "id": "EXAM011",
+            "title": "Examination Contact Information",
+            "keywords": [
+                "examination contact",
+                "college address",
+                "Government Polytechnic Proddatur",
+                "contact"
+            ],
+            "content": [
+                {
+                    "question": "Where is Government Polytechnic Proddatur located?",
+                    "answer": "Government Polytechnic Proddatur is located at Korrapadu Road, Proddatur, Andhra Pradesh, YSR Kadapa District, PINCODE-516360."
+                },
+                {
+                    "question": "What is the examination section related to?",
+                    "answer": "The examination section deals with academic assessment, examinations, evaluation, results and certification under the AP SBTET system."
+                }
+            ]
+        }
+    ]
+}

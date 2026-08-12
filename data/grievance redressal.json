@@ -1,0 +1,128 @@
+{
+    "committee": {
+        "id": "committee_grievance_redressal_cell",
+        "title": "Grievance Redressal Cell",
+        "keywords": [
+            "Grievance Redressal Cell",
+            "Grievance Cell",
+            "Student Grievance",
+            "Complaint",
+            "Complaint Cell",
+            "Grievance Committee",
+            "Student Complaints",
+            "AP PolyGrievance"
+        ],
+        "content": [
+            {
+                "id": "GRC001",
+                "question": "What is the Grievance Redressal Cell?",
+                "answer": "The Grievance Redressal Cell is a committee at Government Polytechnic Proddatur that deals with grievances and complaints related to the institution."
+            },
+            {
+                "id": "GRC002",
+                "question": "Does Government Polytechnic Proddatur have a Grievance Redressal Cell?",
+                "answer": "Yes. Government Polytechnic Proddatur has a Grievance Redressal Cell."
+            },
+            {
+                "id": "GRC003",
+                "question": "Who are the members of the Grievance Cell?",
+                "answer": "The Grievance Cell members listed on the college website are P Gurumurthy Reddy, M. Vijaya Kumar, Dr. A. Veerabhadra Reddy, K. Manjunath, Jinka Ashok Babu, and Srinu Babu Geddam."
+            },
+            {
+                "id": "GRC004",
+                "question": "Who is P Gurumurthy Reddy in the Grievance Cell?",
+                "answer": "P Gurumurthy Reddy is the Principal of Government Polytechnic Proddatur and is listed as a member of the Grievance Cell."
+            },
+            {
+                "id": "GRC005",
+                "question": "Who is M. Vijaya Kumar in the Grievance Cell?",
+                "answer": "M. Vijaya Kumar is listed as HCME and is a member of the Grievance Cell."
+            },
+            {
+                "id": "GRC006",
+                "question": "Who is Dr. A. Veerabhadra Reddy in the Grievance Cell?",
+                "answer": "Dr. A. Veerabhadra Reddy is listed as HECES and is a member of the Grievance Cell."
+            },
+            {
+                "id": "GRC007",
+                "question": "Who is K. Manjunath in the Grievance Cell?",
+                "answer": "K. Manjunath is listed as HEEES and is a member of the Grievance Cell."
+            },
+            {
+                "id": "GRC008",
+                "question": "Who is Jinka Ashok Babu in the Grievance Cell?",
+                "answer": "Jinka Ashok Babu is listed as HMES and is a member of the Grievance Cell."
+            },
+            {
+                "id": "GRC009",
+                "question": "Who is Srinu Babu Geddam in the Grievance Cell?",
+                "answer": "Srinu Babu Geddam is listed as Senior Lecturer in Mathematics and is a member of the Grievance Cell."
+            },
+            {
+                "id": "GRC010",
+                "question": "How many members are listed in the Grievance Cell?",
+                "answer": "Six members are listed under the Grievance Cell on the Government Polytechnic Proddatur website."
+            },
+            {
+                "id": "GRC011",
+                "question": "Can students raise grievances in the college?",
+                "answer": "Yes. Students can raise grievances related to academic and administrative matters through the grievance redressal mechanism."
+            },
+            {
+                "id": "GRC012",
+                "question": "How can I submit a grievance?",
+                "answer": "Students and other eligible users can submit grievances through the AP PolyGrievance App or web platform by registering or logging in and entering the grievance details."
+            },
+            {
+                "id": "GRC013",
+                "question": "What is the AP PolyGrievance App?",
+                "answer": "The AP PolyGrievance App is a digital platform for students, parents, teaching staff, and non-teaching staff of Polytechnic institutions in Andhra Pradesh to register, track, and resolve grievances."
+            },
+            {
+                "id": "GRC014",
+                "question": "Who can use the AP PolyGrievance App?",
+                "answer": "Students, parents, faculty members, and staff can use the AP PolyGrievance platform to lodge grievances related to institutional matters."
+            },
+            {
+                "id": "GRC015",
+                "question": "Can I track my grievance after submitting it?",
+                "answer": "Yes. The AP PolyGrievance platform allows users to monitor updates and the resolution status of their grievances."
+            },
+            {
+                "id": "GRC016",
+                "question": "Can I upload supporting documents with a grievance?",
+                "answer": "Yes. Users can enter grievance details and upload supporting documents when required."
+            },
+            {
+                "id": "GRC017",
+                "question": "How does the grievance process work?",
+                "answer": "The process involves registering or logging in, submitting the grievance with relevant details, committee review and response, and tracking the grievance status."
+            },
+            {
+                "id": "GRC018",
+                "question": "What types of grievances can be submitted?",
+                "answer": "The AP PolyGrievance platform is intended for grievances related to academic and administrative matters in Polytechnic institutions."
+            },
+            {
+                "id": "GRC019",
+                "question": "Does the Grievance Redressal Cell help resolve student complaints?",
+                "answer": "Yes. The grievance mechanism is intended to support the review and resolution of student and institutional grievances in a transparent and accountable manner."
+            },
+            {
+                "id": "GRC020",
+                "question": "Where can I find Grievance Redressal Cell information?",
+                "answer": "Grievance Redressal Cell information is available on the official Government Polytechnic Proddatur website under the Committees section."
+            },
+            {
+                "id": "GRC021",
+                "question": "What is the official website of Government Polytechnic Proddatur?",
+                "answer": "The official website of Government Polytechnic Proddatur is https://govtpolyproddatur.ac.in/"
+            },
+            {
+                "id": "GRC022",
+                "question": "Where is Government Polytechnic Proddatur located?",
+                "answer": "Government Polytechnic Proddatur is located on Korrapadu Road, Proddatur, Andhra Pradesh, YSR Kadapa District, PINCODE-516360."
+            }
+        ]
+    }
+}

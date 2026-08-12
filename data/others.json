@@ -1,0 +1,1006 @@
+{
+    "website": "https://govtpolyproddatur.ac.in/",
+    "college": "Government Polytechnic Proddatur",
+    "data": [
+        {
+            "id": "about_001",
+            "title": "About Government Polytechnic Proddatur",
+            "keywords": [
+                "about college",
+                "history",
+                "established",
+                "Government Polytechnic Proddatur",
+                "college history",
+                "1959",
+                "AICTE",
+                "SBTET"
+            ],
+            "content": {
+                "description": "Government Polytechnic Proddatur was established in 1959 as a government technical education institute. It operates under the Department of Technical Education, Government of Andhra Pradesh, is affiliated to SBTET Andhra Pradesh and approved by AICTE.",
+                "possible_questions_answers": [
+                    {
+                        "question": "When was Government Polytechnic Proddatur established?",
+                        "answer": "Government Polytechnic Proddatur was established in 1959."
+                    },
+                    {
+                        "question": "Who established Government Polytechnic Proddatur?",
+                        "answer": "The institution was established under the Department of Technical Education, Government of Andhra Pradesh."
+                    },
+                    {
+                        "question": "Is Government Polytechnic Proddatur affiliated to SBTET?",
+                        "answer": "Yes. Government Polytechnic Proddatur is affiliated to the State Board of Technical Education and Training, Andhra Pradesh."
+                    },
+                    {
+                        "question": "Is Government Polytechnic Proddatur approved by AICTE?",
+                        "answer": "Yes. The institution is approved by the All India Council for Technical Education (AICTE)."
+                    },
+                    {
+                        "question": "Which branches were available when the college started?",
+                        "answer": "When the institution started in 1959, it offered Civil Engineering, Mechanical Engineering and Electrical Engineering."
+                    },
+                    {
+                        "question": "When was Electronics and Communication Engineering introduced?",
+                        "answer": "Electronics and Communication Engineering was introduced in 1985."
+                    },
+                    {
+                        "question": "When was Computer Engineering introduced?",
+                        "answer": "Diploma in Computer Engineering was introduced in 2006."
+                    },
+                    {
+                        "question": "What facilities does the college have?",
+                        "answer": "The institution has facilities including hostel accommodation, libraries, laboratories, sports infrastructure and a placement cell."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "aims_001",
+            "title": "Aims and Objectives",
+            "keywords": [
+                "aim",
+                "objectives",
+                "college objectives",
+                "technical education",
+                "student development",
+                "skills",
+                "entrepreneurship"
+            ],
+            "content": {
+                "description": "The institution aims to provide quality technical education, develop competent diploma engineers and support students from rural and economically weaker sections.",
+                "possible_questions_answers": [
+                    {
+                        "question": "What is the aim of Government Polytechnic Proddatur?",
+                        "answer": "The aim is to provide quality technical education and develop competent diploma engineers with technical skills, ethical values and social responsibility."
+                    },
+                    {
+                        "question": "Does the college support rural students?",
+                        "answer": "Yes. The institution aims to provide quality technical education especially to students from rural and economically weaker sections."
+                    },
+                    {
+                        "question": "Does the college promote practical skills?",
+                        "answer": "Yes. The college promotes practical and hands-on skills through laboratories, workshops and industry-oriented training."
+                    },
+                    {
+                        "question": "Does the college promote entrepreneurship?",
+                        "answer": "Yes. The institution promotes employability and entrepreneurship by developing technical competence, communication skills and problem-solving abilities."
+                    },
+                    {
+                        "question": "Does the college provide industry exposure?",
+                        "answer": "Yes. Industry interaction is encouraged through industrial visits, guest lectures, internships and collaborative activities."
+                    },
+                    {
+                        "question": "Does the college encourage innovation?",
+                        "answer": "Yes. The institution encourages innovation and lifelong learning by motivating students to adopt emerging technologies and modern engineering practices."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "goals_001",
+            "title": "Goals",
+            "keywords": [
+                "goals",
+                "college goals",
+                "technical education goals",
+                "industry needs",
+                "employability",
+                "innovation"
+            ],
+            "content": {
+                "description": "The college goals focus on quality technical education, employability, practical knowledge, discipline, innovation, inclusive education, industry interaction and lifelong learning.",
+                "possible_questions_answers": [
+                    {
+                        "question": "What are the goals of the college?",
+                        "answer": "The goals include providing quality technical education, developing skilled diploma engineers, promoting discipline and ethics, encouraging innovation, supporting inclusive education, improving industry interaction and fostering lifelong learning."
+                    },
+                    {
+                        "question": "Does the college focus on employability?",
+                        "answer": "Yes. The college aims to develop skilled, competent and employable diploma engineers."
+                    },
+                    {
+                        "question": "Does the college encourage problem-solving skills?",
+                        "answer": "Yes. The college encourages innovation, creativity and problem-solving through hands-on learning."
+                    },
+                    {
+                        "question": "Does the college support equal opportunities?",
+                        "answer": "Yes. The college aims to provide equal opportunities to students from all sections of society."
+                    },
+                    {
+                        "question": "Does the college focus on emerging technologies?",
+                        "answer": "Yes. The college promotes lifelong learning and adaptability to emerging technologies."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "admissions_001",
+            "title": "Admissions",
+            "keywords": [
+                "admissions",
+                "admission",
+                "POLYCET",
+                "eligibility",
+                "intake",
+                "lateral entry",
+                "spot admission",
+                "SSC",
+                "ITI",
+                "IVC"
+            ],
+            "content": {
+                "description": "Government Polytechnic Proddatur offers direct admission into the first year and lateral entry into the second year. Direct admission is based on POLYCET rank, while eligible IVC and ITI students can enter through lateral entry.",
+                "branch_intake": {
+                    "Civil Engineering": 66,
+                    "Computer Engineering": 66,
+                    "Electronics and Communication Engineering": 132,
+                    "Electrical and Electronics Engineering": 132,
+                    "Mechanical Engineering": 198
+                },
+                "possible_questions_answers": [
+                    {
+                        "question": "How can I get admission into Government Polytechnic Proddatur?",
+                        "answer": "Students can get admission through direct entry into first year or lateral entry into second year, subject to the applicable rules."
+                    },
+                    {
+                        "question": "What entrance examination is used for first-year admission?",
+                        "answer": "First-year admissions are based on ranks obtained in POLYCET."
+                    },
+                    {
+                        "question": "What is the eligibility for POLYCET?",
+                        "answer": "A candidate must pass SSC or an equivalent qualification to be eligible to appear for POLYCET."
+                    },
+                    {
+                        "question": "Is spot admission available?",
+                        "answer": "If seats remain vacant, they may be filled through spot admissions according to Government of Andhra Pradesh regulations and notification."
+                    },
+                    {
+                        "question": "Who can apply for lateral entry?",
+                        "answer": "Eligible students who have completed a relevant Intermediate Vocational Course with the required Bridge Course, or relevant ITI trade with the required Bridge Course, can apply for lateral entry."
+                    },
+                    {
+                        "question": "How many Civil Engineering seats are available?",
+                        "answer": "The Civil Engineering intake is 66 seats."
+                    },
+                    {
+                        "question": "How many Computer Engineering seats are available?",
+                        "answer": "The Computer Engineering intake is 66 seats."
+                    },
+                    {
+                        "question": "How many ECE seats are available?",
+                        "answer": "The Electronics and Communication Engineering intake is 132 seats."
+                    },
+                    {
+                        "question": "How many EEE seats are available?",
+                        "answer": "The Electrical and Electronics Engineering intake is 132 seats."
+                    },
+                    {
+                        "question": "How many Mechanical Engineering seats are available?",
+                        "answer": "The Mechanical Engineering intake is 198 seats."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "fees_001",
+            "title": "Fee Structure",
+            "keywords": [
+                "fees",
+                "fee structure",
+                "tuition fee",
+                "course fee",
+                "first year fee",
+                "second year fee",
+                "third year fee",
+                "fee reimbursement"
+            ],
+            "content": {
+                "fee_details": {
+                    "Tuition Fee": 2000,
+                    "Course Work Fee": 300,
+                    "Games Fee": 100,
+                    "Association Fee": 100,
+                    "Laboratory and Workshop Fee": 900,
+                    "Library Non-Refundable Fee": 400,
+                    "Admission Fee": 100,
+                    "Syllabus Book": 100,
+                    "Board Recognition Fee": 250,
+                    "Alumni Fee": 100,
+                    "Management Information System": 300,
+                    "Tech Fest Fee": 50,
+                    "Total": 4700
+                },
+                "year_wise_fee": {
+                    "I Year": 4700,
+                    "II Year": 4150,
+                    "III Year": 4150
+                },
+                "possible_questions_answers": [
+                    {
+                        "question": "What is the total first-year fee?",
+                        "answer": "The total first-year fee is Rs. 4,700."
+                    },
+                    {
+                        "question": "What is the fee for second year?",
+                        "answer": "The second-year fee is Rs. 4,150."
+                    },
+                    {
+                        "question": "What is the fee for third year?",
+                        "answer": "The third-year fee is Rs. 4,150."
+                    },
+                    {
+                        "question": "What is the tuition fee?",
+                        "answer": "The tuition fee is Rs. 2,000."
+                    },
+                    {
+                        "question": "What is the laboratory and workshop fee?",
+                        "answer": "The laboratory and workshop fee is Rs. 900."
+                    },
+                    {
+                        "question": "Is fee reimbursement available?",
+                        "answer": "Scholarship and fee reimbursement are provided by the State Government based on eligibility criteria set by the respective social welfare departments of Andhra Pradesh."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "academics_001",
+            "title": "Academics",
+            "keywords": [
+                "academics",
+                "academic calendar",
+                "academic year",
+                "academic activities",
+                "2025-26",
+                "2024-25"
+            ],
+            "content": {
+                "academic_calendars": [
+                    "Academic Calendar 2025-26",
+                    "Academic Calendar 2024-25"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Where can I find the academic calendar?",
+                        "answer": "The academic calendars are available in the Academics section of the official college website."
+                    },
+                    {
+                        "question": "Is the 2025-26 academic calendar available?",
+                        "answer": "Yes. The Academic Calendar 2025-26 is listed on the Academics page."
+                    },
+                    {
+                        "question": "Is the 2024-25 academic calendar available?",
+                        "answer": "Yes. The Academic Calendar 2024-25 is listed on the Academics page."
+                    },
+                    {
+                        "question": "Does the college have academic activities?",
+                        "answer": "Yes. The Academics page contains an Academic Activities Gallery."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "examinations_001",
+            "title": "Examinations",
+            "keywords": [
+                "examinations",
+                "AP SBTET",
+                "internal assessment",
+                "external examination",
+                "supplementary exams",
+                "results",
+                "marks memo",
+                "diploma certificate"
+            ],
+            "content": {
+                "description": "AP SBTET is responsible for curriculum implementation, academic regulation and examinations for diploma programmes.",
+                "examination_types": [
+                    "End Semester / End Examination",
+                    "Supplementary Examinations",
+                    "Internal Continuous Assessment",
+                    "Practical Evaluation",
+                    "Special / Bridge Examinations"
+                ],
+                "marks_distribution": {
+                    "Theory": {
+                        "Internal Assessment": 20,
+                        "External Examination": 80,
+                        "Total": 100
+                    },
+                    "Practical": {
+                        "Internal Assessment": 40,
+                        "External Examination": 60,
+                        "Total": 100
+                    }
+                },
+                "possible_questions_answers": [
+                    {
+                        "question": "Who conducts diploma examinations?",
+                        "answer": "The State Board of Technical Education and Training, Andhra Pradesh (AP SBTET) conducts examinations for diploma programmes."
+                    },
+                    {
+                        "question": "What types of examinations are conducted?",
+                        "answer": "The examination system includes end examinations, supplementary examinations, internal continuous assessment, practical evaluation and special or bridge examinations as notified."
+                    },
+                    {
+                        "question": "How many marks are allotted for theory internal assessment?",
+                        "answer": "Theory internal assessment carries 20 marks."
+                    },
+                    {
+                        "question": "How many marks are allotted for theory external examination?",
+                        "answer": "Theory external examination carries 80 marks."
+                    },
+                    {
+                        "question": "How many total marks does a theory subject have?",
+                        "answer": "A theory subject has a total of 100 marks: 20 internal and 80 external."
+                    },
+                    {
+                        "question": "How many marks are allotted for practical internal assessment?",
+                        "answer": "Practical internal assessment carries 40 marks."
+                    },
+                    {
+                        "question": "How many marks are allotted for practical external examination?",
+                        "answer": "Practical external examination carries 60 marks."
+                    },
+                    {
+                        "question": "How can students get their results?",
+                        "answer": "Examination results are published through the official AP SBTET system."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "placements_001",
+            "title": "Placements",
+            "keywords": [
+                "placements",
+                "placement cell",
+                "jobs",
+                "recruitment",
+                "placement data",
+                "2024-25",
+                "2023-24",
+                "companies"
+            ],
+            "content": {
+                "available_information": [
+                    "2024-25 Placement Details PDF",
+                    "Overall Placement Data 2024-25 Excel",
+                    "Placement Details 2023-24",
+                    "Placements Data 2024-25",
+                    "Thoughtworks Recruitment Drive-2025"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Does Government Polytechnic Proddatur provide placement information?",
+                        "answer": "Yes. The college website has a dedicated Placements section."
+                    },
+                    {
+                        "question": "Where can I find placement data?",
+                        "answer": "Placement information is available in the Placements section of the official college website."
+                    },
+                    {
+                        "question": "Is 2024-25 placement data available?",
+                        "answer": "Yes. The website provides 2024-25 placement details and overall placement data."
+                    },
+                    {
+                        "question": "Is 2023-24 placement information available?",
+                        "answer": "Yes. Placement Details 2023-24 is listed on the website."
+                    },
+                    {
+                        "question": "Is there a recruitment drive for students?",
+                        "answer": "Yes. The website lists the Thoughtworks Recruitment Drive-2025 among its updates."
+                    },
+                    {
+                        "question": "Where can I access detailed placement records?",
+                        "answer": "Detailed placement records and outcomes can be accessed through the college's placements portal."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hallmarks_001",
+            "title": "Hallmarks and Achievements",
+            "keywords": [
+                "hallmarks",
+                "achievements",
+                "OBE",
+                "NBA",
+                "laboratories",
+                "industry training",
+                "skill development",
+                "student activities"
+            ],
+            "content": {
+                "hallmarks": [
+                    "Outcome-Based Education",
+                    "Qualified and Committed Faculty",
+                    "Well-Equipped Laboratories and Workshops",
+                    "Industry-Oriented Training",
+                    "Student-Centric Learning Environment",
+                    "Academic Discipline and Ethics",
+                    "Support for Rural and Economically Weaker Students",
+                    "Skill Development and Employability",
+                    "Co-Curricular and Extra-Curricular Activities",
+                    "Continuous Improvement"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "What are the hallmarks of the institution?",
+                        "answer": "The hallmarks include outcome-based education, qualified faculty, well-equipped laboratories, industry-oriented training, student-centric learning, academic discipline, skill development and continuous improvement."
+                    },
+                    {
+                        "question": "Does the college follow outcome-based education?",
+                        "answer": "Yes. Academic delivery is aligned with Outcome-Based Education principles and NBA norms."
+                    },
+                    {
+                        "question": "Does the college provide industry-oriented training?",
+                        "answer": "Yes. The institution supports industrial visits, guest lectures, internships and industry interaction."
+                    },
+                    {
+                        "question": "Does the college encourage extracurricular activities?",
+                        "answer": "Yes. Students are encouraged to participate in technical clubs, competitions, NSS activities and community development programmes."
+                    },
+                    {
+                        "question": "Does the college support economically weaker students?",
+                        "answer": "Yes. The institution provides accessible technical education with government support schemes, scholarships and academic assistance."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "principal_001",
+            "title": "Principal's Message",
+            "keywords": [
+                "principal",
+                "principal message",
+                "P Gurumurthy Reddy",
+                "principal profile",
+                "college principal"
+            ],
+            "content": {
+                "principal": "P Gurumurthy Reddy",
+                "message_summary": "The Principal highlights the importance of technical education, qualified faculty, laboratory facilities, employability, ECET performance, ethical values, discipline and responsible citizenship.",
+                "possible_questions_answers": [
+                    {
+                        "question": "Who is the Principal of Government Polytechnic Proddatur?",
+                        "answer": "P Gurumurthy Reddy is the Principal of Government Polytechnic Proddatur."
+                    },
+                    {
+                        "question": "What does the Principal say about technical education?",
+                        "answer": "The Principal states that technical education acts as a catalyst for the industrial development of a nation."
+                    },
+                    {
+                        "question": "Does the college focus on employability?",
+                        "answer": "Yes. The Principal highlights the role of faculty and laboratory facilities in developing technical competencies and employability."
+                    },
+                    {
+                        "question": "Does the college encourage ethical values?",
+                        "answer": "Yes. The institution aims to identify individual talents, develop ethical and moral values and maintain discipline."
+                    },
+                    {
+                        "question": "How have students performed in ECET?",
+                        "answer": "According to the Principal's message, students have consistently secured commendable ranks in ECET since its inception."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "contact_001",
+            "title": "Contact Information",
+            "keywords": [
+                "contact",
+                "phone",
+                "mobile",
+                "email",
+                "address",
+                "location",
+                "college contact"
+            ],
+            "content": {
+                "address": "Government Polytechnic, Korrapadu Road, Proddatur, Andhra Pradesh, YSR Kadapa District, PINCODE-516360",
+                "phone": "99123 42022",
+                "email": "gptproddatur@gmail.com",
+                "website": "https://govtpolyproddatur.ac.in/",
+                "possible_questions_answers": [
+                    {
+                        "question": "What is the address of Government Polytechnic Proddatur?",
+                        "answer": "Government Polytechnic is located at Korrapadu Road, Proddatur, Andhra Pradesh, YSR Kadapa District, PINCODE-516360."
+                    },
+                    {
+                        "question": "What is the college phone number?",
+                        "answer": "The college contact phone number is 99123 42022."
+                    },
+                    {
+                        "question": "What is the college email address?",
+                        "answer": "The college email address is gptproddatur@gmail.com."
+                    },
+                    {
+                        "question": "What is the official website?",
+                        "answer": "The official website is https://govtpolyproddatur.ac.in/."
+                    },
+                    {
+                        "question": "Where is the college located?",
+                        "answer": "Government Polytechnic Proddatur is located on Korrapadu Road in Proddatur, Andhra Pradesh."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "committees_001",
+            "title": "College Committees",
+            "keywords": [
+                "committees",
+                "college committees",
+                "academic council",
+                "finance committee",
+                "grievance",
+                "anti ragging",
+                "innovation cell",
+                "IQAC",
+                "student counsellor"
+            ],
+            "content": {
+                "committees": [
+                    "Academic Council",
+                    "Finance Committee",
+                    "Grievance Redressal Cell",
+                    "Student Counsellor Committee",
+                    "Anti-Ragging Committee",
+                    "Innovation Cell",
+                    "Internal Complaint Committee",
+                    "Institution Industry Cell",
+                    "Internal Quality Assurance Committee",
+                    "Internal Grievance Redressal Committee",
+                    "Institute-Industry Connect Committee",
+                    "Disciplinary Committee",
+                    "SC & ST Protection Committee",
+                    "Women Protection Committee"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the college have an Academic Council?",
+                        "answer": "Yes. Government Polytechnic Proddatur has an Academic Council."
+                    },
+                    {
+                        "question": "Does the college have a Finance Committee?",
+                        "answer": "Yes. The college has a Finance Committee."
+                    },
+                    {
+                        "question": "Is there a Grievance Redressal Cell?",
+                        "answer": "Yes. The college has a Grievance Redressal Cell."
+                    },
+                    {
+                        "question": "Does the college have an Anti-Ragging Committee?",
+                        "answer": "Yes. An Anti-Ragging Committee is listed among the college committees."
+                    },
+                    {
+                        "question": "Does the college have an Innovation Cell?",
+                        "answer": "Yes. The college has an Innovation Cell."
+                    },
+                    {
+                        "question": "Does the college have an Internal Quality Assurance Committee?",
+                        "answer": "Yes. The college has an Internal Quality Assurance Committee."
+                    },
+                    {
+                        "question": "Does the college have a Women Protection Committee?",
+                        "answer": "Yes. A Women Protection Committee is listed among the college committees."
+                    },
+                    {
+                        "question": "Does the college have an SC and ST Protection Committee?",
+                        "answer": "Yes. The college has an SC & ST Protection Committee."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "academic_council_001",
+            "title": "Academic Council",
+            "keywords": [
+                "academic council",
+                "principal",
+                "council members",
+                "academic committee"
+            ],
+            "content": {
+                "members": [
+                    {
+                        "name": "P Gurumurthy Reddy",
+                        "designation": "Principal",
+                        "position": "Chairman"
+                    },
+                    {
+                        "name": "Dr A Veerabhadra Reddy",
+                        "designation": "HECES",
+                        "position": "Secretary"
+                    },
+                    {
+                        "name": "K Vijaya Kumar",
+                        "designation": "HCMES",
+                        "position": "Member"
+                    },
+                    {
+                        "name": "J Ashok Babu",
+                        "designation": "HMES",
+                        "position": "Member"
+                    },
+                    {
+                        "name": "K Manjunath",
+                        "designation": "HEEES",
+                        "position": "Member"
+                    },
+                    {
+                        "name": "M Ravi Kumar",
+                        "designation": "SL/CE",
+                        "position": "Member"
+                    },
+                    {
+                        "name": "G Srinu Babu",
+                        "designation": "HGS",
+                        "position": "Member"
+                    }
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Who is the Chairman of the Academic Council?",
+                        "answer": "P Gurumurthy Reddy, Principal, is the Chairman of the Academic Council."
+                    },
+                    {
+                        "question": "Who is the Secretary of the Academic Council?",
+                        "answer": "Dr A Veerabhadra Reddy is the Secretary of the Academic Council."
+                    },
+                    {
+                        "question": "Who is a member of the Academic Council from Civil Engineering?",
+                        "answer": "M Ravi Kumar, Senior Lecturer in Civil Engineering, is a member of the Academic Council."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "facilities_001",
+            "title": "Facilities",
+            "keywords": [
+                "facilities",
+                "college facilities",
+                "hostel",
+                "library",
+                "laboratories",
+                "sports",
+                "placement cell",
+                "workshops"
+            ],
+            "content": {
+                "facilities": [
+                    "Hostel accommodation",
+                    "Library",
+                    "Laboratories",
+                    "Sports infrastructure",
+                    "Placement Cell",
+                    "Workshops"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "What facilities are available in the college?",
+                        "answer": "The college provides facilities including hostel accommodation, libraries, laboratories, sports infrastructure, workshops and a placement cell."
+                    },
+                    {
+                        "question": "Does the college have a hostel?",
+                        "answer": "Yes. Hostel accommodation is listed among the institutional facilities."
+                    },
+                    {
+                        "question": "Does the college have a library?",
+                        "answer": "Yes. A library is available as one of the campus facilities."
+                    },
+                    {
+                        "question": "Does the college have laboratories?",
+                        "answer": "Yes. The college has laboratories supporting practical learning."
+                    },
+                    {
+                        "question": "Does the college have sports facilities?",
+                        "answer": "Yes. Sports infrastructure is listed among the campus facilities."
+                    },
+                    {
+                        "question": "Does the college have a placement cell?",
+                        "answer": "Yes. The college has a placement cell to support students' career growth."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "departments_001",
+            "title": "Departments",
+            "keywords": [
+                "departments",
+                "branches",
+                "Civil",
+                "Computer",
+                "ECE",
+                "EEE",
+                "Mechanical",
+                "General"
+            ],
+            "content": {
+                "departments": [
+                    "Civil Engineering",
+                    "Computer Engineering",
+                    "Electronics and Communication Engineering",
+                    "Electrical and Electronics Engineering",
+                    "Mechanical Engineering",
+                    "General / Basic Sciences and Humanities"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "What departments are available in the college?",
+                        "answer": "The college has Civil Engineering, Computer Engineering, Electronics and Communication Engineering, Electrical and Electronics Engineering, Mechanical Engineering and General/Basic Sciences and Humanities."
+                    },
+                    {
+                        "question": "Is Civil Engineering available?",
+                        "answer": "Yes. Civil Engineering is one of the departments."
+                    },
+                    {
+                        "question": "Is Computer Engineering available?",
+                        "answer": "Yes. Computer Engineering is one of the departments."
+                    },
+                    {
+                        "question": "Is ECE available?",
+                        "answer": "Yes. Electronics and Communication Engineering is available."
+                    },
+                    {
+                        "question": "Is EEE available?",
+                        "answer": "Yes. Electrical and Electronics Engineering is available."
+                    },
+                    {
+                        "question": "Is Mechanical Engineering available?",
+                        "answer": "Yes. Mechanical Engineering is available."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "general_section_001",
+            "title": "General Department",
+            "keywords": [
+                "general department",
+                "basic sciences",
+                "humanities",
+                "mathematics",
+                "physics",
+                "chemistry",
+                "english",
+                "communication lab"
+            ],
+            "content": {
+                "labs": [
+                    "Chemistry Laboratory",
+                    "Physics Laboratory",
+                    "Communication Laboratory"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the college have a General section?",
+                        "answer": "Yes. The college has a General section covering Basic Sciences and Humanities."
+                    },
+                    {
+                        "question": "What laboratories are available in the General section?",
+                        "answer": "The General section includes Chemistry Laboratory, Physics Laboratory and Communication Laboratory."
+                    },
+                    {
+                        "question": "Does the General section teach Mathematics?",
+                        "answer": "Yes. Mathematics is part of the Basic Sciences and Humanities section."
+                    },
+                    {
+                        "question": "Does the General section teach Physics?",
+                        "answer": "Yes. Physics is part of the Basic Sciences and Humanities section."
+                    },
+                    {
+                        "question": "Does the General section teach Chemistry?",
+                        "answer": "Yes. Chemistry is part of the Basic Sciences and Humanities section."
+                    },
+                    {
+                        "question": "Is English taught in the General section?",
+                        "answer": "Yes. English and communication skills are included in the General section."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "scholarships_001",
+            "title": "Scholarships and Fee Reimbursement",
+            "keywords": [
+                "scholarships",
+                "scholarship",
+                "fee reimbursement",
+                "merit scholarship",
+                "government scholarship",
+                "social welfare"
+            ],
+            "content": {
+                "description": "Scholarship and fee reimbursement are provided by the State Government based on eligibility criteria set by various social welfare departments of Andhra Pradesh.",
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the college provide scholarships?",
+                        "answer": "Scholarship support is available through State Government schemes based on eligibility criteria."
+                    },
+                    {
+                        "question": "Is fee reimbursement available?",
+                        "answer": "Yes. Fee reimbursement is provided by the State Government based on eligibility."
+                    },
+                    {
+                        "question": "Who handles scholarship notifications and processing?",
+                        "answer": "The respective Government departments handle notifications, schedules, processing and related scholarship activities."
+                    },
+                    {
+                        "question": "Are merit scholarships mentioned on the website?",
+                        "answer": "Yes. The website lists a Merit Scholarships Ceremony among its updates."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "transport_001",
+            "title": "Transport",
+            "keywords": [
+                "transport",
+                "bus",
+                "college bus",
+                "transport facility",
+                "travel"
+            ],
+            "content": {
+                "description": "Transport-related information should be taken from the official website when a specific transport facility, route or bus schedule is published.",
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the college provide transport facilities?",
+                        "answer": "Please check the official Government Polytechnic Proddatur website for the latest transport facility information and availability."
+                    },
+                    {
+                        "question": "Does the college have college buses?",
+                        "answer": "The currently available website information does not provide a detailed college bus route or schedule. Please contact the college for the latest information."
+                    },
+                    {
+                        "question": "Where can I ask about transport?",
+                        "answer": "You can contact Government Polytechnic Proddatur using the official contact details for current transport information."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "events_001",
+            "title": "College Events and Activities",
+            "keywords": [
+                "events",
+                "college events",
+                "celebrations",
+                "health camp",
+                "Engineers Day",
+                "Independence Day",
+                "GST awareness",
+                "scholarship ceremony"
+            ],
+            "content": {
+                "events": [
+                    "Merit Scholarship Ceremony",
+                    "Independence Day",
+                    "Engineer's Day",
+                    "Health Care Camp 2025",
+                    "GST 2.0 Awareness Program",
+                    "Swachh Andhra Day",
+                    "IPSGM2025"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "What events are conducted by the college?",
+                        "answer": "The website lists activities such as Merit Scholarship Ceremony, Independence Day, Engineers' Day, Health Care Camp, GST 2.0 Awareness Program, Swachh Andhra Day and IPSGM2025."
+                    },
+                    {
+                        "question": "Does the college celebrate Engineers' Day?",
+                        "answer": "Yes. Engineers' Day celebrations are listed among the college activities."
+                    },
+                    {
+                        "question": "Does the college celebrate Independence Day?",
+                        "answer": "Yes. Independence Day celebrations are listed among the college activities."
+                    },
+                    {
+                        "question": "Does the college conduct health camps?",
+                        "answer": "Yes. Health Care Camp 2025 is listed among the college updates."
+                    },
+                    {
+                        "question": "Does the college conduct awareness programmes?",
+                        "answer": "Yes. The website lists programmes such as the GST 2.0 Awareness Program."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "cme_magazines_001",
+            "title": "CME Department Magazines",
+            "keywords": [
+                "CME magazines",
+                "Computer Engineering magazines",
+                "department magazine",
+                "magazines",
+                "Volume 1",
+                "Volume 2",
+                "Volume 3"
+            ],
+            "content": {
+                "available_magazines": [
+                    "Volume 1 Edition 1",
+                    "Volume 1 Edition 2",
+                    "Volume 2 Edition 1",
+                    "Volume 2 Edition 2",
+                    "Volume 3 Edition 1"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the CME department have magazines?",
+                        "answer": "Yes. The Computer Engineering (CME) department has magazines available on the website."
+                    },
+                    {
+                        "question": "Which CME magazine editions are available?",
+                        "answer": "The website lists Volume 1 Edition 1, Volume 1 Edition 2, Volume 2 Edition 1, Volume 2 Edition 2 and Volume 3 Edition 1."
+                    },
+                    {
+                        "question": "Where can I find CME department magazines?",
+                        "answer": "The CME department magazine links are available through the official Government Polytechnic Proddatur website."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "grievance_cell_001",
+            "title": "Grievance Cell",
+            "keywords": [
+                "grievance",
+                "grievance cell",
+                "complaint",
+                "student grievance",
+                "principal",
+                "committee members"
+            ],
+            "content": {
+                "members": [
+                    "P Gurumurthy Reddy - Principal",
+                    "M. Vijaya Kumar - HCME",
+                    "Dr. A. Veerabhadra Reddy - HECES",
+                    "K. Manjunath - HEEES",
+                    "Jinka Ashok Babu - HMES",
+                    "Srinu Babu Geddam - Senior Lecturer in Mathematics"
+                ],
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the college have a Grievance Cell?",
+                        "answer": "Yes. Government Polytechnic Proddatur has a Grievance Cell."
+                    },
+                    {
+                        "question": "Who is the Principal listed in the Grievance Cell?",
+                        "answer": "P Gurumurthy Reddy, Principal, is listed as a member of the Grievance Cell."
+                    },
+                    {
+                        "question": "Who are the members of the Grievance Cell?",
+                        "answer": "The listed members include P Gurumurthy Reddy, M. Vijaya Kumar, Dr. A. Veerabhadra Reddy, K. Manjunath, Jinka Ashok Babu and Srinu Babu Geddam."
+                    }
+                ]
+            }
+        }
+    ]
+}

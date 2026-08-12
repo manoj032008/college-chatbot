@@ -1,0 +1,215 @@
+{
+  "department": {
+    "id": "DCE-001",
+    "title": "Civil Engineering Department",
+    "keywords": [
+      "Civil Engineering",
+      "Civil Department",
+      "Civil Faculty",
+      "Civil Lecturers",
+      "Civil Engineering Faculty",
+      "Civil Faculty Profiles",
+      "Civil Lecturer Biodata"
+    ],
+    "content": [
+      {
+        "id": "DCE-FAC-001",
+        "title": "P GURUMURTHY REDDY - Faculty Biodata",
+        "keywords": [
+          "P Gurumurthy Reddy",
+          "P Gurumurty Reddy",
+          "Gurumurthy Reddy",
+          "Civil HOD",
+          "Civil Head of Department",
+          "P Gurumurthy Reddy biodata",
+          "P Gurumurthy Reddy PDF"
+        ],
+        "content": {
+          "question": "Who is P Gurumurthy Reddy?",
+          "answer": "P Gurumurthy Reddy is the Head of Department (HOD) of Civil Engineering at Government Polytechnic Proddatur.",
+          "faculty_name": "P Gurumurthy Reddy",
+          "designation": "HOD",
+          "department": "Civil Engineering",
+          "biodata_pdf": "PDF URL TO BE INSERTED FROM THE CLICKABLE FACULTY PROFILE",
+          "biodata_available": true,
+          "biodata_instruction": "Click the P GURUMURTHY REDDY faculty profile on the official Civil Engineering department page to open the Bio-Data PDF."
+        }
+      },
+      {
+        "id": "DCE-FAC-002",
+        "title": "MARAM RAVI KUMAR - Faculty Biodata",
+        "keywords": [
+          "Maram Ravi Kumar",
+          "M Ravi Kumar",
+          "Ravi Kumar",
+          "Civil Senior Lecturer",
+          "Civil Engineering Senior Lecturer",
+          "Ravi Kumar biodata",
+          "Ravi Kumar PDF"
+        ],
+        "content": {
+          "question": "Who is Maram Ravi Kumar?",
+          "answer": "Maram Ravi Kumar is a Senior Lecturer in the Civil Engineering department at Government Polytechnic Proddatur.",
+          "faculty_name": "Maram Ravi Kumar",
+          "designation": "Senior Lecturer",
+          "department": "Civil Engineering",
+          "biodata_pdf": "PDF URL TO BE INSERTED FROM THE CLICKABLE FACULTY PROFILE",
+          "biodata_available": true,
+          "biodata_instruction": "Click the MARAM RAVI KUMAR faculty profile on the official Civil Engineering department page to open the Bio-Data PDF."
+        }
+      },
+      {
+        "id": "DCE-FAC-003",
+        "title": "V. CHANDRASEKHAR REDDY - Faculty Biodata",
+        "keywords": [
+          "V Chandra Sekhar Reddy",
+          "V. Chandrasekhar Reddy",
+          "Chandrasekhar Reddy",
+          "Civil Lecturer",
+          "Civil Engineering Lecturer",
+          "Chandrasekhar Reddy biodata",
+          "Chandrasekhar Reddy PDF"
+        ],
+        "content": {
+          "question": "Who is V. Chandrasekhar Reddy?",
+          "answer": "V. Chandrasekhar Reddy is a Lecturer in the Civil Engineering department at Government Polytechnic Proddatur.",
+          "faculty_name": "V. Chandrasekhar Reddy",
+          "designation": "Lecturer",
+          "department": "Civil Engineering",
+          "biodata_pdf": "PDF URL TO BE INSERTED FROM THE CLICKABLE FACULTY PROFILE",
+          "biodata_available": true,
+          "biodata_instruction": "Click the V. CHANDRASEKHAR REDDY faculty profile on the official Civil Engineering department page to open the Bio-Data PDF."
+        }
+      },
+      {
+        "id": "DCE-FAC-004",
+        "title": "BANDI NARENDRA - Faculty Biodata",
+        "keywords": [
+          "Bandi Narendra",
+          "B Narendra",
+          "Narendra",
+          "Civil Lecturer",
+          "Civil Engineering Lecturer",
+          "Bandi Narendra biodata",
+          "Bandi Narendra PDF"
+        ],
+        "content": {
+          "question": "Who is Bandi Narendra?",
+          "answer": "Bandi Narendra is a Lecturer in the Civil Engineering department at Government Polytechnic Proddatur.",
+          "faculty_name": "Bandi Narendra",
+          "designation": "Lecturer",
+          "department": "Civil Engineering",
+          "biodata_pdf": "PDF URL TO BE INSERTED FROM THE CLICKABLE FACULTY PROFILE",
+          "biodata_available": true,
+          "biodata_instruction": "Click the BANDI NARENDRA faculty profile on the official Civil Engineering department page to open the Bio-Data PDF."
+        }
+      },
+      {
+        "id": "DCE-FAC-005",
+        "title": "K. NARSHIMHA RAJU - Faculty Biodata",
+        "keywords": [
+          "K Narshimha Raju",
+          "K. Narshimha Raju",
+          "Narshimha Raju",
+          "Civil Lecturer",
+          "Civil Engineering Lecturer",
+          "Narshimha Raju biodata",
+          "Narshimha Raju PDF"
+        ],
+        "content": {
+          "question": "Who is K. Narshimha Raju?",
+          "answer": "K. Narshimha Raju is a Lecturer in the Civil Engineering department at Government Polytechnic Proddatur.",
+          "faculty_name": "K. Narshimha Raju",
+          "designation": "Lecturer",
+          "department": "Civil Engineering",
+          "biodata_pdf": "https://govtpolyproddatur.ac.in/media/govtpolyproddatur_ac_in/K%20%20NARSHIMHA%20RAJU_BIO%20DATA.pdf",
+          "biodata_available": true,
+          "biodata_link_text": "View K. Narshimha Raju Bio-Data PDF",
+          "biodata_instruction": "When a user asks for K. Narshimha Raju's biodata, provide the biodata information and the official PDF link."
+        }
+      },
+      {
+        "id": "DCE-FAC-006",
+        "title": "PUTTA SWATHI - Faculty Biodata",
+        "keywords": [
+          "Putta Swathi",
+          "P Swathi",
+          "Swathi",
+          "Civil Lecturer",
+          "Civil Engineering Lecturer",
+          "GPW Kakinada",
+          "Putta Swathi biodata",
+          "Putta Swathi PDF"
+        ],
+        "content": {
+          "question": "Who is Putta Swathi?",
+          "answer": "Putta Swathi is a Lecturer in the Civil Engineering department at Government Polytechnic Proddatur. She is listed as being on deputation from GPW Kakinada.",
+          "faculty_name": "Putta Swathi",
+          "designation": "Lecturer",
+          "department": "Civil Engineering",
+          "status": "Deputation from GPW Kakinada",
+          "biodata_pdf": "PDF URL TO BE INSERTED FROM THE CLICKABLE FACULTY PROFILE",
+          "biodata_available": true,
+          "biodata_instruction": "Click the PUTTA SWATHI faculty profile on the official Civil Engineering department page to open the Bio-Data PDF."
+        }
+      },
+      {
+        "id": "DCE-BIODATA-001",
+        "title": "Civil Engineering Faculty Biodata Search",
+        "keywords": [
+          "faculty biodata",
+          "civil faculty biodata",
+          "lecturer biodata",
+          "faculty PDF",
+          "civil faculty PDF",
+          "bio data"
+        ],
+        "content": {
+          "question": "Where can I find the Civil Engineering faculty biodata?",
+          "answer": "The Civil Engineering department page contains six clickable Faculty Profiles. Clicking a faculty name opens that faculty member's Bio-Data PDF.",
+          "faculty_profiles": [
+            "P GURUMURTHY REDDY",
+            "MARAM RAVI KUMAR",
+            "V. CHANDRASEKHAR REDDY",
+            "BANDI NARENDRA",
+            "K. NARSHIMHA RAJU",
+            "PUTTA SWATHI"
+          ],
+          "department_page": "https://govtpolyproddatur.ac.in/department/civil-engineering"
+        }
+      },
+      {
+        "id": "DCE-BIODATA-002",
+        "title": "Biodata Link Request",
+        "keywords": [
+          "show biodata",
+          "open biodata",
+          "faculty PDF",
+          "lecturer PDF",
+          "download biodata",
+          "view biodata"
+        ],
+        "content": {
+          "question": "Can I get the Bio-Data PDF of a Civil Engineering lecturer?",
+          "answer": "Yes. Select the required faculty member from the Civil Engineering Faculty Profiles. The official website provides a Bio-Data PDF for each listed faculty member."
+        }
+      },
+      {
+        "id": "DCE-BIODATA-003",
+        "title": "K Narshimha Raju Biodata Link",
+        "keywords": [
+          "K Narshimha Raju biodata",
+          "K Narshimha Raju PDF",
+          "Narshimha Raju biodata link",
+          "Narshimha Raju profile"
+        ],
+        "content": {
+          "question": "Can I get the Bio-Data PDF of K. Narshimha Raju?",
+          "answer": "Yes. You can view the official Bio-Data PDF of K. Narshimha Raju here:",
+          "biodata_pdf": "https://govtpolyproddatur.ac.in/media/govtpolyproddatur_ac_in/K%20%20NARSHIMHA%20RAJU_BIO%20DATA.pdf",
+          "link_text": "View K. Narshimha Raju Bio-Data PDF"
+        }
+      }
+    ]
+  }
+}

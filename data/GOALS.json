@@ -1,0 +1,193 @@
+{
+    "page": "Goals",
+    "source": "https://govtpolyproddatur.ac.in/goals",
+    "data": [
+        {
+            "id": "goal_001",
+            "title": "Quality Technical Education",
+            "keywords": [
+                "goals",
+                "quality education",
+                "technical education",
+                "college goal",
+                "education goal"
+            ],
+            "content": {
+                "question": "What is the main educational goal of Government Polytechnic Proddatur?",
+                "answer": "The main educational goal is to provide quality technical education that meets industry and societal needs."
+            }
+        },
+        {
+            "id": "goal_002",
+            "title": "Skilled and Employable Engineers",
+            "keywords": [
+                "skilled engineers",
+                "competent engineers",
+                "employability",
+                "diploma engineers",
+                "practical knowledge",
+                "career skills"
+            ],
+            "content": {
+                "question": "What does the college aim to develop among students?",
+                "answer": "The college aims to develop skilled, competent, and employable diploma engineers with strong practical knowledge."
+            }
+        },
+        {
+            "id": "goal_003",
+            "title": "Discipline Ethics and Professional Values",
+            "keywords": [
+                "discipline",
+                "ethics",
+                "professional values",
+                "student values",
+                "moral values"
+            ],
+            "content": {
+                "question": "Does Government Polytechnic Proddatur focus on discipline and ethics?",
+                "answer": "Yes. The college aims to promote discipline, ethics, and professional values among students."
+            }
+        },
+        {
+            "id": "goal_004",
+            "title": "Innovation Creativity and Problem Solving",
+            "keywords": [
+                "innovation",
+                "creativity",
+                "problem solving",
+                "hands-on learning",
+                "practical learning",
+                "student innovation"
+            ],
+            "content": {
+                "question": "Does the college encourage innovation and creativity?",
+                "answer": "Yes. The college encourages innovation, creativity, and problem-solving skills through hands-on learning."
+            }
+        },
+        {
+            "id": "goal_005",
+            "title": "Inclusive Education",
+            "keywords": [
+                "inclusive education",
+                "equal opportunities",
+                "equal education",
+                "all sections",
+                "student support",
+                "educational opportunities"
+            ],
+            "content": {
+                "question": "Does the college provide equal educational opportunities?",
+                "answer": "Yes. The college supports inclusive education by offering equal opportunities to students from all sections of society."
+            }
+        },
+        {
+            "id": "goal_006",
+            "title": "Industry Interaction and Skill Development",
+            "keywords": [
+                "industry interaction",
+                "skill development",
+                "career prospects",
+                "industry training",
+                "employment skills",
+                "career development"
+            ],
+            "content": {
+                "question": "How does the college improve students' career prospects?",
+                "answer": "The college aims to enhance industry interaction and skill development to provide students with better career prospects."
+            }
+        },
+        {
+            "id": "goal_007",
+            "title": "Lifelong Learning and Emerging Technologies",
+            "keywords": [
+                "lifelong learning",
+                "emerging technologies",
+                "technology",
+                "adaptability",
+                "future technologies",
+                "continuous learning"
+            ],
+            "content": {
+                "question": "Does the college encourage students to learn emerging technologies?",
+                "answer": "Yes. The college aims to foster lifelong learning and adaptability to emerging technologies."
+            }
+        },
+        {
+            "id": "goal_008",
+            "title": "Overall Goals of the Institution",
+            "keywords": [
+                "college goals",
+                "institution goals",
+                "goals of college",
+                "Government Polytechnic Proddatur goals",
+                "objectives",
+                "aims"
+            ],
+            "content": {
+                "question": "What are the goals of Government Polytechnic Proddatur?",
+                "answer": "The goals of Government Polytechnic Proddatur are to provide quality technical education, develop skilled and employable diploma engineers, promote discipline and professional values, encourage innovation and problem-solving, support inclusive education, enhance industry interaction and skill development, and foster lifelong learning and adaptability to emerging technologies."
+            }
+        },
+        {
+            "id": "goal_009",
+            "title": "Goals Related to Employment",
+            "keywords": [
+                "employment",
+                "jobs",
+                "employability",
+                "career",
+                "career prospects",
+                "job skills"
+            ],
+            "content": {
+                "question": "What is the college goal regarding student employment?",
+                "answer": "The college aims to develop skilled and employable diploma engineers and enhance industry interaction and skill development for better career prospects."
+            }
+        },
+        {
+            "id": "goal_010",
+            "title": "Goals Related to Practical Learning",
+            "keywords": [
+                "practical learning",
+                "hands-on learning",
+                "technical skills",
+                "practical knowledge",
+                "skill development"
+            ],
+            "content": {
+                "question": "Why does the college focus on practical and hands-on learning?",
+                "answer": "The college focuses on practical and hands-on learning to develop strong practical knowledge, innovation, creativity, problem-solving skills, and technical competence among students."
+            }
+        },
+        {
+            "id": "goal_011",
+            "title": "Goals Related to Technology",
+            "keywords": [
+                "technology",
+                "emerging technology",
+                "modern technology",
+                "technical education",
+                "future technology"
+            ],
+            "content": {
+                "question": "What is the goal of the college regarding emerging technologies?",
+                "answer": "The college aims to foster lifelong learning and adaptability so that students can keep up with emerging technologies."
+            }
+        },
+        {
+            "id": "goal_012",
+            "title": "Goals Related to Society",
+            "keywords": [
+                "society",
+                "social needs",
+                "societal needs",
+                "community",
+                "social development"
+            ],
+            "content": {
+                "question": "Does the college consider societal needs in its goals?",
+                "answer": "Yes. The college aims to provide quality technical education that meets both industry and societal needs."
+            }
+        }
+    ]
+}

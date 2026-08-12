@@ -1,0 +1,159 @@
+{
+    "committee": {
+        "id": "committee_001",
+        "title": "Internal Complaint Committee",
+        "keywords": [
+            "Internal Complaint Committee",
+            "ICC",
+            "Internal Complaints Committee",
+            "complaint committee",
+            "women complaints",
+            "student complaints",
+            "committee members",
+            "ICC members",
+            "complaint"
+        ],
+        "content": [
+            {
+                "id": "icc_001",
+                "question": "What is the Internal Complaint Committee?",
+                "answer": "The Internal Complaint Committee is a committee of Government Polytechnic Proddatur. The committee includes a chairperson, faculty/staff members and student representatives."
+            },
+            {
+                "id": "icc_002",
+                "question": "Who is the Chairperson of the Internal Complaint Committee?",
+                "answer": "T. Naga Jyothi is the Chairperson of the Internal Complaint Committee. Her designation is L/CME."
+            },
+            {
+                "id": "icc_003",
+                "question": "Who are the members of the Internal Complaint Committee?",
+                "answer": "The committee members listed on the official website are P. Swathi, V. Vasantha Lakshmi, S. Suneetha, P. Haritha and K. Leelavathi."
+            },
+            {
+                "id": "icc_004",
+                "question": "Who are the student members of the Internal Complaint Committee?",
+                "answer": "The student representatives listed on the official website are A. Lakshmi Prasanna, G. Nithya Sree and G. Keerthi."
+            },
+            {
+                "id": "icc_005",
+                "question": "Who is the Internal Complaint Committee Chairperson at Government Polytechnic Proddatur?",
+                "answer": "T. Naga Jyothi is the Chairperson of the Internal Complaint Committee at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "icc_006",
+                "question": "Who is the CME representative in the Internal Complaint Committee?",
+                "answer": "T. Naga Jyothi is listed with the designation L/CME and is the Chairperson of the committee."
+            },
+            {
+                "id": "icc_007",
+                "question": "Who is the Civil Engineering member of the Internal Complaint Committee?",
+                "answer": "P. Swathi is a member of the Internal Complaint Committee and is listed with the designation L/CIVIL."
+            },
+            {
+                "id": "icc_008",
+                "question": "Who is the EEE member of the Internal Complaint Committee?",
+                "answer": "V. Vasantha Lakshmi is a member of the Internal Complaint Committee and is listed with the designation L/EEE."
+            },
+            {
+                "id": "icc_009",
+                "question": "Who is the Mechanical Engineering member of the Internal Complaint Committee?",
+                "answer": "S. Suneetha is a member of the Internal Complaint Committee and is listed with the designation L/ME."
+            },
+            {
+                "id": "icc_010",
+                "question": "Who is the ECE member of the Internal Complaint Committee?",
+                "answer": "P. Haritha is a member of the Internal Complaint Committee and is listed with the designation L/ECE."
+            },
+            {
+                "id": "icc_011",
+                "question": "Who is the Roneo Operator member of the Internal Complaint Committee?",
+                "answer": "K. Leelavathi is a member of the Internal Complaint Committee and is listed as Roneo Operator."
+            },
+            {
+                "id": "icc_012",
+                "question": "Who is A. Lakshmi Prasanna in the Internal Complaint Committee?",
+                "answer": "A. Lakshmi Prasanna is listed as a student representative of the Internal Complaint Committee."
+            },
+            {
+                "id": "icc_013",
+                "question": "Who is G. Nithya Sree in the Internal Complaint Committee?",
+                "answer": "G. Nithya Sree is listed as a student representative of the Internal Complaint Committee."
+            },
+            {
+                "id": "icc_014",
+                "question": "Who is G. Keerthi in the Internal Complaint Committee?",
+                "answer": "G. Keerthi is listed as a student representative of the Internal Complaint Committee."
+            },
+            {
+                "id": "icc_015",
+                "question": "How many members are listed in the Internal Complaint Committee?",
+                "answer": "There are nine people listed in the Internal Complaint Committee: one Chairperson, five members, and three student representatives."
+            },
+            {
+                "id": "icc_016",
+                "question": "How many student representatives are in the Internal Complaint Committee?",
+                "answer": "There are three student representatives listed in the Internal Complaint Committee."
+            },
+            {
+                "id": "icc_017",
+                "question": "How many faculty or staff members are in the Internal Complaint Committee?",
+                "answer": "The committee lists one Chairperson and five members from faculty or staff, along with three student representatives."
+            },
+            {
+                "id": "icc_018",
+                "question": "What is the phone number of the Internal Complaint Committee Chairperson?",
+                "answer": "The official website lists the mobile number of T. Naga Jyothi, the Chairperson, as 6281625159."
+            },
+            {
+                "id": "icc_019",
+                "question": "How can I contact P. Swathi from the Internal Complaint Committee?",
+                "answer": "P. Swathi is listed as a committee member with the designation L/CIVIL. The mobile number listed on the official website is 7730938643."
+            },
+            {
+                "id": "icc_020",
+                "question": "How can I contact V. Vasantha Lakshmi from the Internal Complaint Committee?",
+                "answer": "V. Vasantha Lakshmi is listed as a committee member with the designation L/EEE. The mobile number listed on the official website is 9573994790."
+            },
+            {
+                "id": "icc_021",
+                "question": "How can I contact S. Suneetha from the Internal Complaint Committee?",
+                "answer": "S. Suneetha is listed as a committee member with the designation L/ME. The mobile number listed on the official website is 8985337807."
+            },
+            {
+                "id": "icc_022",
+                "question": "How can I contact P. Haritha from the Internal Complaint Committee?",
+                "answer": "P. Haritha is listed as a committee member with the designation L/ECE. The mobile number listed on the official website is 9701744592."
+            },
+            {
+                "id": "icc_023",
+                "question": "How can I contact K. Leelavathi from the Internal Complaint Committee?",
+                "answer": "K. Leelavathi is listed as a committee member and Roneo Operator. The mobile number listed on the official website is 9505516440."
+            },
+            {
+                "id": "icc_024",
+                "question": "How can I contact A. Lakshmi Prasanna from the Internal Complaint Committee?",
+                "answer": "A. Lakshmi Prasanna is listed as a student representative. The mobile number listed on the official website is 9347274390."
+            },
+            {
+                "id": "icc_025",
+                "question": "How can I contact G. Nithya Sree from the Internal Complaint Committee?",
+                "answer": "G. Nithya Sree is listed as a student representative. The mobile number listed on the official website is 9502785595."
+            },
+            {
+                "id": "icc_026",
+                "question": "How can I contact G. Keerthi from the Internal Complaint Committee?",
+                "answer": "G. Keerthi is listed as a student representative. The mobile number listed on the official website is 7674048630."
+            },
+            {
+                "id": "icc_027",
+                "question": "Where can I find the Internal Complaint Committee information?",
+                "answer": "The Internal Complaint Committee information is available on the official Government Polytechnic Proddatur website under the Committees section."
+            },
+            {
+                "id": "icc_028",
+                "question": "What committees are available on the Government Polytechnic Proddatur website?",
+                "answer": "The website lists several committees including Academic Council, Finance Committee, Grievance Redressal Cell, Student Counsellor Committee, Anti-Ragging Committee, Innovation Cell, Internal Complaint Committee, Institution Industry Cell, Internal Quality Assurance Committee, Internal Grievance Redressal Committee, Institute-Industry Connect Committee, Disciplinary Committee, SC & ST Protection Committee and Women Protection Committee."
+            }
+        ]
+    }
+}

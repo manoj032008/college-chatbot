@@ -1,0 +1,217 @@
+{
+    "department": {
+        "id": "DEP-CME-001",
+        "title": "Department of Computer Engineering",
+        "keywords": [
+            "Computer Engineering",
+            "Computer Science",
+            "CME",
+            "DCME",
+            "Computer Department",
+            "Computer Engineering Department",
+            "Government Polytechnic Proddatur"
+        ],
+        "content": [
+            {
+                "id": "CME-Q001",
+                "question": "What is the name of the Computer Engineering department?",
+                "answer": "The department is called the Department of Computer Engineering at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "CME-Q002",
+                "question": "Does Government Polytechnic Proddatur have a Computer Science department?",
+                "answer": "The college website lists the branch as Computer Engineering (CME), which focuses on computer technologies and technical skills."
+            },
+            {
+                "id": "CME-Q003",
+                "question": "What is the short form of Computer Engineering?",
+                "answer": "Computer Engineering is commonly referred to as CME on the Government Polytechnic Proddatur website."
+            },
+            {
+                "id": "CME-Q004",
+                "question": "When was the Computer Engineering branch introduced?",
+                "answer": "The Diploma in Computer Engineering branch was introduced in 2006 to meet the growing demand for computer science and IT skills."
+            },
+            {
+                "id": "CME-Q005",
+                "question": "What diploma course is offered by the Computer Engineering department?",
+                "answer": "The department offers a Diploma in Computer Engineering."
+            },
+            {
+                "id": "CME-Q006",
+                "question": "What is the intake of Computer Engineering?",
+                "answer": "The current admission information on the college website lists an intake of 66 seats for Computer Engineering."
+            },
+            {
+                "id": "CME-Q007",
+                "question": "What is the vision of the Computer Engineering department?",
+                "answer": "The vision is to develop Computer Engineers who are responsible citizens with human values, technologically adept, innovative, self-motivated, and equipped with high-quality skills to contribute significantly to changing computer technologies."
+            },
+            {
+                "id": "CME-Q008",
+                "question": "What is the mission of the Computer Engineering department?",
+                "answer": "The mission is to provide diploma students opportunities to play important roles in modern Computer Engineering, understand fundamental concepts and apply them creatively, become sensitive to environmental, safety and economic contexts, and develop technical skills through intensive training in Computer Engineering tools and applications."
+            },
+            {
+                "id": "CME-Q009",
+                "question": "What is the first mission of the Computer Engineering department?",
+                "answer": "The first mission is to provide opportunities to Diploma students who are capable of playing pivotal roles in wide aspects of modern Computer Engineering."
+            },
+            {
+                "id": "CME-Q010",
+                "question": "What is the second mission of the Computer Engineering department?",
+                "answer": "The second mission is to help students understand the basic concepts underlying Computer Engineering and apply them creatively in different fields of Engineering."
+            },
+            {
+                "id": "CME-Q011",
+                "question": "What is the third mission of the Computer Engineering department?",
+                "answer": "The third mission is to train students to be sensitive to environmental, safety and economic contexts."
+            },
+            {
+                "id": "CME-Q012",
+                "question": "What is the fourth mission of the Computer Engineering department?",
+                "answer": "The fourth mission is to produce technically skilled students through intensive training in Computer Engineering tools and applications and prepare them for professional careers and further research."
+            },
+            {
+                "id": "CME-Q013",
+                "question": "What subjects or areas are covered in Computer Engineering?",
+                "answer": "The Computer Engineering program covers areas such as programming, database management systems, web technologies, computer networks, operating systems and other computer engineering concepts."
+            },
+            {
+                "id": "CME-Q014",
+                "question": "Does the Computer Engineering department provide practical training?",
+                "answer": "Yes. The department emphasizes practical learning and provides computer laboratories and software tools for hands-on training."
+            },
+            {
+                "id": "CME-Q015",
+                "question": "Does the Computer Engineering department have computer laboratories?",
+                "answer": "Yes. The department has computer laboratories, including Computer Lab-I, to support practical learning."
+            },
+            {
+                "id": "CME-Q016",
+                "question": "What is Computer Lab-I?",
+                "answer": "Computer Lab-I is one of the laboratories available in the Computer Engineering department for practical training and hands-on learning."
+            },
+            {
+                "id": "CME-Q017",
+                "question": "Who is the HOD of the Computer Engineering department?",
+                "answer": "The department website lists M. Vijaya Kumar as the Head of the Department (HOD) of Computer Engineering."
+            },
+            {
+                "id": "CME-Q018",
+                "question": "Who are the faculty members in the Computer Engineering department?",
+                "answer": "The department website lists M. Vijaya Kumar, S. Venkat Mohan, Y. Venkata Prasad, M. Suresh Babu, T. Naga Jyothi, K. Seshaiah Babu, Dr. V. Hari Prasad and P. Rajesh among its faculty."
+            },
+            {
+                "id": "CME-Q019",
+                "question": "Who is M. Vijaya Kumar?",
+                "answer": "M. Vijaya Kumar is listed as the Head of the Department of Computer Engineering at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "CME-Q020",
+                "question": "Who is S. Venkat Mohan?",
+                "answer": "S. Venkat Mohan is listed as a Senior Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q021",
+                "question": "Who is Y. Venkata Prasad?",
+                "answer": "Y. Venkata Prasad is listed as a Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q022",
+                "question": "Who is M. Suresh Babu?",
+                "answer": "M. Suresh Babu is listed as a Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q023",
+                "question": "Who is T. Naga Jyothi?",
+                "answer": "T. Naga Jyothi is listed as a Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q024",
+                "question": "Who is K. Seshaiah Babu?",
+                "answer": "K. Seshaiah Babu is listed as a Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q025",
+                "question": "Who is Dr. V. Hari Prasad?",
+                "answer": "Dr. V. Hari Prasad is listed as a Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q026",
+                "question": "Who is P. Rajesh?",
+                "answer": "P. Rajesh is listed as a Lecturer in the Computer Engineering department."
+            },
+            {
+                "id": "CME-Q027",
+                "question": "Does the Computer Engineering department publish magazines?",
+                "answer": "Yes. The Computer Engineering department publishes departmental magazines."
+            },
+            {
+                "id": "CME-Q028",
+                "question": "What magazines are available from the Computer Engineering department?",
+                "answer": "The department website lists Volume 1 Edition 1, Volume 1 Edition 2, Volume 2 Edition 1, Volume 2 Edition 2 and Volume 3 Edition 1 of the CME department magazines."
+            },
+            {
+                "id": "CME-Q029",
+                "question": "Does the Computer Engineering department conduct events?",
+                "answer": "Yes. The department participates in and conducts various academic, technical, cultural and social activities."
+            },
+            {
+                "id": "CME-Q030",
+                "question": "Does the Computer Engineering department participate in Engineers' Day celebrations?",
+                "answer": "Yes. Engineers' Day celebrations are listed among the department activities."
+            },
+            {
+                "id": "CME-Q031",
+                "question": "Does the Computer Engineering department conduct scholarship ceremonies?",
+                "answer": "Yes. A Merit Scholarship Ceremony for toppers of all branches is listed among the activities."
+            },
+            {
+                "id": "CME-Q032",
+                "question": "Does the Computer Engineering department participate in ECET?",
+                "answer": "Yes. The college website provides ECET rank information for Computer Engineering students."
+            },
+            {
+                "id": "CME-Q033",
+                "question": "Are there ECET rankers from Computer Engineering?",
+                "answer": "Yes. The college website has published ECET rank information for Computer Engineering students, including top rankers from different batches."
+            },
+            {
+                "id": "CME-Q034",
+                "question": "What skills does Computer Engineering develop?",
+                "answer": "The department develops technical skills, programming skills, computer application skills, problem-solving abilities and practical knowledge required for professional careers and further studies."
+            },
+            {
+                "id": "CME-Q035",
+                "question": "Does Computer Engineering prepare students for jobs?",
+                "answer": "Yes. The department aims to develop technically skilled students and prepare them for professional careers."
+            },
+            {
+                "id": "CME-Q036",
+                "question": "Does Computer Engineering support higher studies?",
+                "answer": "Yes. The department prepares students for further research and higher education in addition to professional careers."
+            },
+            {
+                "id": "CME-Q037",
+                "question": "What technologies are related to the Computer Engineering department?",
+                "answer": "The department focuses on changing computer technologies and areas such as programming, databases, web technologies, computer networks and operating systems."
+            },
+            {
+                "id": "CME-Q038",
+                "question": "What is the objective of the Computer Engineering department?",
+                "answer": "The objective is to provide quality technical education, develop competent and skilled computer engineering professionals, provide practical experience, and prepare students for employment and higher education."
+            },
+            {
+                "id": "CME-Q039",
+                "question": "Is Computer Engineering suitable for students interested in computers?",
+                "answer": "Yes. Computer Engineering is suitable for students interested in programming, computer technologies, software, databases, networks and other areas of computing."
+            },
+            {
+                "id": "CME-Q040",
+                "question": "Where can I find Computer Engineering department information?",
+                "answer": "Computer Engineering department information is available on the official Government Polytechnic Proddatur website under the Departments section."
+            }
+        ]
+    }
+}

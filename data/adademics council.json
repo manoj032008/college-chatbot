@@ -1,0 +1,135 @@
+{
+    "id": "academic_council_001",
+    "title": "Academic Council",
+    "keywords": [
+        "Academic Council",
+        "academic committee",
+        "committee members",
+        "chairman",
+        "secretary",
+        "members",
+        "Government Polytechnic Proddatur"
+    ],
+    "content": [
+        {
+            "id": "ac_001",
+            "question": "What is the Academic Council?",
+            "answer": "The Academic Council is an academic committee of Government Polytechnic Proddatur."
+        },
+        {
+            "id": "ac_002",
+            "question": "Who is the Chairman of the Academic Council?",
+            "answer": "P Gurumurthy Reddy, Principal of Government Polytechnic Proddatur, is the Chairman of the Academic Council."
+        },
+        {
+            "id": "ac_003",
+            "question": "Who is the Secretary of the Academic Council?",
+            "answer": "Dr A Veerabhadra Reddy, HECES, is the Secretary of the Academic Council."
+        },
+        {
+            "id": "ac_004",
+            "question": "Who are the members of the Academic Council?",
+            "answer": "The Academic Council consists of P Gurumurthy Reddy, Dr A Veerabhadra Reddy, K Vijaya Kumar, J Ashok Babu, K Manjunath, M Ravi Kumar and G Srinu Babu."
+        },
+        {
+            "id": "ac_005",
+            "question": "Who is P Gurumurthy Reddy in the Academic Council?",
+            "answer": "P Gurumurthy Reddy is the Principal of Government Polytechnic Proddatur and serves as the Chairman of the Academic Council."
+        },
+        {
+            "id": "ac_006",
+            "question": "Who is Dr A Veerabhadra Reddy in the Academic Council?",
+            "answer": "Dr A Veerabhadra Reddy is designated as HECES and serves as the Secretary of the Academic Council."
+        },
+        {
+            "id": "ac_007",
+            "question": "Who is K Vijaya Kumar in the Academic Council?",
+            "answer": "K Vijaya Kumar is designated as HCMES and serves as a Member of the Academic Council."
+        },
+        {
+            "id": "ac_008",
+            "question": "Who is J Ashok Babu in the Academic Council?",
+            "answer": "J Ashok Babu is designated as HMES and serves as a Member of the Academic Council."
+        },
+        {
+            "id": "ac_009",
+            "question": "Who is K Manjunath in the Academic Council?",
+            "answer": "K Manjunath is designated as HEEES and serves as a Member of the Academic Council."
+        },
+        {
+            "id": "ac_010",
+            "question": "Who is M Ravi Kumar in the Academic Council?",
+            "answer": "M Ravi Kumar is designated as SL/CE and serves as a Member of the Academic Council."
+        },
+        {
+            "id": "ac_011",
+            "question": "Who is G Srinu Babu in the Academic Council?",
+            "answer": "G Srinu Babu is designated as HGS and serves as a Member of the Academic Council."
+        },
+        {
+            "id": "ac_012",
+            "question": "How many members are listed in the Academic Council?",
+            "answer": "Seven members are listed in the Academic Council of Government Polytechnic Proddatur."
+        },
+        {
+            "id": "ac_013",
+            "question": "How many members are there in the Academic Council besides the Chairman?",
+            "answer": "There are six other listed members besides the Chairman."
+        },
+        {
+            "id": "ac_014",
+            "question": "What is the designation of P Gurumurthy Reddy?",
+            "answer": "P Gurumurthy Reddy is the Principal of Government Polytechnic Proddatur."
+        },
+        {
+            "id": "ac_015",
+            "question": "What is the position of P Gurumurthy Reddy in the Academic Council?",
+            "answer": "P Gurumurthy Reddy holds the position of Chairman in the Academic Council."
+        },
+        {
+            "id": "ac_016",
+            "question": "What is the position of Dr A Veerabhadra Reddy?",
+            "answer": "Dr A Veerabhadra Reddy holds the position of Secretary in the Academic Council."
+        },
+        {
+            "id": "ac_017",
+            "question": "What is the designation of K Vijaya Kumar?",
+            "answer": "K Vijaya Kumar is designated as HCMES."
+        },
+        {
+            "id": "ac_018",
+            "question": "What is the designation of J Ashok Babu?",
+            "answer": "J Ashok Babu is designated as HMES."
+        },
+        {
+            "id": "ac_019",
+            "question": "What is the designation of K Manjunath?",
+            "answer": "K Manjunath is designated as HEEES."
+        },
+        {
+            "id": "ac_020",
+            "question": "What is the designation of M Ravi Kumar?",
+            "answer": "M Ravi Kumar is designated as SL/CE."
+        },
+        {
+            "id": "ac_021",
+            "question": "What is the designation of G Srinu Babu?",
+            "answer": "G Srinu Babu is designated as HGS."
+        },
+        {
+            "id": "ac_022",
+            "question": "Who is the Academic Council Chairman at Government Polytechnic Proddatur?",
+            "answer": "P Gurumurthy Reddy is the Academic Council Chairman."
+        },
+        {
+            "id": "ac_023",
+            "question": "Who is the Academic Council Secretary at Government Polytechnic Proddatur?",
+            "answer": "Dr A Veerabhadra Reddy is the Academic Council Secretary."
+        },
+        {
+            "id": "ac_024",
+            "question": "Where can I find Academic Council information?",
+            "answer": "Academic Council information is available on the official Government Polytechnic Proddatur website under the Committees section."
+        }
+    ]
+}

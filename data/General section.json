@@ -1,0 +1,195 @@
+{
+    "department": {
+        "id": "DEPT-GENERAL-001",
+        "title": "GENERAL",
+        "keywords": [
+            "General Department",
+            "General Section",
+            "Basic Sciences",
+            "Humanities",
+            "English",
+            "Mathematics",
+            "Physics",
+            "Chemistry",
+            "Communication Skills",
+            "Government Polytechnic Proddatur"
+        ],
+        "content": [
+            {
+                "id": "GEN-QA-001",
+                "question": "What is the General Department?",
+                "answer": "The General Section at Government Polytechnic Proddatur focuses on Basic Sciences, Humanities, English Language, effective communication, life skills and the overall personality development of students."
+            },
+            {
+                "id": "GEN-QA-002",
+                "question": "What is the vision of the General Department?",
+                "answer": "The vision of the General Section is to promote excellence in teaching and research, inculcate a spirit of enquiry and quest for knowledge, strengthen students in Basic Sciences and Humanities, improve English communication, and develop morally and socially responsible professionals."
+            },
+            {
+                "id": "GEN-QA-003",
+                "question": "What are the main areas covered by the General Department?",
+                "answer": "The General Section covers Basic Sciences, Humanities, English Language, effective communication, presentation skills, life skills, personality development, and social, environmental and ethical awareness."
+            },
+            {
+                "id": "GEN-QA-004",
+                "question": "What is the first mission of the General Department?",
+                "answer": "The first mission is to provide students with requisite knowledge of Basic Sciences and help them apply that knowledge in their respective areas of Engineering Education."
+            },
+            {
+                "id": "GEN-QA-005",
+                "question": "What is the second mission of the General Department?",
+                "answer": "The second mission is to promote a holistic learning environment through interdisciplinary and collaborative learning."
+            },
+            {
+                "id": "GEN-QA-006",
+                "question": "What is the third mission of the General Department?",
+                "answer": "The third mission is to impart effective English communication, presentation skills and life skills aimed at the overall personality development of students."
+            },
+            {
+                "id": "GEN-QA-007",
+                "question": "What is the fourth mission of the General Department?",
+                "answer": "The fourth mission is to develop sensitivity among students towards social, environmental and ethical concerns in personal and professional life."
+            },
+            {
+                "id": "GEN-QA-008",
+                "question": "Does the General Department teach Basic Sciences?",
+                "answer": "Yes. The General Section provides knowledge of Basic Sciences and helps students apply it in their engineering education."
+            },
+            {
+                "id": "GEN-QA-009",
+                "question": "Does the General Department focus on English communication?",
+                "answer": "Yes. The General Section focuses on effective English communication and presentation skills."
+            },
+            {
+                "id": "GEN-QA-010",
+                "question": "Does the General Department provide personality development?",
+                "answer": "Yes. The General Section provides communication, presentation and life skills aimed at the overall personality development of students."
+            },
+            {
+                "id": "GEN-QA-011",
+                "question": "Does the General Department promote interdisciplinary learning?",
+                "answer": "Yes. One of the missions of the General Section is to promote a holistic learning environment through interdisciplinary and collaborative learning."
+            },
+            {
+                "id": "GEN-QA-012",
+                "question": "Does the General Department teach life skills?",
+                "answer": "Yes. Life skills are included to support students' overall personality development."
+            },
+            {
+                "id": "GEN-QA-013",
+                "question": "Does the General Department focus on social responsibility?",
+                "answer": "Yes. The General Section aims to develop morally and socially responsible professionals and increase students' sensitivity towards social concerns."
+            },
+            {
+                "id": "GEN-QA-014",
+                "question": "Does the General Department focus on environmental awareness?",
+                "answer": "Yes. The General Section aims to develop sensitivity among students towards environmental concerns in personal and professional spheres."
+            },
+            {
+                "id": "GEN-QA-015",
+                "question": "Does the General Department focus on ethical values?",
+                "answer": "Yes. The General Section aims to develop sensitivity towards ethical concerns and groom students to become morally responsible professionals."
+            },
+            {
+                "id": "GEN-QA-016",
+                "question": "Who is the Senior Lecturer in Mathematics in the General Department?",
+                "answer": "Srinu Babu Geddam is listed as a Senior Lecturer in Mathematics in the General Section."
+            },
+            {
+                "id": "GEN-QA-017",
+                "question": "Who is the lecturer in Chemistry in the General Department?",
+                "answer": "B. Chandra Sekhar is listed as a Lecturer in Chemistry in the General Section."
+            },
+            {
+                "id": "GEN-QA-018",
+                "question": "Who are the English lecturers in the General Department?",
+                "answer": "P. Sudhakar and B. Naresh Babu are listed as Lecturers in English in the General Section."
+            },
+            {
+                "id": "GEN-QA-019",
+                "question": "Who are the Physics lecturers in the General Department?",
+                "answer": "Dr. P. Surendra Reddy and N. Siva Krishna are listed as Lecturers in Physics in the General Section."
+            },
+            {
+                "id": "GEN-QA-020",
+                "question": "Who is the Chemistry lecturer in the General Department?",
+                "answer": "K. Gurumurthy Chari is listed as a Lecturer in Chemistry in the General Section."
+            },
+            {
+                "id": "GEN-QA-021",
+                "question": "Who are the Mathematics contract lecturers in the General Department?",
+                "answer": "P. Pavan Kumar Naidu and M. V. Madhavi are listed as Contract Lecturers in Mathematics in the General Section."
+            },
+            {
+                "id": "GEN-QA-022",
+                "question": "Who is the librarian listed under the General Department?",
+                "answer": "M. Kumari is listed as the Librarian under the General Section."
+            },
+            {
+                "id": "GEN-QA-023",
+                "question": "What laboratories are available in the General Department?",
+                "answer": "The General Section lists a Chemistry Laboratory, Physics Laboratory and Communication Lab."
+            },
+            {
+                "id": "GEN-QA-024",
+                "question": "Is there a Chemistry Laboratory in the General Department?",
+                "answer": "Yes. A Chemistry Laboratory is listed under the General Section."
+            },
+            {
+                "id": "GEN-QA-025",
+                "question": "Is there a Physics Laboratory in the General Department?",
+                "answer": "Yes. A Physics Laboratory is listed under the General Section."
+            },
+            {
+                "id": "GEN-QA-026",
+                "question": "Is there a Communication Lab in the General Department?",
+                "answer": "Yes. A Communication Lab is listed under the General Section."
+            },
+            {
+                "id": "GEN-QA-027",
+                "question": "What subjects are associated with the General Department?",
+                "answer": "The General Section includes Mathematics, Physics, Chemistry, English and other Basic Sciences and Humanities-related areas."
+            },
+            {
+                "id": "GEN-QA-028",
+                "question": "What events are listed under the General Department?",
+                "answer": "The General Section page lists events including the Merit Scholarship Ceremony, Independence Day celebrations and Engineer's Day celebrations."
+            },
+            {
+                "id": "GEN-QA-029",
+                "question": "Does the General Department conduct scholarship-related events?",
+                "answer": "Yes. The General Section page lists a Merit Scholarship Ceremony for the toppers of all branches."
+            },
+            {
+                "id": "GEN-QA-030",
+                "question": "Does the General Department celebrate Independence Day?",
+                "answer": "Yes. Independence Day celebrations are listed among the events of the General Section."
+            },
+            {
+                "id": "GEN-QA-031",
+                "question": "Does the General Department celebrate Engineer's Day?",
+                "answer": "Yes. Engineer's Day celebrations are listed among the events of the General Section."
+            },
+            {
+                "id": "GEN-QA-032",
+                "question": "How does the General Department help engineering students?",
+                "answer": "The General Section provides foundational knowledge in Basic Sciences and Humanities while developing communication, presentation, life skills, personality, social responsibility and ethical awareness that support students in their engineering education."
+            },
+            {
+                "id": "GEN-QA-033",
+                "question": "What is the role of the General Department in engineering education?",
+                "answer": "The General Section provides the Basic Sciences, Humanities, communication and life skills foundation needed by students for their respective engineering disciplines."
+            },
+            {
+                "id": "GEN-QA-034",
+                "question": "How does the General Department support effective communication?",
+                "answer": "The General Section supports effective communication through English language education, communication skills and presentation skills."
+            },
+            {
+                "id": "GEN-QA-035",
+                "question": "What kind of professionals does the General Department aim to develop?",
+                "answer": "The General Section aims to develop technically grounded, morally responsible and socially responsible professionals with knowledge, communication skills, life skills and ethical awareness."
+            }
+        ]
+    }
+}

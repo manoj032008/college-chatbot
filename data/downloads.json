@@ -1,0 +1,94 @@
+{
+    "website": "https://govtpolyproddatur.ac.in/",
+    "data": [
+        {
+            "id": "downloads_001",
+            "title": "Downloads",
+            "keywords": [
+                "downloads",
+                "PDF",
+                "download documents",
+                "admission data",
+                "college documents"
+            ],
+            "content": {
+                "description": "Government Polytechnic Proddatur provides downloadable documents and PDF files through its website.",
+                "possible_questions_answers": [
+                    {
+                        "question": "Where can I find downloads?",
+                        "answer": "You can find available downloadable documents and PDF files in the relevant sections of the official college website."
+                    },
+                    {
+                        "question": "Can I download admission data?",
+                        "answer": "Yes. Year-wise admission data is available for download as PDF files."
+                    },
+                    {
+                        "question": "Which admission years are available for download?",
+                        "answer": "Admission data for 2021, 2022, 2023, 2024 and 2025 is listed for download."
+                    },
+                    {
+                        "question": "Can I download college PDFs?",
+                        "answer": "Yes. The college website provides downloadable PDF documents in relevant sections."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "blog_001",
+            "title": "Visit Our Blog",
+            "keywords": [
+                "blog",
+                "visit our blog",
+                "college updates",
+                "latest updates",
+                "events",
+                "announcements"
+            ],
+            "content": {
+                "description": "Visit Our Blog provides access to college posts, announcements, events, activities and institutional updates.",
+                "possible_questions_answers": [
+                    {
+                        "question": "Does the college have a blog?",
+                        "answer": "Yes. Government Polytechnic Proddatur has a Visit Our Blog section."
+                    },
+                    {
+                        "question": "Where can I find all college posts?",
+                        "answer": "You can find the available college posts in the All Posts section of the website."
+                    },
+                    {
+                        "question": "What type of information is available in the blog?",
+                        "answer": "The blog contains college activities, events, announcements, placement updates, scholarship updates, examination-related updates and other institutional information."
+                    },
+                    {
+                        "question": "Are placement updates available?",
+                        "answer": "Yes. Placement Details 2023-24 and Placements Data 2024-25 are listed among the college posts."
+                    },
+                    {
+                        "question": "Are scholarship updates available?",
+                        "answer": "Yes. Merit Scholarships Ceremony 2K25 is listed among the college updates."
+                    },
+                    {
+                        "question": "Are POLYCET updates available?",
+                        "answer": "Yes. POLYCET Coaching & Results is listed among the college posts."
+                    },
+                    {
+                        "question": "Are ECET rank updates available?",
+                        "answer": "Yes. ECET rank updates for EEE, CME and ECE are listed among the posts."
+                    },
+                    {
+                        "question": "Are college event updates available?",
+                        "answer": "Yes. Events such as Independence Day, Swachh Andhra Day and Engineers' Day Celebrations are listed among the updates."
+                    },
+                    {
+                        "question": "Is Health Care Camp information available?",
+                        "answer": "Yes. Health Care Camp 2025 is listed among the college posts."
+                    },
+                    {
+                        "question": "Is the Thoughtworks recruitment drive listed?",
+                        "answer": "Yes. Thoughtworks Recruitment Drive-2025 is listed among the college updates."
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,184 @@
+{
+  "page": "Vision and Mission",
+  "college": "Government Polytechnic Proddatur",
+  "source": "https://govtpolyproddatur.ac.in/vision-and-mission",
+  "data": [
+    {
+      "id": "VM001",
+      "title": "Institute Vision",
+      "keywords": [
+        "vision",
+        "college vision",
+        "institute vision",
+        "Government Polytechnic Proddatur vision",
+        "technical education vision"
+      ],
+      "content": [
+        {
+          "question": "What is the vision of Government Polytechnic Proddatur?",
+          "answer": "The vision of Government Polytechnic Proddatur is to be a beacon of technical education in the state and country and to produce committed skilled workforce that optimizes resources, efforts and time, uses state-of-the-art technology, achieves production targets, and contributes significantly to the industrial prosperity of the country."
+        },
+        {
+          "question": "What is the institute vision?",
+          "answer": "The institute's vision is to be a beacon of technical education in the state and country and produce a committed skilled workforce that contributes significantly to the industrial prosperity of the country."
+        },
+        {
+          "question": "What does the college aim to achieve through its vision?",
+          "answer": "The college aims to produce committed and skilled professionals who can optimize resources, efforts and time, use state-of-the-art technology, achieve production targets and contribute to the industrial prosperity of the country."
+        },
+        {
+          "question": "What does the vision say about technical education?",
+          "answer": "The vision aims for Government Polytechnic Proddatur to be a beacon of technical education in the state and country."
+        },
+        {
+          "question": "Does the college vision focus on skilled workforce?",
+          "answer": "Yes. The vision focuses on producing a committed and skilled workforce capable of contributing to industrial development."
+        },
+        {
+          "question": "Does the college vision focus on modern technology?",
+          "answer": "Yes. The vision emphasizes the use of state-of-the-art technology."
+        },
+        {
+          "question": "How does the college vision contribute to the country?",
+          "answer": "The vision aims to contribute to the industrial prosperity of the country by producing committed skilled professionals who can effectively use technology and resources."
+        }
+      ]
+    },
+    {
+      "id": "VM002",
+      "title": "Institute Mission",
+      "keywords": [
+        "mission",
+        "college mission",
+        "institute mission",
+        "Government Polytechnic Proddatur mission",
+        "learning environment",
+        "ICT",
+        "life skills",
+        "faculty training",
+        "technology"
+      ],
+      "content": [
+        {
+          "question": "What is the mission of Government Polytechnic Proddatur?",
+          "answer": "The mission of Government Polytechnic Proddatur is to provide effective learning experiences with due weightage to real-life practices, encourage active student participation using modern teaching methods and ICT tools, nurture life skills among students, provide periodical training to teaching faculty, keep up with technological developments and teaching methodologies, understand student concerns, and serve with commitment and integrity."
+        },
+        {
+          "question": "What is the institute mission?",
+          "answer": "The institute mission focuses on effective learning, real-life practices, active student participation, modern teaching methods, ICT tools, life skills, faculty development, technological advancement, student support, commitment and integrity."
+        },
+        {
+          "id": "VM002-M1",
+          "title": "Mission M1",
+          "keywords": [
+            "M1",
+            "learning experiences",
+            "real-life practices",
+            "academic environment"
+          ],
+          "content": {
+            "question": "What is Mission M1 of Government Polytechnic Proddatur?",
+            "answer": "Mission M1 is to provide the most effective learning experiences with due weightage to real-life practices in a serene and enjoyable academic environment."
+          }
+        },
+        {
+          "id": "VM002-M2",
+          "title": "Mission M2",
+          "keywords": [
+            "M2",
+            "student participation",
+            "teaching learning",
+            "ICT",
+            "modern teaching methods"
+          ],
+          "content": {
+            "question": "What is Mission M2 of Government Polytechnic Proddatur?",
+            "answer": "Mission M2 is to encourage learners' active participation in the teaching-learning process using modern teaching methods and tools such as ICT."
+          }
+        },
+        {
+          "id": "VM002-M3",
+          "title": "Mission M3",
+          "keywords": [
+            "M3",
+            "life skills",
+            "student career",
+            "faculty training",
+            "teaching faculty"
+          ],
+          "content": {
+            "question": "What is Mission M3 of Government Polytechnic Proddatur?",
+            "answer": "Mission M3 is to nurture life skills among students so that they can be successful in their careers and to provide periodical training to the teaching faculty."
+          }
+        },
+        {
+          "id": "VM002-M4",
+          "title": "Mission M4",
+          "keywords": [
+            "M4",
+            "technology",
+            "teaching methodologies",
+            "student concerns",
+            "commitment",
+            "integrity"
+          ],
+          "content": {
+            "question": "What is Mission M4 of Government Polytechnic Proddatur?",
+            "answer": "Mission M4 is to keep abreast of technological developments and teaching methodologies, be empathetic to the concerns of the student community, and serve with a high degree of commitment and integrity."
+          }
+        }
+      ]
+    },
+    {
+      "id": "VM003",
+      "title": "Vision and Mission General Questions",
+      "keywords": [
+        "vision and mission",
+        "college vision and mission",
+        "institute goals",
+        "technical education",
+        "students",
+        "technology",
+        "career"
+      ],
+      "content": [
+        {
+          "question": "What is the difference between the college vision and mission?",
+          "answer": "The vision describes the long-term goal of Government Polytechnic Proddatur, while the mission describes the actions and approaches used to achieve that vision through effective learning, modern teaching methods, life skills, faculty development and technological advancement."
+        },
+        {
+          "question": "Does the mission focus on practical learning?",
+          "answer": "Yes. Mission M1 specifically gives importance to real-life practices along with effective learning experiences."
+        },
+        {
+          "question": "Does the mission encourage students to participate actively?",
+          "answer": "Yes. Mission M2 encourages learners' active participation in the teaching-learning process."
+        },
+        {
+          "question": "Does the college use modern teaching methods?",
+          "answer": "Yes. The mission encourages the use of modern teaching methods and ICT tools."
+        },
+        {
+          "question": "Does the college focus on life skills?",
+          "answer": "Yes. Mission M3 focuses on nurturing life skills among students to help them become successful in their careers."
+        },
+        {
+          "question": "Does the college provide training to teachers?",
+          "answer": "Yes. Mission M3 states that periodical training is provided to the teaching faculty."
+        },
+        {
+          "question": "Does the mission focus on technological development?",
+          "answer": "Yes. Mission M4 emphasizes keeping up with technological developments and teaching methodologies."
+        },
+        {
+          "question": "Does the mission consider student concerns?",
+          "answer": "Yes. Mission M4 emphasizes being empathetic to the concerns of the student community."
+        },
+        {
+          "question": "What values are emphasized in the institute mission?",
+          "answer": "The mission emphasizes effective learning, real-life practices, active participation, life skills, technological development, empathy, commitment and integrity."
+        }
+      ]
+    }
+  ]
+}

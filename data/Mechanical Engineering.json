@@ -1,0 +1,191 @@
+{
+    "department": {
+        "id": "ME",
+        "title": "Mechanical Engineering",
+        "keywords": [
+            "Mechanical Engineering",
+            "Mechanical Department",
+            "ME Department",
+            "Mechanical",
+            "Diploma Mechanical Engineering",
+            "Mechanical Engineering Department"
+        ],
+        "content": [
+            {
+                "id": "ME001",
+                "question": "What is the Mechanical Engineering department?",
+                "answer": "The Mechanical Engineering department is one of the engineering departments at Government Polytechnic Proddatur. It provides diploma-level education and focuses on developing knowledge and skills in Mechanical Engineering."
+            },
+            {
+                "id": "ME002",
+                "question": "Does Government Polytechnic Proddatur have a Mechanical Engineering department?",
+                "answer": "Yes. Government Polytechnic Proddatur has a Mechanical Engineering department."
+            },
+            {
+                "id": "ME003",
+                "question": "What is the vision of the Mechanical Engineering department?",
+                "answer": "The vision of the Mechanical Engineering department is to continuously strive for excellence in imparting knowledge and skills in Mechanical Engineering at diploma level and to improve opportunities for employment and higher learning."
+            },
+            {
+                "id": "ME004",
+                "question": "What does the Mechanical Engineering department aim to provide?",
+                "answer": "The department aims to provide students with knowledge and skills in Mechanical Engineering at diploma level and improve their opportunities for employment and higher education."
+            },
+            {
+                "id": "ME005",
+                "question": "What is the mission of the Mechanical Engineering department?",
+                "answer": "The mission of the Mechanical Engineering department includes using technology-enhanced teaching tools, modernizing workshops and laboratories, conducting practical and industry-oriented activities, and developing multidisciplinary, communication, professional and ethical skills."
+            },
+            {
+                "id": "ME006",
+                "question": "What is the first mission of the Mechanical Engineering department?",
+                "answer": "The first mission is to use technology-enhanced tools and techniques through motivated and qualified faculty to enhance students' knowledge, understanding of principles, concepts and latest trends in Mechanical Engineering."
+            },
+            {
+                "id": "ME007",
+                "question": "What is the second mission of the Mechanical Engineering department?",
+                "answer": "The second mission is to modernize workshops and laboratories according to the curriculum specified by the State Board of Technical Education, Andhra Pradesh."
+            },
+            {
+                "id": "ME008",
+                "question": "What is the third mission of the Mechanical Engineering department?",
+                "answer": "The third mission is to conduct laboratories, guest lectures, industrial visits and industrial training to provide students with a better understanding of critical concepts in Mechanical Engineering."
+            },
+            {
+                "id": "ME009",
+                "question": "What is the fourth mission of the Mechanical Engineering department?",
+                "answer": "The fourth mission is to provide opportunities for developing multidisciplinary skills, communication skills, professional attitude and ethics."
+            },
+            {
+                "id": "ME010",
+                "question": "Does the Mechanical Engineering department conduct laboratory work?",
+                "answer": "Yes. Laboratory activities are part of the Mechanical Engineering department's mission to provide better understanding of critical concepts."
+            },
+            {
+                "id": "ME011",
+                "question": "Does the Mechanical Engineering department conduct industrial visits?",
+                "answer": "Yes. The department conducts industrial visits to help students gain a better understanding of Mechanical Engineering concepts and industrial practices."
+            },
+            {
+                "id": "ME012",
+                "question": "Does the Mechanical Engineering department provide industrial training?",
+                "answer": "Yes. Industrial training is included among the department's activities to improve students' practical understanding of Mechanical Engineering."
+            },
+            {
+                "id": "ME013",
+                "question": "Does the Mechanical Engineering department conduct guest lectures?",
+                "answer": "Yes. The department conducts guest lectures to help students understand important and practical concepts in Mechanical Engineering."
+            },
+            {
+                "id": "ME014",
+                "question": "Does the Mechanical Engineering department focus on employment opportunities?",
+                "answer": "Yes. The department's vision specifically focuses on improving students' opportunities for employment and higher learning."
+            },
+            {
+                "id": "ME015",
+                "question": "Does the Mechanical Engineering department support higher education?",
+                "answer": "Yes. The department aims to improve opportunities for students to pursue higher learning after completing their diploma."
+            },
+            {
+                "id": "ME016",
+                "question": "Does the Mechanical Engineering department develop communication skills?",
+                "answer": "Yes. Developing communication skills is one of the department's mission objectives."
+            },
+            {
+                "id": "ME017",
+                "question": "Does the Mechanical Engineering department develop professional skills?",
+                "answer": "Yes. The department provides opportunities for students to develop professional attitudes, multidisciplinary skills and professional skills."
+            },
+            {
+                "id": "ME018",
+                "question": "Does the Mechanical Engineering department teach professional ethics?",
+                "answer": "Yes. The department aims to develop professional attitude and ethics among students."
+            },
+            {
+                "id": "ME019",
+                "question": "Does the Mechanical Engineering department use modern technology?",
+                "answer": "Yes. The department's mission includes using technology-enhanced tools and techniques to improve students' knowledge and understanding."
+            },
+            {
+                "id": "ME020",
+                "question": "Are the workshops and laboratories modernized in the Mechanical Engineering department?",
+                "answer": "The department's mission includes modernization of workshops and laboratories according to the curriculum specified by the State Board of Technical Education, Andhra Pradesh."
+            },
+            {
+                "id": "ME021",
+                "question": "Who are the faculty members of the Mechanical Engineering department?",
+                "answer": "The Mechanical Engineering department page lists faculty profiles including J. Ashok Babu, Ch. Subramanyam, Sravan Kasireddy, G. Leela Rajesh, Sivavaram Suneetha, Y. Harish, Maram Suresh Babu, Ande Ramanaiah and Guttapati Narendra."
+            },
+            {
+                "id": "ME022",
+                "question": "Who is J. Ashok Babu?",
+                "answer": "J. Ashok Babu is listed among the faculty profiles of the Mechanical Engineering department at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "ME023",
+                "question": "Who is Y. Harish?",
+                "answer": "Y. Harish is a Lecturer in the Mechanical Engineering department at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "ME024",
+                "question": "Who is Ande Ramanaiah?",
+                "answer": "Ande Ramanaiah is a Lecturer in the Mechanical Engineering department at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "ME025",
+                "question": "Does the Mechanical Engineering department conduct Engineers' Day celebrations?",
+                "answer": "Yes. Engineers' Day celebrations are listed among the activities associated with the Mechanical Engineering department."
+            },
+            {
+                "id": "ME026",
+                "question": "Does the Mechanical Engineering department conduct fire safety awareness programs?",
+                "answer": "Yes. Awareness on Fire Safety is listed among the activities of the Mechanical Engineering department."
+            },
+            {
+                "id": "ME027",
+                "question": "Does the Mechanical Engineering department conduct guest lectures?",
+                "answer": "Yes. A guest lecture by Mr. N. Harinatha Reddy, Assistant Professor in Mechanical Engineering at Yogi Vemana University, is listed on the department page."
+            },
+            {
+                "id": "ME028",
+                "question": "Does the Mechanical Engineering department conduct Aayudha Pooja celebrations?",
+                "answer": "Yes. Aayudha Pooja celebrations are listed among the department activities."
+            },
+            {
+                "id": "ME029",
+                "question": "What activities are conducted by the Mechanical Engineering department?",
+                "answer": "The department page lists activities such as Engineers' Day celebrations, Fire Safety Awareness, guest lectures and Aayudha Pooja celebrations."
+            },
+            {
+                "id": "ME030",
+                "question": "What skills can students develop in Mechanical Engineering?",
+                "answer": "Students can develop Mechanical Engineering knowledge, practical understanding, multidisciplinary skills, communication skills, professional attitude and ethical values."
+            },
+            {
+                "id": "ME031",
+                "question": "What is the intake for Mechanical Engineering?",
+                "answer": "According to the admissions information on the Government Polytechnic Proddatur website, Mechanical Engineering has an intake of 198 students."
+            },
+            {
+                "id": "ME032",
+                "question": "What qualification does Mechanical Engineering offer?",
+                "answer": "Mechanical Engineering is offered as a diploma-level engineering program at Government Polytechnic Proddatur."
+            },
+            {
+                "id": "ME033",
+                "question": "What is the Mechanical Engineering department's approach to practical learning?",
+                "answer": "The department supports practical learning through laboratory work, workshops, industrial visits, industrial training and guest lectures."
+            },
+            {
+                "id": "ME034",
+                "question": "How does the Mechanical Engineering department help students prepare for careers?",
+                "answer": "The department develops technical knowledge, practical skills, communication skills, multidisciplinary skills, professional attitude and ethics, while aiming to improve employment opportunities."
+            },
+            {
+                "id": "ME035",
+                "question": "Where is the Mechanical Engineering department located?",
+                "answer": "The Mechanical Engineering department is part of Government Polytechnic Proddatur, located on Korrapadu Road, Proddatur, Andhra Pradesh, YSR Kadapa District, PINCODE-516360."
+            }
+        ]
+    }
+}

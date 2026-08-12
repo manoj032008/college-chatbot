@@ -1,0 +1,132 @@
+{
+    "committee": {
+        "id": "COM-DC-001",
+        "title": "Disciplinary Committee",
+        "keywords": [
+            "disciplinary committee",
+            "discipline committee",
+            "college discipline",
+            "disciplinary committee members",
+            "discipline",
+            "committee members",
+            "Government Polytechnic Proddatur"
+        ],
+        "content": [
+            {
+                "id": "DC-Q001",
+                "question": "What is the Disciplinary Committee?",
+                "answer": "The Disciplinary Committee is a committee of Government Polytechnic Proddatur responsible for matters related to discipline in the institution."
+            },
+            {
+                "id": "DC-Q002",
+                "question": "Who is the Chairman of the Disciplinary Committee?",
+                "answer": "P. Gurumurthy Reddy, Principal, is the Chairman of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q003",
+                "question": "Who is the Secretary of the Disciplinary Committee?",
+                "answer": "K. Narsimha Raju, Lecturer in Civil Engineering (L/CE), is the Secretary of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q004",
+                "question": "Who are the members of the Disciplinary Committee?",
+                "answer": "The members listed on the official website are T Nagajyothi, K. Seshaiah Babu, B. Murali Krishna, B Priyanka, S. M. Samiulla, M Sindhu, M. Suresh Babu, A Ramanaiah, P Surendra Reddy and K. Gurumurthy Achari."
+            },
+            {
+                "id": "DC-Q005",
+                "question": "Who is P. Gurumurthy Reddy in the Disciplinary Committee?",
+                "answer": "P. Gurumurthy Reddy is the Principal of Government Polytechnic Proddatur and serves as the Chairman of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q006",
+                "question": "Who is K. Narsimha Raju in the Disciplinary Committee?",
+                "answer": "K. Narsimha Raju is a Lecturer in Civil Engineering (L/CE) and serves as the Secretary of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q007",
+                "question": "Who is T Nagajyothi in the Disciplinary Committee?",
+                "answer": "T Nagajyothi is a Lecturer in Computer Engineering (L/CME) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q008",
+                "question": "Who is K. Seshaiah Babu in the Disciplinary Committee?",
+                "answer": "K. Seshaiah Babu is a Lecturer in Computer Engineering (L/CME) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q009",
+                "question": "Who is B. Murali Krishna in the Disciplinary Committee?",
+                "answer": "B. Murali Krishna is a Senior Lecturer in Electronics and Communication Engineering (SL/ECE) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q010",
+                "question": "Who is B Priyanka in the Disciplinary Committee?",
+                "answer": "B Priyanka is a Lecturer in Electronics and Communication Engineering (L/ECE) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q011",
+                "question": "Who is S. M. Samiulla in the Disciplinary Committee?",
+                "answer": "S. M. Samiulla is a Senior Lecturer in Electrical and Electronics Engineering (SL/EEE) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q012",
+                "question": "Who is M Sindhu in the Disciplinary Committee?",
+                "answer": "M Sindhu is a Lecturer in Electrical and Electronics Engineering (L/EEE) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q013",
+                "question": "Who is M. Suresh Babu in the Disciplinary Committee?",
+                "answer": "M. Suresh Babu is a Lecturer in Mechanical Engineering (L/ME) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q014",
+                "question": "Who is A Ramanaiah in the Disciplinary Committee?",
+                "answer": "A Ramanaiah is a Lecturer in Mechanical Engineering (L/ME) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q015",
+                "question": "Who is P Surendra Reddy in the Disciplinary Committee?",
+                "answer": "P Surendra Reddy is a Lecturer in Physics (L/Physics) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q016",
+                "question": "Who is K. Gurumurthy Achari in the Disciplinary Committee?",
+                "answer": "K. Gurumurthy Achari is a Lecturer in Chemistry (L/Chemistry) and serves as a Member of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q017",
+                "question": "How many people are listed in the Disciplinary Committee?",
+                "answer": "There are 12 people listed in the Disciplinary Committee on the official Government Polytechnic Proddatur website."
+            },
+            {
+                "id": "DC-Q018",
+                "question": "How many members are in the Disciplinary Committee?",
+                "answer": "The committee page lists 12 people in total: one Chairman, one Secretary and ten Members."
+            },
+            {
+                "id": "DC-Q019",
+                "question": "Which department does the Disciplinary Committee Secretary belong to?",
+                "answer": "The Secretary, K. Narsimha Raju, belongs to the Civil Engineering department."
+            },
+            {
+                "id": "DC-Q020",
+                "question": "Which departments are represented in the Disciplinary Committee?",
+                "answer": "The Disciplinary Committee includes representatives from Civil Engineering, Computer Engineering, Electronics and Communication Engineering, Electrical and Electronics Engineering, Mechanical Engineering, Physics and Chemistry."
+            },
+            {
+                "id": "DC-Q021",
+                "question": "Who is the Disciplinary Committee Chairman of Government Polytechnic Proddatur?",
+                "answer": "P. Gurumurthy Reddy, Principal, is the Chairman of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q022",
+                "question": "Who is the Disciplinary Committee Secretary of Government Polytechnic Proddatur?",
+                "answer": "K. Narsimha Raju, Lecturer in Civil Engineering, is the Secretary of the Disciplinary Committee."
+            },
+            {
+                "id": "DC-Q023",
+                "question": "Can I find the Disciplinary Committee members on the college website?",
+                "answer": "Yes. The Disciplinary Committee members and their designations and positions are available on the official Government Polytechnic Proddatur website."
+            }
+        ]
+    }
+}

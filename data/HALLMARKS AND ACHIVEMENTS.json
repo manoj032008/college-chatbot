@@ -1,0 +1,323 @@
+{
+    "page": "Hallmarks & Achievements",
+    "source": "https://govtpolyproddatur.ac.in/hallmarks",
+    "data": [
+        {
+            "id": 1,
+            "title": "Outcome-Based Education (OBE)",
+            "keywords": [
+                "OBE",
+                "Outcome Based Education",
+                "NBA norms",
+                "Program Outcomes",
+                "POs",
+                "Program Specific Outcomes",
+                "PSOs"
+            ],
+            "content": [
+                {
+                    "question": "What is Outcome-Based Education at Government Polytechnic Proddatur?",
+                    "answer": "Government Polytechnic Proddatur follows Outcome-Based Education (OBE), with academic delivery aligned with NBA norms and focused on clearly defined Program Outcomes (POs) and Program Specific Outcomes (PSOs)."
+                },
+                {
+                    "question": "Does the college follow OBE?",
+                    "answer": "Yes. Government Polytechnic Proddatur follows Outcome-Based Education (OBE)."
+                },
+                {
+                    "question": "What does OBE focus on?",
+                    "answer": "OBE focuses on clearly defined Program Outcomes (POs) and Program Specific Outcomes (PSOs), with academic delivery aligned with NBA norms."
+                },
+                {
+                    "question": "What are POs and PSOs?",
+                    "answer": "POs are Program Outcomes and PSOs are Program Specific Outcomes. They define the expected learning outcomes for students."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Qualified and Committed Faculty",
+            "keywords": [
+                "faculty",
+                "qualified faculty",
+                "committed faculty",
+                "experienced faculty",
+                "teaching",
+                "student mentoring"
+            ],
+            "content": [
+                {
+                    "question": "Does the college have qualified faculty?",
+                    "answer": "Yes. Government Polytechnic Proddatur has qualified and committed faculty members with strong academic backgrounds."
+                },
+                {
+                    "question": "Are the faculty members experienced?",
+                    "answer": "Yes. The institution has experienced faculty members who are involved in teaching-learning improvement and student mentoring."
+                },
+                {
+                    "question": "Do faculty members provide student mentoring?",
+                    "answer": "Yes. Faculty members are continuously involved in student mentoring and teaching-learning improvement."
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Well-Equipped Laboratories and Workshops",
+            "keywords": [
+                "laboratories",
+                "labs",
+                "workshops",
+                "practical learning",
+                "skill development",
+                "emerging technologies"
+            ],
+            "content": [
+                {
+                    "question": "Does the college have laboratories?",
+                    "answer": "Yes. Government Polytechnic Proddatur has well-equipped laboratories that support practical learning and skill development."
+                },
+                {
+                    "question": "Are workshops available at the college?",
+                    "answer": "Yes. The college provides workshops to support practical learning and technical skill development."
+                },
+                {
+                    "question": "What is the purpose of the college laboratories?",
+                    "answer": "The laboratories support practical learning, skill development and exposure to emerging technologies."
+                },
+                {
+                    "question": "Do students get practical learning opportunities?",
+                    "answer": "Yes. Well-equipped laboratories and workshops provide students with practical learning and technical skill development opportunities."
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Industry-Oriented Training",
+            "keywords": [
+                "industry training",
+                "industrial visits",
+                "guest lectures",
+                "internships",
+                "industry interaction",
+                "employability"
+            ],
+            "content": [
+                {
+                    "question": "Does the college provide industry-oriented training?",
+                    "answer": "Yes. Government Polytechnic Proddatur provides industry-oriented training through industrial visits, guest lectures, internships and industry interaction."
+                },
+                {
+                    "question": "Does the college organize industrial visits?",
+                    "answer": "Yes. Industrial visits are part of the institution's industry-oriented training activities."
+                },
+                {
+                    "question": "Does the college provide internships?",
+                    "answer": "Yes. Internships are included as part of industry-oriented training to provide students with real-world exposure."
+                },
+                {
+                    "question": "Does the college conduct guest lectures?",
+                    "answer": "Yes. Guest lectures are conducted as part of industry interaction and industry-oriented training."
+                },
+                {
+                    "question": "How does industry interaction help students?",
+                    "answer": "Industry interaction helps students gain real-world understanding and improves their employability."
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Student-Centric Learning Environment",
+            "keywords": [
+                "student-centric",
+                "student learning",
+                "mentoring",
+                "remedial coaching",
+                "academic counseling",
+                "inclusive education"
+            ],
+            "content": [
+                {
+                    "question": "Does the college provide student-centric learning?",
+                    "answer": "Yes. Government Polytechnic Proddatur emphasizes a student-centric learning environment."
+                },
+                {
+                    "question": "Does the college provide mentoring?",
+                    "answer": "Yes. Student mentoring is an important part of the student-centric learning environment."
+                },
+                {
+                    "question": "Does the college provide remedial coaching?",
+                    "answer": "Yes. The institution provides remedial coaching to support students in their academic development."
+                },
+                {
+                    "question": "Does the college provide academic counseling?",
+                    "answer": "Yes. Academic counseling is provided to help students with their academic progress."
+                },
+                {
+                    "question": "Does the college support inclusive education?",
+                    "answer": "Yes. The college emphasizes inclusive education for students from diverse backgrounds."
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Academic Discipline and Ethics",
+            "keywords": [
+                "academic discipline",
+                "ethics",
+                "professional ethics",
+                "discipline",
+                "values",
+                "responsible engineers"
+            ],
+            "content": [
+                {
+                    "question": "Does the college focus on academic discipline?",
+                    "answer": "Yes. Government Polytechnic Proddatur focuses on strong academic discipline and professional values."
+                },
+                {
+                    "question": "Does the college teach professional ethics?",
+                    "answer": "Yes. The institution emphasizes professional ethics and values to help shape responsible diploma engineers."
+                },
+                {
+                    "question": "Why are ethics important at the college?",
+                    "answer": "Ethics and discipline help students develop into responsible and ethical diploma engineers."
+                },
+                {
+                    "question": "Does the college focus on values?",
+                    "answer": "Yes. The institution focuses on professional ethics, discipline and values."
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Support for Rural and Economically Weaker Students",
+            "keywords": [
+                "rural students",
+                "economically weaker students",
+                "scholarships",
+                "government support",
+                "academic assistance",
+                "student support"
+            ],
+            "content": [
+                {
+                    "question": "Does the college support rural students?",
+                    "answer": "Yes. Government Polytechnic Proddatur supports students from rural backgrounds by providing accessible technical education and academic assistance."
+                },
+                {
+                    "question": "Does the college support economically weaker students?",
+                    "answer": "Yes. The institution supports economically weaker students through accessible technical education, government support schemes, scholarships and academic assistance."
+                },
+                {
+                    "question": "Does the college provide scholarship support?",
+                    "answer": "Yes. Scholarships and government support schemes are part of the institution's support for students."
+                },
+                {
+                    "question": "Does the college provide academic assistance?",
+                    "answer": "Yes. Academic assistance is provided to support students, particularly those from rural and economically weaker backgrounds."
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Skill Development and Employability",
+            "keywords": [
+                "skill development",
+                "employability",
+                "communication skills",
+                "problem solving",
+                "teamwork",
+                "entrepreneurship"
+            ],
+            "content": [
+                {
+                    "question": "Does the college focus on skill development?",
+                    "answer": "Yes. Government Polytechnic Proddatur focuses on skill development and employability."
+                },
+                {
+                    "question": "What skills are developed at the college?",
+                    "answer": "The institution focuses on communication skills, problem-solving, teamwork and entrepreneurship."
+                },
+                {
+                    "question": "Does the college help improve employability?",
+                    "answer": "Yes. Skill development activities are designed to improve students' employability."
+                },
+                {
+                    "question": "Does the college encourage entrepreneurship?",
+                    "answer": "Yes. Entrepreneurship is included among the skills promoted by the institution."
+                },
+                {
+                    "question": "Does the college develop communication skills?",
+                    "answer": "Yes. Communication skills are included in the institution's skill development focus."
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "title": "Co-Curricular and Extra-Curricular Activities",
+            "keywords": [
+                "co-curricular activities",
+                "extra-curricular activities",
+                "technical clubs",
+                "competitions",
+                "NSS",
+                "community development"
+            ],
+            "content": [
+                {
+                    "question": "Does the college encourage co-curricular activities?",
+                    "answer": "Yes. Government Polytechnic Proddatur actively encourages co-curricular and extra-curricular activities."
+                },
+                {
+                    "question": "Does the college have technical clubs?",
+                    "answer": "Yes. Students are encouraged to participate in technical clubs."
+                },
+                {
+                    "question": "Does the college conduct competitions?",
+                    "answer": "Yes. Students are encouraged to participate in competitions as part of co-curricular and extra-curricular activities."
+                },
+                {
+                    "question": "Does the college participate in NSS activities?",
+                    "answer": "Yes. NSS activities are included among the activities encouraged by the institution."
+                },
+                {
+                    "question": "Does the college conduct community development programs?",
+                    "answer": "Yes. Community development programs are encouraged as part of the institution's activities."
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "title": "Continuous Improvement",
+            "keywords": [
+                "continuous improvement",
+                "academic improvement",
+                "feedback",
+                "feedback analysis",
+                "NBA guidelines",
+                "corrective actions"
+            ],
+            "content": [
+                {
+                    "question": "Does the college follow continuous improvement?",
+                    "answer": "Yes. Government Polytechnic Proddatur is committed to continuous improvement of its academic processes."
+                },
+                {
+                    "question": "How does the college improve academic processes?",
+                    "answer": "The institution periodically reviews academic processes, analyzes feedback and implements corrective actions."
+                },
+                {
+                    "question": "Does the college collect and analyze feedback?",
+                    "answer": "Yes. Feedback analysis is part of the institution's continuous improvement process."
+                },
+                {
+                    "question": "Does the college implement corrective actions?",
+                    "answer": "Yes. Corrective actions are implemented as part of continuous improvement and according to NBA guidelines."
+                },
+                {
+                    "question": "Are academic processes reviewed periodically?",
+                    "answer": "Yes. Academic processes are periodically reviewed as part of the institution's continuous improvement commitment."
+                }
+            ]
+        }
+    ]
+}

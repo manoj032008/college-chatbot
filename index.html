@@ -1,0 +1,3313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Chatbot</title>
+  <!-- marked.js for Markdown rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <script src="/public/authService.js"></script>
+  <style>
+    :root {
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-500: #3b82f6;
+      --blue-50: #eff6ff;
+      --blue-100: #dbeafe;
+      --ink-900: #0f172a;
+      --ink-700: #334155;
+      --ink-500: #64748b;
+      --ink-400: #94a3b8;
+      --line: #e2e8f0;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --rupee: #ea580c;
+      --pink: #ec4899;
+      --indigo: #4f46e5;
+      --teal: #0d9488;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, "Inter", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 100% -10%, rgba(59, 130, 246, 0.06), transparent 60%),
+        radial-gradient(900px 500px at -10% 110%, rgba(79, 70, 229, 0.05), transparent 60%),
+        var(--bg);
+      color: var(--ink-900);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ===== Top Nav ===== */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+      position: relative;
+    }
+
+    .brand-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+
+
+
+
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .navlinks button {
+      border: none;
+      background: transparent;
+      padding: 9px 16px;
+      border-radius: 9px;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink-700);
+      cursor: pointer;
+      transition: all .25s ease;
+      position: relative;
+    }
+
+    .navlinks button:hover {
+      color: var(--blue-700);
+      background: var(--blue-50);
+    }
+
+    .navlinks button.active {
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    /* ===== Page shell ===== */
+    .page {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px 70px;
+      animation: pageIn .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== HOME ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      padding: 50px 10px 20px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      line-height: 1.15;
+      margin: 0 0 6px;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(100deg, var(--blue-600), var(--indigo));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
+
+    .hero p {
+      color: var(--ink-500);
+      font-size: 16px;
+      max-width: 440px;
+      margin: 14px 0 26px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 14.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.32);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--ink-900);
+      border: 1.5px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--blue-500);
+      color: var(--blue-700);
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(239, 68, 68, 0.35);
+    }
+
+    .bot-orb-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .bot-orb-glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.18), transparent 70%);
+      filter: blur(10px);
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .8;
+      }
+
+      50% {
+        transform: scale(1.12);
+        opacity: 1;
+      }
+    }
+
+    .robot {
+      width: 260px;
+      height: 260px;
+      position: relative;
+      z-index: 2;
+      animation: floaty 4.5s ease-in-out infinite;
+      object-fit: contain;
+      padding: 18px;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(1deg);
+      }
+    }
+
+    .chat-bubble-float {
+      position: absolute;
+      top: 6%;
+      right: 8%;
+      width: 56px;
+      height: 56px;
+      border-radius: 50% 50% 8px 50%;
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.4);
+      animation: floaty 3.2s ease-in-out infinite;
+      animation-delay: .4s;
+    }
+
+    .chat-bubble-float svg {
+      width: 24px;
+      height: 24px;
+      color: #fff;
+    }
+
+    .grad-cap {
+      position: absolute;
+      top: 2%;
+      left: 34%;
+      width: 64px;
+      animation: capDrop 1s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    @keyframes capDrop {
+      from {
+        transform: translateY(-60px) rotate(-15deg);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 44px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all .3s ease;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 14px -4px rgba(0, 0, 0, 0.25);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 6px;
+      font-size: 15.5px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-500);
+      line-height: 1.5;
+    }
+
+    .icon-purple {
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    }
+
+    .icon-green {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .icon-orange {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .icon-pink {
+      background: linear-gradient(135deg, #ec4899, #db2777);
+    }
+
+    /* ===== CHAT ===== */
+    .chat-shell {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: var(--shadow-md);
+      height: 640px;
+    }
+
+    .chat-sidebar {
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      background: #fbfcfe;
+    }
+
+    .chat-sidebar-head {
+      padding: 18px 18px 8px;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--ink-900);
+    }
+
+    .chat-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 10px;
+    }
+
+    .chat-item {
+      padding: 12px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: all .2s ease;
+      border: 1px solid transparent;
+    }
+
+    .chat-item:hover {
+      background: var(--blue-50);
+    }
+
+    .chat-item.active {
+      background: var(--blue-50);
+      border-color: var(--blue-100);
+    }
+
+    .chat-item .t {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chat-item.active .t {
+      color: var(--blue-700);
+    }
+
+    .chat-item .s {
+      font-size: 11.5px;
+      color: var(--ink-400);
+    }
+
+    .clear-history {
+      margin: 10px 14px 16px;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      color: #ef4444;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #fee2e2;
+      background: #fff5f5;
+      transition: all .2s ease;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clear-history:hover {
+      background: #fee2e2;
+    }
+
+    .chat-main {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chat-head {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-head-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .55;
+      }
+    }
+
+    .chat-head-title h4 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .chat-head-title span {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-400);
+      font-weight: 500;
+    }
+
+    .head-icons {
+      display: flex;
+      gap: 14px;
+      color: var(--ink-400);
+    }
+
+    .head-icons svg {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      transition: color .2s;
+    }
+
+    .head-icons svg:hover {
+      color: var(--blue-600);
+    }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background:
+        radial-gradient(600px 300px at 100% 0%, rgba(59, 130, 246, 0.04), transparent);
+      min-height: 0;
+    }
+
+    .msg-row {
+      display: flex;
+      gap: 10px;
+      max-width: 80%;
+      animation: msgIn .35s ease;
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg-row.bot {
+      align-self: flex-start;
+    }
+
+    .msg-row.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+      margin-left: auto;
+    }
+
+    .msg-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      flex: none;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .msg-avatar svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .msg-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 2px;
+    }
+
+    .msg-bubble {
+      padding: 12px 15px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .msg-row.bot .msg-bubble {
+      background: #f1f5f9;
+      color: var(--ink-900);
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-row.user .msg-bubble {
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+      color: #fff;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
+    }
+
+    /* ── Markdown heading styles inside bot bubbles ── */
+    .msg-row.bot .msg-bubble h1,
+    .msg-row.bot .msg-bubble h2,
+    .msg-row.bot .msg-bubble h3 {
+      margin: 10px 0 6px 0;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--blue-700);
+      padding-bottom: 4px;
+      border-bottom: 2px solid rgba(37, 99, 235, 0.15);
+    }
+
+    .msg-row.bot .msg-bubble h4 {
+      margin: 8px 0 4px 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-700);
+    }
+
+    .msg-row.bot .msg-bubble h5,
+    .msg-row.bot .msg-bubble h6 {
+      margin: 6px 0 4px 0;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-500);
+    }
+
+    /* ── Paragraphs ── */
+    .msg-bubble p {
+      margin: 0 0 8px 0;
+    }
+
+    .msg-bubble p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Lists ── */
+    .msg-bubble ul,
+    .msg-bubble ol {
+      margin: 4px 0 10px 0;
+      padding-left: 20px;
+    }
+
+    .msg-bubble li {
+      margin-bottom: 4px;
+      line-height: 1.55;
+    }
+
+    .msg-bubble li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Text formatting ── */
+    .msg-row.bot .msg-bubble strong {
+      font-weight: 700;
+      color: var(--ink-900);
+    }
+
+    .msg-row.bot .msg-bubble em {
+      font-style: italic;
+      color: var(--ink-700);
+    }
+
+    /* ── Tables ── */
+    .msg-row.bot .msg-bubble table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 8px 0 12px 0;
+      font-size: 13px;
+    }
+
+    .msg-row.bot .msg-bubble th {
+      background: var(--blue-50);
+      color: var(--blue-700);
+      font-weight: 700;
+      padding: 7px 10px;
+      text-align: left;
+      border: 1px solid var(--line);
+    }
+
+    .msg-row.bot .msg-bubble td {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      color: var(--ink-700);
+    }
+
+    .msg-row.bot .msg-bubble tr:nth-child(even) td {
+      background: rgba(248, 250, 252, 0.8);
+    }
+
+    /* ── Inline code ── */
+    .msg-row.bot .msg-bubble code {
+      background: rgba(15, 23, 42, 0.07);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── Code blocks ── */
+    .msg-row.bot .msg-bubble pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 8px 0;
+    }
+
+    .msg-row.bot .msg-bubble pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: 12.5px;
+    }
+
+    /* ── Blockquotes ── */
+    .msg-row.bot .msg-bubble blockquote {
+      border-left: 3px solid var(--blue-500);
+      margin: 6px 0;
+      padding: 4px 12px;
+      color: var(--ink-500);
+      background: var(--blue-50);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── Horizontal rule ── */
+    .msg-row.bot .msg-bubble hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 10px 0;
+    }
+
+    /* ── Links ── */
+    .msg-row.bot .msg-bubble a {
+      color: var(--blue-600);
+      text-decoration: underline;
+    }
+
+    .msg-time {
+      font-size: 10.5px;
+      color: var(--ink-400);
+      margin-top: 5px;
+      display: block;
+    }
+
+    .msg-row.user .msg-time {
+      color: rgba(255, 255, 255, 0.75);
+      text-align: right;
+    }
+
+    .typing-row {
+      display: flex;
+      gap: 10px;
+      align-self: flex-start;
+    }
+
+    .typing-dots {
+      background: #f1f5f9;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .typing-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ink-400);
+      animation: td 1.2s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: .15s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: .3s;
+    }
+
+    @keyframes td {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+        opacity: .5;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    .chat-input-bar {
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      background: var(--card);
+      z-index: 10;
+    }
+
+    .chat-input-bar textarea {
+      flex: 1;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 14px;
+      outline: none;
+      transition: all .2s ease;
+      background: #fbfcfe;
+      resize: none;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+
+    .chat-input-bar textarea:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 4px var(--blue-100);
+      background: #fff;
+    }
+
+    .send-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex: none;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.32);
+      transition: all .2s ease;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.07) rotate(4deg);
+    }
+
+    .send-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ===== KNOWLEDGE BASE ===== */
+    .kb-head h1 {
+      font-size: 28px;
+      margin: 0 0 6px;
+      font-weight: 800;
+    }
+
+    .kb-head p {
+      color: var(--ink-500);
+      margin: 0 0 22px;
+    }
+
+    .search-wrap {
+      position: relative;
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--ink-400);
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 14px 16px 14px 46px;
+      border-radius: 12px;
+      border: 1.5px solid var(--line);
+      font-size: 14.5px;
+      outline: none;
+      transition: all .2s ease;
+      background: #fff;
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 4px var(--blue-100);
+    }
+
+    .kb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .kb-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: all .3s ease;
+      cursor: pointer;
+    }
+
+    .kb-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .kb-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 14px -4px rgba(0, 0, 0, .25);
+    }
+
+    .kb-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .kb-card p {
+      margin: 0 0 14px;
+      font-size: 13.5px;
+      color: var(--ink-500);
+      line-height: 1.55;
+    }
+
+    .kb-link {
+      color: var(--blue-600);
+      font-size: 13.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .kb-card:hover .kb-link {
+      gap: 8px;
+    }
+
+    .kb-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform .25s;
+    }
+
+    /* ===== SETTINGS ===== */
+    .settings-shell {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: var(--shadow-md);
+    }
+
+    .settings-nav {
+      border-right: 1px solid var(--line);
+      padding: 18px 12px;
+      background: #fbfcfe;
+    }
+
+    .settings-nav button {
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: transparent;
+      padding: 11px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-700);
+      cursor: pointer;
+      margin-bottom: 4px;
+      transition: all .2s ease;
+    }
+
+    .settings-nav button:hover {
+      background: var(--blue-50);
+    }
+
+    .settings-nav button.active {
+      background: var(--blue-600);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .settings-nav svg {
+      width: 17px;
+      height: 17px;
+      flex: none;
+    }
+
+    .settings-panel {
+      padding: 32px 40px;
+    }
+
+    .settings-panel h2 {
+      margin: 0 0 26px;
+      font-size: 20px;
+    }
+
+    .field-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .field-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .field-row label {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink-900);
+    }
+
+    select.field-input,
+    input.field-input {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--line);
+      font-size: 14px;
+      min-width: 200px;
+      outline: none;
+      transition: all .2s ease;
+      background: #fff;
+    }
+
+    select.field-input {
+      padding-right: 34px;
+      background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%2364748b" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>') no-repeat right 12px center;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    select.field-input:focus,
+    input.field-input:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 4px var(--blue-100);
+    }
+
+    .toggle {
+      width: 46px;
+      height: 26px;
+      border-radius: 20px;
+      background: var(--line);
+      position: relative;
+      cursor: pointer;
+      transition: background .25s ease;
+      flex: none;
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+      transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .toggle.on {
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+    }
+
+    .toggle.on::after {
+      transform: translateX(20px);
+    }
+
+    /* Theme, Accent & Compact overrides */
+    body.dark-theme {
+      --bg: #0b0f19;
+      --card: #1e293b;
+      --line: #334155;
+      --ink-900: #f8fafc;
+      --ink-700: #cbd5e1;
+      --ink-500: #94a3b8;
+      --ink-400: #64748b;
+      --blue-50: #1e293b;
+    }
+
+    body.dark-theme .topnav {
+      background: rgba(30, 41, 59, 0.82);
+    }
+
+    body.dark-theme .settings-nav {
+      background: #1e293b;
+    }
+
+    body.dark-theme select.field-input,
+    body.dark-theme input.field-input {
+      background: #0b0f19;
+      color: #f8fafc;
+      border-color: #334155;
+    }
+
+    body.dark-theme select.field-input {
+      background: #0b0f19 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%2394a3b8" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>') no-repeat right 12px center;
+    }
+
+    body.dark-theme .kb-card,
+    body.dark-theme .about-shell,
+    body.dark-theme .admin-modal,
+    body.dark-theme .settings-shell {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    body.dark-theme .msg-row.bot .msg-bubble {
+      background: #0b0f19;
+      color: #f8fafc;
+      border: 1px solid #334155;
+    }
+
+    body.accent-blue {
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-500: #3b82f6;
+      --blue-50: #eff6ff;
+      --blue-100: #dbeafe;
+    }
+    body.accent-purple {
+      --blue-600: #9333ea;
+      --blue-700: #7e22ce;
+      --blue-500: #a855f7;
+      --blue-50: #faf5ff;
+      --blue-100: #f3e8ff;
+    }
+    body.accent-green {
+      --blue-600: #16a34a;
+      --blue-700: #15803d;
+      --blue-500: #22c55e;
+      --blue-50: #f0fdf4;
+      --blue-100: #dcfce7;
+    }
+    body.accent-indigo {
+      --blue-600: #4f46e5;
+      --blue-700: #4338ca;
+      --blue-500: #6366f1;
+      --blue-50: #eef2ff;
+      --blue-100: #e0e7ff;
+    }
+
+    body.compact-mode .msg-bubble {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+    body.compact-mode .msg-row {
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    body.compact-mode .chat-body {
+      padding: 12px;
+    }
+
+    .save-row {
+      margin-top: 28px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: var(--shadow-md);
+      padding: 50px;
+      margin-bottom: 24px;
+    }
+
+    .about-orb {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: radial-gradient(circle at 35% 30%, #eef2ff, #dbeafe 60%, #bfdbfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6), var(--shadow-md);
+      animation: floaty 5s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .about-orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 18px;
+    }
+
+    .about-shell h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .about-shell p {
+      color: var(--ink-700);
+      line-height: 1.75;
+      font-size: 14.5px;
+      margin: 0 0 14px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .meta-grid div span {
+      display: block;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--ink-500);
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      font-size: 14.5px;
+      font-weight: 700;
+    }
+
+    .meta-value.blue {
+      color: var(--blue-600);
+    }
+
+    .about-footer {
+      text-align: center;
+      color: var(--ink-400);
+      font-size: 13px;
+      padding-top: 10px;
+    }
+
+    /* ===== AUTH TAB SYSTEM ===== */
+    .auth-card {
+      max-width: 440px;
+      margin: 60px auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 24px;
+      border-bottom: 1.5px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .auth-tabs button {
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink-400);
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: all 0.2s ease;
+    }
+
+    .auth-tabs button.active {
+      color: var(--blue-600);
+      border-bottom: 2px solid var(--blue-600);
+      margin-bottom: -12px;
+    }
+
+    .auth-form-group {
+      margin-bottom: 18px;
+    }
+
+    .auth-form-group label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink-700);
+    }
+
+    .auth-form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--line);
+      font-size: 14.5px;
+      outline: none;
+      background: #fbfcfe;
+      transition: all 0.2s ease;
+    }
+
+    .auth-form-group input:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 4px var(--blue-100);
+      background: #fff;
+    }
+
+    /* ===== ADMIN PANEL STYLES ===== */
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .admin-stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .admin-stat-card span.lbl {
+      font-size: 12px;
+      color: var(--ink-500);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .admin-stat-card span.val {
+      font-size: 24px;
+      color: var(--ink-900);
+      font-weight: 800;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 13.5px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .admin-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--ink-700);
+    }
+
+    .admin-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .kb-action-btn {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kb-btn-edit {
+      background: var(--blue-50);
+      color: var(--blue-600);
+    }
+
+    .kb-btn-edit:hover {
+      background: var(--blue-100);
+    }
+
+    .kb-btn-delete {
+      background: #fff5f5;
+      color: #ef4444;
+    }
+
+    .kb-btn-delete:hover {
+      background: #fee2e2;
+    }
+
+    .admin-modal-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .admin-modal-bg.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .admin-modal {
+      background: #fff;
+      width: 550px;
+      max-width: 90%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 28px;
+      transform: scale(0.95);
+      transition: transform 0.25s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .admin-modal-bg.active .admin-modal {
+      transform: scale(1);
+    }
+
+    .admin-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .admin-modal-head h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    /* ===== TOAST COLORS ===== */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: var(--ink-900);
+      color: #fff;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, .28);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .35s cubic-bezier(.22, 1, .36, 1);
+      z-index: 999;
+      border: 1.5px solid transparent;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      color: var(--green);
+    }
+
+    .toast.error {
+      border-color: #ef4444;
+    }
+
+    .toast.error svg {
+      color: #ef4444;
+    }
+
+    .toast.warning {
+      border-color: #f59e0b;
+    }
+
+    .toast.warning svg {
+      color: #f59e0b;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .kb-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chat-shell {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .chat-sidebar {
+        display: none;
+      }
+
+      .settings-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .settings-nav {
+        display: flex;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .about-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navlinks {
+        display: none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="topnav">
+    <div class="brand">
+      <div class="brand-badge">
+        <img src="/public/clg logo.jpg" alt="College Logo">
+      </div>
+      College Chatbot
+    </div>
+
+    <div class="navlinks" id="navbarLinks">
+      <button data-page="home" class="active">Home</button>
+      <button data-page="chat" id="navChat" style="display:none;">Chat</button>
+      <button data-page="kb">Knowledge Base</button>
+      <button data-page="settings" id="navSettings" style="display:none;">Settings</button>
+      <button data-page="admin" id="navAdmin" style="display:none;">Admin</button>
+      <button data-page="about">About</button>
+      <button id="authNavBtn" onclick="handleAuthNavClick()">Login</button>
+    </div>
+  </nav>
+
+  <!-- ===== LOGIN / REGISTER ===== -->
+  <section class="page" id="login">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button id="tabBtnLogin" class="active" onclick="toggleAuthTab('login')">Sign In</button>
+        <button id="tabBtnRegister" onclick="toggleAuthTab('register')">Register</button>
+      </div>
+
+      <!-- Login -->
+      <div id="authLoginWrapper">
+        <form id="frmLogin" onsubmit="handleLoginSubmit(event)">
+          <div class="auth-form-group">
+            <label for="txtLoginUser">Username or Email</label>
+            <input type="text" id="txtLoginUser" required placeholder="Enter username or email">
+          </div>
+          <div class="auth-form-group">
+            <label for="txtLoginPass">Password</label>
+            <input type="password" id="txtLoginPass" required placeholder="Enter password">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+            Sign In
+          </button>
+        </form>
+      </div>
+
+      <!-- Register -->
+      <div id="authRegisterWrapper" style="display:none;">
+        <form id="frmRegister" onsubmit="handleRegisterSubmit(event)">
+          <div class="auth-form-group">
+            <label for="txtRegUser">Username</label>
+            <input type="text" id="txtRegUser" required placeholder="Choose a username (min 3 chars)">
+          </div>
+          <div class="auth-form-group">
+            <label for="txtRegEmail">Email Address</label>
+            <input type="email" id="txtRegEmail" required placeholder="Enter a valid email">
+          </div>
+          <div class="auth-form-group">
+            <label for="txtRegPass">Password</label>
+            <input type="password" id="txtRegPass" required placeholder="Choose password (min 6 chars)">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+            Create Account
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOME ===== -->
+  <section class="page active" id="home">
+    <div class="hero">
+      <div>
+        <h1>Welcome to Government Polytechnic<span>College Chatbot</span></h1>
+        <p>Your intelligent assistant for college-related information and support.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="goToChat()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 21l2-5.5A8.38 8.38 0 0 1 21 11.5z" />
+            </svg>
+            Start Chatting
+          </button>
+          <button class="btn btn-ghost" onclick="goTo('kb')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+            Explore Knowledge Base
+          </button>
+        </div>
+      </div>
+      <div class="bot-orb-wrap">
+        <div class="bot-orb-glow"></div>
+        <svg class="grad-cap" viewBox="0 0 64 40" fill="none">
+          <path d="M32 2 62 15 32 28 2 15 32 2Z" fill="#0f172a" />
+          <path d="M14 19v10c0 3 8 6 18 6s18-3 18-6V19" stroke="#0f172a" stroke-width="2" fill="none" />
+          <path d="M58 16v11" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
+          <circle cx="58" cy="29" r="2.4" fill="#f59e0b" />
+        </svg>
+        <svg class="robot" viewBox="0 0 200 220" fill="none">
+          <ellipse cx="100" cy="205" rx="55" ry="8" fill="#1d4ed8" opacity="0.08" />
+          <rect x="55" y="60" width="90" height="90" rx="34" fill="#eef4ff" stroke="#dbeafe" stroke-width="2" />
+          <rect x="70" y="80" width="60" height="46" rx="20" fill="#0f172a" />
+          <circle cx="88" cy="103" r="7" fill="#7dd3fc" />
+          <circle cx="112" cy="103" r="7" fill="#7dd3fc" />
+          <path d="M92 115 Q100 121 108 115" stroke="#7dd3fc" stroke-width="2.4" stroke-linecap="round" fill="none" />
+          <rect x="30" y="95" width="18" height="34" rx="9" fill="#eef4ff" stroke="#dbeafe" stroke-width="2" />
+          <rect x="152" y="95" width="18" height="34" rx="9" fill="#eef4ff" stroke="#dbeafe" stroke-width="2" />
+          <rect x="72" y="150" width="56" height="46" rx="18" fill="#2563eb" />
+          <rect x="86" y="164" width="28" height="18" rx="4" fill="#1d4ed8" />
+          <circle cx="100" cy="55" r="7" fill="#0f172a" />
+          <path d="M100 62v10" stroke="#0f172a" stroke-width="2.4" />
+        </svg>
+        <div class="chat-bubble-float">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="7" cy="12" r="1.3" fill="currentColor" stroke="none" />
+            <circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none" />
+            <circle cx="17" cy="12" r="1.3" fill="currentColor" stroke="none" />
+            <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 21l2-5.5A8.38 8.38 0 0 1 21 11.5z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon icon-purple">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 21l2-5.5A8.38 8.38 0 0 1 21 11.5z" />
+          </svg>
+        </div>
+        <h3>Instant Answers</h3>
+        <p>Get quick answers to your college-related questions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+        </div>
+        <h3>Knowledge Base</h3>
+        <p>Browse through important information and resources.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-orange">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+        </div>
+        <h3>Announcements</h3>
+        <p>Stay updated with the latest announcements.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-pink">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+            <path
+              d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+          </svg>
+        </div>
+        <h3>24/7 Support</h3>
+        <p>Available round the clock to assist you.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===== CHAT ===== -->
+  <section class="page" id="chat">
+    <div class="chat-shell">
+      <div class="chat-sidebar">
+        <div class="chat-sidebar-head"
+          style="display:flex; justify-content:space-between; align-items:center; width: 100%;">
+          <span>Recent Chats</span>
+          <button onclick="startNewChatSession()"
+            style="border:none; background:transparent; cursor:pointer; color:var(--blue-600); display:flex; align-items:center; justify-content:center; padding:4px;"
+            title="New Chat Session">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+        </div>
+        <div class="chat-list" id="chatList">
+          <!-- Chat sessions will render dynamically -->
+        </div>
+        <div class="clear-history" onclick="handleClearHistory()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18" />
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+          </svg>
+          Clear History
+        </div>
+      </div>
+      <div class="chat-main">
+        <div class="chat-head">
+          <div class="chat-head-title">
+            <span class="status-dot" id="chatOnlineDot"></span>
+            <div>
+              <h4 id="chatTitleHeader">Chatbot Online</h4>
+              <span id="chatSubHeader">Government Polytechnic College Chatbot</span>
+            </div>
+          </div>
+          <div class="head-icons">
+            <svg id="saveCurrentChatBtn" onclick="saveCurrentChat()" title="Save / Bookmark this conversation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
+        </div>
+        <div class="chat-body" id="chatBody">
+          <!-- Messages will render dynamically -->
+        </div>
+        <div class="chat-input-bar">
+          <textarea id="chatInput" placeholder="Type your message..." rows="1"
+            onkeydown="handleChatKeyDown(event)"></textarea>
+          <button class="send-btn" onclick="sendMessageToServer()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2 11 13" />
+              <path d="M22 2 15 22l-4-9-9-4 20-7z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KNOWLEDGE BASE ===== -->
+  <section class="page" id="kb">
+    <div class="kb-head">
+      <h1>Knowledge Base</h1>
+      <p>Browse important information and resources.</p>
+    </div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+      <input type="text" id="kbSearch" placeholder="Search topics..." oninput="handleKBSearch()">
+    </div>
+    <div class="kb-grid" id="kbGrid">
+      <!-- Knowledge Base items will render here -->
+    </div>
+  </section>
+
+  <!-- ===== SETTINGS ===== -->
+  <section class="page" id="settings">
+    <div class="settings-shell">
+      <div class="settings-nav">
+        <button class="active" data-tab="general" onclick="switchSettingsTab(this, 'general')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          General
+        </button>
+        <button data-tab="notifications" onclick="switchSettingsTab(this, 'notifications')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+          Notifications
+        </button>
+        <button data-tab="appearance" onclick="switchSettingsTab(this, 'appearance')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path d="M12 1v2" />
+            <path d="M12 21v2" />
+            <path d="M4.22 4.22l1.42 1.42" />
+            <path d="M18.36 18.36l1.42 1.42" />
+            <path d="M1 12h2" />
+            <path d="M21 12h2" />
+            <path d="M4.22 19.78l1.42-1.42" />
+            <path d="M18.36 5.64l1.42-1.42" />
+          </svg>
+          Appearance
+        </button>
+        <button data-tab="privacy" onclick="switchSettingsTab(this, 'privacy')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Privacy
+        </button>
+      </div>
+      <div class="settings-panel">
+        <h2 id="settingsTitleHeader">General Settings</h2>
+
+        <div id="settingsContentArea">
+          <!-- General Settings Section -->
+          <div id="settings-general" class="settings-tab-content">
+            <div class="field-row">
+              <label for="selLang">Language</label>
+              <select class="field-input" id="selLang">
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Telugu">Telugu</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label for="selTone">Chatbot Tone</label>
+              <select class="field-input" id="selTone">
+                <option value="Friendly">Friendly</option>
+                <option value="Professional">Professional</option>
+                <option value="Concise">Concise</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label for="selLen">Response Length</label>
+              <select class="field-input" id="selLen">
+                <option value="Short">Short</option>
+                <option value="Medium">Medium</option>
+                <option value="Detailed">Detailed</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Save Chat History</label>
+              <div class="toggle on" id="toggleSaveHistory" onclick="toggleOption(this)"></div>
+            </div>
+            <div class="field-row">
+              <label>Auto Scroll</label>
+              <div class="toggle on" id="toggleAutoScroll" onclick="toggleOption(this)"></div>
+            </div>
+          </div>
+
+          <!-- Appearance Settings Section -->
+          <div id="settings-appearance" class="settings-tab-content" style="display:none;">
+            <div class="field-row">
+              <label for="selTheme">Theme</label>
+              <select class="field-input" id="selTheme" onchange="applyThemeSetting(this.value)">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="system">System</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label for="selAccent">Accent Color</label>
+              <select class="field-input" id="selAccent" onchange="applyAccentSetting(this.value)">
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="green">Green</option>
+                <option value="indigo">Indigo</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Compact Display</label>
+              <div class="toggle" id="toggleCompact" onclick="toggleCompactDisplay(this)"></div>
+            </div>
+          </div>
+
+          <!-- Notifications Settings Section -->
+          <div id="settings-notifications" class="settings-tab-content" style="display:none;">
+            <div class="field-row">
+              <label>Enable Notifications</label>
+              <div class="toggle on" id="toggleNotifications" onclick="toggleOption(this)"></div>
+            </div>
+            <div class="field-row">
+              <label>New Announcement Notifications</label>
+              <div class="toggle on" id="toggleAnnounceNotifications" onclick="toggleOption(this)"></div>
+            </div>
+            <div class="field-row">
+              <label>Chat Notifications</label>
+              <div class="toggle on" id="toggleChatNotifications" onclick="toggleOption(this)"></div>
+            </div>
+          </div>
+
+          <!-- Privacy Settings Section -->
+          <div id="settings-privacy" class="settings-tab-content" style="display:none;">
+            <div class="field-row">
+              <label>Save Chat History</label>
+              <div class="toggle on" id="togglePrivacySaveHistory" onclick="toggleOption(this)"></div>
+            </div>
+            <div class="field-row">
+              <label>Clear Chat History</label>
+              <button class="btn" style="background:#fee2e2; color:#ef4444; border:1px solid #fecaca; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;" onclick="handleClearHistory()">Clear Chat History</button>
+            </div>
+            <div class="field-row">
+              <label for="selDataPreference">Data/Privacy Preference</label>
+              <select class="field-input" id="selDataPreference">
+                <option value="minimal">Minimal Data Collection</option>
+                <option value="standard">Standard (Recommended)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="save-row">
+          <button class="btn btn-primary" onclick="handleSaveSettings()">Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADMIN PANEL ===== -->
+  <section class="page" id="admin">
+    <div class="settings-shell">
+      <div class="settings-nav" id="adminSidebar">
+        <button class="active" data-admintab="overview" onclick="switchAdminTab('overview')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="width:17px;height:17px;flex:none;">
+            <rect x="3" y="3" width="7" height="9" />
+            <rect x="14" y="3" width="7" height="5" />
+            <rect x="14" y="12" width="7" height="9" />
+            <rect x="3" y="16" width="7" height="5" />
+          </svg>
+          Overview
+        </button>
+        <button data-admintab="kbmgr" onclick="switchAdminTab('kbmgr')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="width:17px;height:17px;flex:none;">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          Manage KB
+        </button>
+        <button data-admintab="chatlogs" onclick="switchAdminTab('chatlogs')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="width:17px;height:17px;flex:none;">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          Chat Logs
+        </button>
+      </div>
+      <div class="settings-panel" style="overflow-y:auto; max-height:600px;" id="adminPanelBody">
+        <!-- Admin Content dynamically injected -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="page" id="about">
+    <div class="about-shell">
+      <div class="about-orb">
+        <img src="/public/clg logo.jpg" alt="College Logo">
+      </div>
+
+      <div>
+        <h2>About College Chatbot</h2>
+        <p>College Chatbot is an intelligent assistant designed to help students, faculty, and staff with
+          college-related information and support.</p>
+        <p>It provides quick answers, resources, and guidance regarding admissions, academics, campus life, and more.
+        </p>
+        <div class="meta-grid">
+          <div><span class="meta-label">Version</span><span class="meta-value blue">1.0.0</span></div>
+          <div><span class="meta-label">Developed By</span><span class="meta-value">College IT Team</span></div>
+          <div><span class="meta-label">Last Updated</span><span class="meta-value">July 17, 2026</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-footer">© 2026 College Chatbot. All rights reserved.</div>
+  </section>
+
+  <!-- Standard toast structure -->
+  <div class="toast" id="toast">
+    <!-- Dynamic Success/Warning/Error SVG injected by JS -->
+    <span id="toastIcon"></span>
+    <span id="toastMsg">Saved</span>
+  </div>
+
+  <!-- Add/Edit Article Modal -->
+  <div class="admin-modal-bg" id="adminModalBg" onclick="closeAdminModal(event)">
+    <div class="admin-modal" onclick="event.stopPropagation()">
+      <div class="admin-modal-head">
+        <h3 id="adminModalTitle">Add New Article</h3>
+        <button onclick="closeAdminModal()"
+          style="border:none; background:transparent; font-size:20px; font-weight:800; cursor:pointer; color:var(--ink-500);">&times;</button>
+      </div>
+      <form id="frmAdminArticle" onsubmit="handleArticleFormSubmit(event)">
+        <input type="hidden" id="txtArticleId">
+        <div class="auth-form-group">
+          <label for="selArticleCat">Category</label>
+          <select id="selArticleCat" class="field-input" style="width:100%; min-width:100%;" required>
+            <option value="admissions">Admissions</option>
+            <option value="academics">Academics</option>
+            <option value="fees payments">Fees & Payments</option>
+            <option value="campus life">Campus Life</option>
+            <option value="facilities">Facilities</option>
+            <option value="policies">Policies</option>
+          </select>
+        </div>
+        <div class="auth-form-group">
+          <label for="txtArticleTitle">Title</label>
+          <input type="text" id="txtArticleTitle" required placeholder="e.g. Refund Policy">
+        </div>
+        <div class="auth-form-group">
+          <label for="txtArticleContent">Content</label>
+          <textarea id="txtArticleContent" required
+            style="width: 100%; height: 160px; padding: 11px 14px; border-radius: 10px; border: 1.5px solid var(--line); font-size: 14.5px; outline: none; font-family: inherit; resize: vertical;"
+            placeholder="Enter details about the article..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Save Article</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Chat Transcript Modal -->
+  <div class="admin-modal-bg" id="transcriptModalBg" onclick="closeTranscriptModal(event)">
+    <div class="admin-modal" style="width:650px;" onclick="event.stopPropagation()">
+      <div class="admin-modal-head">
+        <h3 id="transcriptTitle">Student Conversation Transcript</h3>
+        <button onclick="closeTranscriptModal()"
+          style="border:none; background:transparent; font-size:20px; font-weight:800; cursor:pointer; color:var(--ink-500);">&times;</button>
+      </div>
+      <div id="transcriptBody"
+        style="max-height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 10px; background: #f8fafc; border-radius: 10px; border: 1px solid var(--line);">
+        <!-- Messages injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global Application State
+    let currentUser = null;
+    let chatSessions = [];
+    let currentSessionId = null;
+
+    // Icons lookup helper
+    const icons = {
+      success: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="width:18px;height:18px;"><path d="M20 6 9 17l-5-5"/></svg>`,
+      error: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+      warning: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`
+    };
+
+    // ---- Toast Handler ----
+    let toastTimer;
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const iconSpan = document.getElementById('toastIcon');
+      const msgSpan = document.getElementById('toastMsg');
+
+      // Reset styles
+      toast.className = 'toast';
+      iconSpan.innerHTML = '';
+
+      // Apply class and icon
+      toast.classList.add(type);
+      iconSpan.innerHTML = icons[type] || icons.success;
+      msgSpan.textContent = msg;
+
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // ---- Navigation Router ----
+    const navButtons = document.querySelectorAll('.navlinks button');
+    const pages = document.querySelectorAll('.page');
+
+    function goTo(id) {
+      // Validation: block access to Chat & Settings if not logged in
+      if (!currentUser && (id === 'chat' || id === 'settings' || id === 'admin')) {
+        showToast('Please sign in to access this page.', 'warning');
+        toggleAuthTab('login');
+        goTo('login');
+        return;
+      }
+
+      // Admin only block
+      if (id === 'admin' && currentUser?.role !== 'admin') {
+        showToast('Restricted area. Admins only.', 'error');
+        goTo('home');
+        return;
+      }
+
+      navButtons.forEach(b => {
+        if (b.dataset.page) {
+          b.classList.toggle('active', b.dataset.page === id);
+        }
+      });
+
+      pages.forEach(p => p.classList.toggle('active', p.id === id));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Trigger loads based on page transition
+      if (id === 'chat') {
+        loadChatSessions();
+      } else if (id === 'kb') {
+        loadKBGrid();
+      } else if (id === 'settings') {
+        loadSettingsView();
+      } else if (id === 'admin') {
+        loadAdminView();
+      }
+    }
+
+    navButtons.forEach(b => {
+      b.addEventListener('click', () => {
+        if (b.dataset.page) goTo(b.dataset.page);
+      });
+    });
+
+    function goToChat() {
+      goTo('chat');
+    }
+
+    // On startup
+    window.addEventListener('DOMContentLoaded', () => {
+      checkTokenAndInitialize();
+      loadKBGrid();
+    });
+
+    // Check auth status
+    function checkTokenAndInitialize() {
+      const user = window.authService.getCurrentUser();
+      currentUser = user;
+      updateNavUI(user);
+    }
+
+    // Dynamically update TopNav based on login roles
+    function updateNavUI(user) {
+      const chatBtn = document.getElementById('navChat');
+      const settingsBtn = document.getElementById('navSettings');
+      const adminBtn = document.getElementById('navAdmin');
+      const authNavBtn = document.getElementById('authNavBtn');
+
+      if (user) {
+        chatBtn.style.display = 'block';
+        settingsBtn.style.display = 'block';
+        authNavBtn.textContent = 'Logout';
+        authNavBtn.style.color = '#ef4444';
+
+        if (user.role === 'admin') {
+          adminBtn.style.display = 'block';
+        } else {
+          adminBtn.style.display = 'none';
+        }
+      } else {
+        chatBtn.style.display = 'none';
+        settingsBtn.style.display = 'none';
+        adminBtn.style.display = 'none';
+        authNavBtn.textContent = 'Login';
+        authNavBtn.style.color = 'var(--ink-700)';
+      }
+    }
+
+    // Handle Login Nav button click
+    function handleAuthNavClick() {
+      if (currentUser) {
+        // Logout logic
+        window.authService.logout();
+        currentUser = null;
+        currentSessionId = null;
+        updateNavUI(null);
+        showToast('Logged out successfully.');
+        goTo('home');
+      } else {
+        toggleAuthTab('login');
+        goTo('login');
+      }
+    }
+
+    // Toggle Login/Register tab buttons
+    function toggleAuthTab(tab) {
+      const btnL = document.getElementById('tabBtnLogin');
+      const btnR = document.getElementById('tabBtnRegister');
+      const wrapL = document.getElementById('authLoginWrapper');
+      const wrapR = document.getElementById('authRegisterWrapper');
+
+      if (tab === 'login') {
+        btnL.classList.add('active');
+        btnR.classList.remove('active');
+        wrapL.style.display = 'block';
+        wrapR.style.display = 'none';
+      } else {
+        btnR.classList.add('active');
+        btnL.classList.remove('active');
+        wrapR.style.display = 'block';
+        wrapL.style.display = 'none';
+      }
+    }
+
+    // Post Login form submission
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      const userVal = document.getElementById('txtLoginUser').value;
+      const passVal = document.getElementById('txtLoginPass').value;
+
+      if (!userVal || !passVal) {
+        showToast('Username/Email and password are required.', 'warning');
+        return;
+      }
+
+      const res = window.authService.login(userVal, passVal);
+      if (!res.success) {
+        showToast(res.message, 'error');
+        return;
+      }
+
+      // Success
+      currentUser = res.user;
+      updateNavUI(currentUser);
+      document.getElementById('frmLogin').reset();
+      showToast(`Welcome back, ${currentUser.username}!`);
+
+      if (currentUser.role === 'admin') {
+        goTo('admin');
+      } else {
+        goTo('chat');
+      }
+    }
+
+    // Post Register form submission
+    function handleRegisterSubmit(event) {
+      event.preventDefault();
+      const userVal = document.getElementById('txtRegUser').value;
+      const emailVal = document.getElementById('txtRegEmail').value;
+      const passVal = document.getElementById('txtRegPass').value;
+
+      const res = window.authService.register(userVal, emailVal, passVal);
+      if (!res.success) {
+        showToast(res.message, 'warning');
+        return;
+      }
+
+      showToast(res.message);
+      toggleAuthTab('login');
+      document.getElementById('frmRegister').reset();
+    }
+
+    // ==========================================
+    // CHAT MODULE — localStorage-backed sessions
+    // ==========================================
+
+    const LS_SESSIONS_KEY = 'clg_chat_sessions'; // key: array of session objects
+    // Each session: { id, title, updated_at, messages: [{sender,message,created_at}] }
+
+    function lsGetSessions() {
+      try { return JSON.parse(localStorage.getItem(LS_SESSIONS_KEY) || '[]'); }
+      catch(e) { return []; }
+    }
+
+    function lsSaveSessions(sessions) {
+      localStorage.setItem(LS_SESSIONS_KEY, JSON.stringify(sessions));
+    }
+
+    function lsGetSession(id) {
+      return lsGetSessions().find(s => s.id === id) || null;
+    }
+
+    function lsUpsertSession(sess) {
+      const all = lsGetSessions();
+      const idx = all.findIndex(s => s.id === sess.id);
+      if (idx >= 0) { all[idx] = sess; } else { all.unshift(sess); }
+      lsSaveSessions(all);
+    }
+
+    function generateSessionId() {
+      return 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+    }
+
+    function loadChatSessions() {
+      chatSessions = lsGetSessions();
+      renderSessionsSidebar();
+
+      if (chatSessions.length > 0 && currentSessionId === null) {
+        selectChatSession(chatSessions[0].id);
+      } else if (currentSessionId !== null) {
+        renderSessionsSidebar(); // just re-render to show active state
+      } else {
+        startNewChatSession();
+      }
+    }
+
+    function renderSessionsSidebar() {
+      const listDiv = document.getElementById('chatList');
+      listDiv.innerHTML = '';
+
+      const sessions = lsGetSessions();
+
+      if (sessions.length === 0) {
+        listDiv.innerHTML = '<div style="padding:20px; text-align:center; color:var(--ink-400); font-size:13px;">No conversations yet.</div>';
+        return;
+      }
+
+      sessions.forEach(sess => {
+        const act = currentSessionId === sess.id ? 'active' : '';
+        const dateStr = new Date(sess.updated_at).toLocaleDateString([], { month: 'short', day: 'numeric' });
+        const timeStr = new Date(sess.updated_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const item = document.createElement('div');
+        item.className = `chat-item ${act}`;
+        item.onclick = () => selectChatSession(sess.id);
+        item.innerHTML = `
+          <span class="t">${escapeHtml(sess.title)}</span>
+          <span class="s">${dateStr} ${timeStr}</span>
+        `;
+        listDiv.appendChild(item);
+      });
+    }
+
+    function startNewChatSession() {
+      currentSessionId = null;
+
+      // Deselect all sidebar items
+      document.querySelectorAll('.chat-item').forEach(i => i.classList.remove('active'));
+      renderSessionsSidebar();
+
+      // Clear chat log and show welcome bubble
+      const body = document.getElementById('chatBody');
+      body.innerHTML = `
+        <div class="msg-row bot">
+          <div class="msg-avatar"><img src="/public/clg logo.jpg" alt="College Logo"></div>
+          <div class="msg-bubble">
+            Hello ${currentUser ? currentUser.username : 'there'}! I am the College Chatbot.
+            Ask me anything regarding Admissions, Fees, Exams, Facilities, Policies, and more.
+            <span class="msg-time">${timeNow()}</span>
+          </div>
+        </div>
+      `;
+      document.getElementById('chatTitleHeader').textContent = 'New Chat Session';
+    }
+
+    function selectChatSession(sessId) {
+      currentSessionId = sessId;
+      renderSessionsSidebar();
+
+      const sess = lsGetSession(sessId);
+      if (!sess) { startNewChatSession(); return; }
+
+      document.getElementById('chatTitleHeader').textContent = sess.title;
+
+      const body = document.getElementById('chatBody');
+      body.innerHTML = '';
+
+      if (!sess.messages || sess.messages.length === 0) {
+        body.innerHTML = '<div style="margin:auto; color:var(--ink-400); font-size:13px;">This session contains no messages.</div>';
+        return;
+      }
+
+      sess.messages.forEach(msg => {
+        const timeStr = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const isUser = msg.sender === 'user';
+        const row = document.createElement('div');
+        row.className = isUser ? 'msg-row user' : 'msg-row bot';
+        if (isUser) {
+          row.innerHTML = `<div class="msg-bubble">${escapeHtml(msg.message)}<span class="msg-time">${timeStr}</span></div>`;
+        } else {
+          row.innerHTML = `
+            <div class="msg-avatar"><img src="/public/clg logo.jpg" alt="College Logo"></div>
+            <div class="msg-bubble">${formatBotReply(msg.message)}<span class="msg-time">${timeStr}</span></div>
+          `;
+        }
+        body.appendChild(row);
+      });
+
+      body.scrollTop = body.scrollHeight;
+    }
+
+    // Save / bookmark the current chat into Recent Chats
+    function saveCurrentChat() {
+      const body = document.getElementById('chatBody');
+      const msgRows = body.querySelectorAll('.msg-row');
+
+      if (msgRows.length === 0) {
+        showToast('Nothing to save — start a conversation first.', 'warning');
+        return;
+      }
+
+      // If no active session, create one from the current chat body DOM
+      if (!currentSessionId) {
+        // Derive title from first user message
+        let title = 'Saved Chat';
+        const firstUserBubble = body.querySelector('.msg-row.user .msg-bubble');
+        if (firstUserBubble) {
+          const t = firstUserBubble.childNodes[0];
+          if (t && t.nodeType === Node.TEXT_NODE) {
+            title = t.textContent.trim().slice(0, 50) || 'Saved Chat';
+          } else {
+            title = firstUserBubble.textContent.replace(/\d{1,2}:\d{2}\s?(AM|PM)?/gi,'').trim().slice(0, 50) || 'Saved Chat';
+          }
+        }
+        currentSessionId = generateSessionId();
+        const sess = { id: currentSessionId, title, updated_at: new Date().toISOString(), messages: [] };
+        lsUpsertSession(sess);
+      }
+
+      // Sync current chat body DOM into the session messages
+      _persistCurrentChatToLS();
+      renderSessionsSidebar();
+      showToast('Chat saved to Recent Chats.');
+    }
+
+    // Internal: reads current chat DOM and saves messages to the active session in LS
+    function _persistCurrentChatToLS() {
+      if (!currentSessionId) return;
+
+      const body = document.getElementById('chatBody');
+      const msgRows = body.querySelectorAll('.msg-row.user, .msg-row.bot');
+      const messages = [];
+
+      msgRows.forEach(row => {
+        const isUser = row.classList.contains('user');
+        const bubble = row.querySelector('.msg-bubble');
+        if (!bubble) return;
+
+        // Extract plain text content (strip time span)
+        const timeEl = bubble.querySelector('.msg-time');
+        const timeText = timeEl ? timeEl.textContent : '';
+        let msgText = bubble.textContent.replace(timeText, '').trim();
+        // For bot messages that contain HTML (markdown), use innerHTML minus time span
+        if (!isUser) {
+          const clone = bubble.cloneNode(true);
+          const tspan = clone.querySelector('.msg-time');
+          if (tspan) tspan.remove();
+          msgText = clone.innerHTML.trim();
+        }
+
+        messages.push({
+          sender: isUser ? 'user' : 'bot',
+          message: msgText,
+          created_at: new Date().toISOString()
+        });
+      });
+
+      const all = lsGetSessions();
+      const idx = all.findIndex(s => s.id === currentSessionId);
+      if (idx >= 0) {
+        all[idx].messages = messages;
+        all[idx].updated_at = new Date().toISOString();
+        lsSaveSessions(all);
+      }
+    }
+
+    // Handle message sending to Server
+    async function sendMessageToServer() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const body = document.getElementById('chatBody');
+
+      // Remove empty placeholder messages if any
+      const placeholder = body.querySelector('div[style*="color:var(--ink-400)"]');
+      if (placeholder) placeholder.remove();
+
+      // 1. Render user message bubble locally
+      const userRow = document.createElement('div');
+      userRow.className = 'msg-row user';
+      userRow.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}<span class="msg-time">${timeNow()}</span></div>`;
+      body.appendChild(userRow);
+      input.value = '';
+      input.focus();
+      body.scrollTop = body.scrollHeight;
+
+      // 2. Render typing indicator bubble
+      const typingRow = document.createElement('div');
+      typingRow.className = 'typing-row';
+      typingRow.innerHTML = `
+        <div class="msg-avatar"><img src="/public/clg logo.jpg" alt="College Logo"></div>
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      `;
+      body.appendChild(typingRow);
+      body.scrollTop = body.scrollHeight;
+
+      try {
+        const res = await fetch('/api/chat/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+
+        const data = await res.json();
+        typingRow.remove();
+
+        if (!res.ok) {
+          const errRow = document.createElement('div');
+          errRow.className = 'msg-row bot';
+          errRow.innerHTML = `
+            <div class="msg-avatar" style="background:#ef4444;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="msg-bubble" style="background:#fee2e2; border:1px solid #fecaca; color:#b91c1c;">
+              <strong>Error:</strong> ${data.message || 'An error occurred while communicating with the chatbot.'}
+            </div>
+          `;
+          body.appendChild(errRow);
+          body.scrollTop = body.scrollHeight;
+          return;
+        }
+
+        // 3. Render bot response
+        const botRow = document.createElement('div');
+        botRow.className = 'msg-row bot';
+        botRow.innerHTML = `
+          <div class="msg-avatar"><img src="/public/clg logo.jpg" alt="College Logo"></div>
+          <div class="msg-bubble">${formatBotReply(data.reply)}<span class="msg-time">${timeNow()}</span></div>
+        `;
+        body.appendChild(botRow);
+        body.scrollTop = body.scrollHeight;
+        input.focus();
+
+        // 4. Auto-save this conversation to Recent Chats
+        _autoSaveSession(text, data.reply);
+
+      } catch (err) {
+        typingRow.remove();
+        const errRow = document.createElement('div');
+        errRow.className = 'msg-row bot';
+        errRow.innerHTML = `
+          <div class="msg-avatar" style="background:#ef4444;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="msg-bubble" style="background:#fee2e2; color:#b91c1c; border:1px solid #fecaca;">
+            Connection failure. I couldn't reach the chatbot API server. Please check your internet connection or server status.
+          </div>
+        `;
+        body.appendChild(errRow);
+        body.scrollTop = body.scrollHeight;
+      }
+    }
+
+    // Auto-saves/updates the current session in localStorage after each exchange
+    function _autoSaveSession(userText, botReply) {
+      const now = new Date().toISOString();
+
+      if (!currentSessionId) {
+        // First message in session — create new session
+        currentSessionId = generateSessionId();
+        const title = userText.slice(0, 50);
+        const sess = {
+          id: currentSessionId,
+          title,
+          updated_at: now,
+          messages: [
+            { sender: 'user', message: userText, created_at: now },
+            { sender: 'bot',  message: botReply,  created_at: now }
+          ]
+        };
+        lsUpsertSession(sess);
+      } else {
+        // Append to existing session
+        const all = lsGetSessions();
+        const idx = all.findIndex(s => s.id === currentSessionId);
+        if (idx >= 0) {
+          all[idx].messages = all[idx].messages || [];
+          all[idx].messages.push({ sender: 'user', message: userText, created_at: now });
+          all[idx].messages.push({ sender: 'bot',  message: botReply,  created_at: now });
+          all[idx].updated_at = now;
+          lsSaveSessions(all);
+        }
+      }
+
+      renderSessionsSidebar();
+    }
+
+    // Clear Chat History
+    function handleClearHistory() {
+      if (!confirm('Are you sure you want to permanently clear your chat history?')) return;
+
+      localStorage.removeItem(LS_SESSIONS_KEY);
+      chatSessions = [];
+      currentSessionId = null;
+      renderSessionsSidebar();
+      startNewChatSession();
+      showToast('Chat history cleared.');
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // Markdown Renderer: uses marked.js to properly parse Groq AI responses.
+    // IMPORTANT: We do NOT call escapeHtml() before parsing — marked.js handles
+    // sanitization internally. Calling escapeHtml first breaks bold/headings.
+    // ──────────────────────────────────────────────────────────────────────────
+    function formatBotReply(text) {
+      if (!text) return '';
+
+      // Configure marked.js options
+      marked.setOptions({
+        breaks: true,       // convert single \n to <br>
+        gfm: true,       // GitHub Flavored Markdown (tables, strikethrough, etc.)
+        mangle: false,
+        headerIds: false,
+      });
+
+      // Parse markdown to HTML
+      let html = marked.parse(text);
+
+      // Remove leading/trailing whitespace and excessive blank lines
+      html = html
+        .replace(/<p>\s*<\/p>/g, '')    // remove empty paragraphs
+        .replace(/\n{3,}/g, '\n\n')      // collapse 3+ newlines to 2
+        .trim();
+
+      return html;
+    }
+
+    function timeNow() {
+      return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function handleChatKeyDown(event) {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessageToServer();
+      }
+    }
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    // ==========================================
+    // KNOWLEDGE BASE MODULE
+    // ==========================================
+    let kbArticles = [];
+
+    async function loadKBGrid() {
+      const grid = document.getElementById('kbGrid');
+      grid.innerHTML = '<div style="grid-column:1/-1; padding:30px; text-align:center; color:var(--ink-500);">Loading Knowledge Base articles...</div>';
+
+      try {
+        const res = await fetch('/api/kb/articles');
+        if (!res.ok) throw new Error('Failed to load KB');
+
+        kbArticles = await res.json();
+        renderKBGrid(kbArticles);
+
+      } catch (err) {
+        grid.innerHTML = '<div style="grid-column:1/-1; padding:30px; text-align:center; color:#ef4444;">Failed to load articles from database.</div>';
+      }
+    }
+
+    function getMainCategory(cat) {
+      const c = (cat || '').toLowerCase().trim();
+      if (['about', 'aims and objectives', 'vision and mission', 'goals', 'hallmarks and achievements', 'hallmarks and achivements', 'principal_s message', 'principal_s message(1)'].includes(c)) return 'about';
+      if (['academics', 'adademics council', 'general section', 'cme syllabus'].includes(c)) return 'academics';
+      if (['admission', 'admissions', 'fee_structure', 'fees payments'].includes(c)) return 'admissions';
+      if (['eee', 'civil engineering', 'computer engineering', 'ece', 'mechanical engineering', 'mechanical', 'departments'].includes(c)) return 'departments';
+      if (['examination', 'examinations', 'academics_examinations'].includes(c)) return 'examinations';
+      if (['others', 'facilities'].includes(c)) return 'facilities';
+      if (['alumuni', 'placements'].includes(c)) return 'placements';
+      if (['grievance redressal', 'anti ragging committee', 'disciplinary committe', 'women protection committe', 'sc and st protest committe', 'internal complaint committe', 'internal grievence redressal', 'student counsellor commitee', 'innovation cell', 'downloads', 'student services'].includes(c)) return 'student services';
+      if (['contact', 'committee', 'finance committee', 'internal quality assurance', 'institution industry cell', 'institute industry connect committe', 'contact & administration'].includes(c)) return 'contact & administration';
+      return 'about';
+    }
+
+    function renderKBGrid(articles, isSearch = false) {
+      const grid = document.getElementById('kbGrid');
+      grid.innerHTML = '';
+
+      if (articles.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1; padding:30px; text-align:center; color:var(--ink-400);">No articles found matching criteria.</div>';
+        return;
+      }
+
+      // Standard static groups to display as beautiful cards
+      const categoryDetails = {
+        'about': { iconClass: 'icon-purple', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>` },
+        'academics': { iconClass: 'icon-green', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>` },
+        'admissions': { iconClass: 'icon-purple', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>` },
+        'departments': { iconClass: '', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`, style: 'background:linear-gradient(135deg,#fb923c,var(--rupee));' },
+        'examinations': { iconClass: '', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2 4 5v6c0 5.5 3.4 9.7 8 11 4.6-1.3 8-5.5 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>`, style: 'background:linear-gradient(135deg,#2dd4bf,var(--teal));' },
+        'facilities': { iconClass: '', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M9 4v18"/><path d="M15 4v18"/></svg>`, style: 'background:linear-gradient(135deg,#60a5fa,var(--indigo));' },
+        'placements': { iconClass: 'icon-purple', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>` },
+        'student services': { iconClass: 'icon-pink', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>` },
+        'contact & administration': { iconClass: 'icon-purple', svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>` }
+      };
+
+      // Group articles by category
+      const grouped = {};
+      
+      if (!isSearch) {
+        // Show only the 9 main categories
+        articles.forEach(art => {
+          if (art.showInKnowledgeBase === false) return;
+          const mainCat = getMainCategory(art.category);
+          if (!grouped[mainCat]) grouped[mainCat] = [];
+          grouped[mainCat].push(art);
+        });
+
+        // Ensure all 9 categories exist even if empty, so exactly 9 cards are displayed
+        const nineCats = ['about', 'academics', 'admissions', 'departments', 'examinations', 'facilities', 'placements', 'student services', 'contact & administration'];
+        nineCats.forEach(cat => {
+          if (!grouped[cat]) grouped[cat] = [];
+        });
+      } else {
+        // Group by original category for search results (do not restrict to the 9 visible categories)
+        articles.forEach(art => {
+          if (!grouped[art.category]) grouped[art.category] = [];
+          grouped[art.category].push(art);
+        });
+      }
+
+      Object.keys(grouped).forEach(cat => {
+        const details = categoryDetails[cat] || { iconClass: 'icon-purple', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>` };
+        const catArticles = grouped[cat];
+        const titlesStr = catArticles.map(a => a.title).join(', ');
+
+        const card = document.createElement('div');
+        card.className = 'kb-card';
+        card.onclick = () => showKBCardArticles(cat, catArticles);
+        card.innerHTML = `
+        <div class="kb-icon ${details.iconClass}" style="${details.style || ''}">${details.svg}</div>
+        <h3 style="text-transform:capitalize;">${cat}</h3>
+        <p>${titlesStr.length > 80 ? titlesStr.substring(0, 80) + '...' : (titlesStr || 'No articles listed.')}</p>
+        <a class="kb-link" href="#">View Articles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      `;
+        grid.appendChild(card);
+      });
+    }
+
+    function handleKBSearch() {
+      const q = document.getElementById('kbSearch').value.toLowerCase().trim();
+      if (!q) {
+        renderKBGrid(kbArticles, false);
+        return;
+      }
+      const filtered = kbArticles.filter(art => {
+        return art.title.toLowerCase().includes(q) || art.content.toLowerCase().includes(q) || art.category.toLowerCase().includes(q);
+      });
+      renderKBGrid(filtered, true);
+    }
+
+    // Show Articles detail inside popup modal
+    function showKBCardArticles(category, articles) {
+      const modalBg = document.getElementById('transcriptModalBg');
+      document.getElementById('transcriptTitle').innerHTML = `<span style="text-transform:capitalize;">${category}</span> Information`;
+
+      const body = document.getElementById('transcriptBody');
+      body.innerHTML = '';
+
+      articles.forEach(art => {
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'padding: 16px; border: 1.5px solid var(--line); border-radius: 10px; background:#fff; margin-bottom:8px;';
+        wrap.innerHTML = `
+        <h4 style="margin:0 0 8px; font-size:15px; color:var(--blue-700); font-weight:700;">${escapeHtml(art.title)}</h4>
+        <p style="margin:0; font-size:13.5px; line-height:1.6; color:var(--ink-700); white-space:pre-wrap;">${escapeHtml(art.content)}</p>
+      `;
+        body.appendChild(wrap);
+      });
+
+      modalBg.classList.add('active');
+    }
+
+    // ==========================================
+    // SETTINGS MODULE
+    // ==========================================
+
+    function loadSettingsView() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('chatbotSettings') || '{}');
+        
+        // 1. General
+        document.getElementById('selLang').value = saved.language || 'English';
+        document.getElementById('selTone').value = saved.tone || 'Friendly';
+        document.getElementById('selLen').value = saved.response_length || 'Medium';
+
+        const saveHist = document.getElementById('toggleSaveHistory');
+        const autoScr = document.getElementById('toggleAutoScroll');
+
+        if (saved.save_history === false) saveHist.classList.remove('on');
+        else saveHist.classList.add('on');
+
+        if (saved.auto_scroll === false) autoScr.classList.remove('on');
+        else autoScr.classList.add('on');
+
+        // 2. Appearance
+        document.getElementById('selTheme').value = saved.theme || 'light';
+        document.getElementById('selAccent').value = saved.accent_color || 'blue';
+        
+        const toggleCompact = document.getElementById('toggleCompact');
+        if (saved.compact_display === true) {
+          toggleCompact.classList.add('on');
+          document.body.classList.add('compact-mode');
+        } else {
+          toggleCompact.classList.remove('on');
+          document.body.classList.remove('compact-mode');
+        }
+
+        applyThemeSetting(saved.theme || 'light');
+        applyAccentSetting(saved.accent_color || 'blue');
+
+        // 3. Notifications
+        const toggleNotif = document.getElementById('toggleNotifications');
+        const toggleAnnounce = document.getElementById('toggleAnnounceNotifications');
+        const toggleChatNotif = document.getElementById('toggleChatNotifications');
+
+        if (saved.notifications_enabled === false) toggleNotif.classList.remove('on');
+        else toggleNotif.classList.add('on');
+
+        if (saved.announce_notifications === false) toggleAnnounce.classList.remove('on');
+        else toggleAnnounce.classList.add('on');
+
+        if (saved.chat_notifications === false) toggleChatNotif.classList.remove('on');
+        else toggleChatNotif.classList.add('on');
+
+        // 4. Privacy
+        const togglePrivSave = document.getElementById('togglePrivacySaveHistory');
+        if (saved.privacy_save_history === false) togglePrivSave.classList.remove('on');
+        else togglePrivSave.classList.add('on');
+
+        document.getElementById('selDataPreference').value = saved.data_preference || 'standard';
+
+      } catch (err) {
+        console.error('Error loading settings:', err);
+      }
+    }
+
+    function toggleOption(el) {
+      el.classList.toggle('on');
+    }
+
+    function applyThemeSetting(theme) {
+      if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add('dark-theme');
+      } else {
+        document.body.classList.remove('dark-theme');
+      }
+    }
+
+    function applyAccentSetting(accent) {
+      document.body.classList.remove('accent-blue', 'accent-purple', 'accent-green', 'accent-indigo');
+      document.body.classList.add('accent-' + accent);
+    }
+
+    function toggleCompactDisplay(el) {
+      el.classList.toggle('on');
+      if (el.classList.contains('on')) {
+        document.body.classList.add('compact-mode');
+      } else {
+        document.body.classList.remove('compact-mode');
+      }
+    }
+
+    async function handleSaveSettings() {
+      const settings = {
+        language: document.getElementById('selLang').value,
+        tone: document.getElementById('selTone').value,
+        response_length: document.getElementById('selLen').value,
+        save_history: document.getElementById('toggleSaveHistory').classList.contains('on'),
+        auto_scroll: document.getElementById('toggleAutoScroll').classList.contains('on'),
+        
+        theme: document.getElementById('selTheme').value,
+        accent_color: document.getElementById('selAccent').value,
+        compact_display: document.getElementById('toggleCompact').classList.contains('on'),
+
+        notifications_enabled: document.getElementById('toggleNotifications').classList.contains('on'),
+        announce_notifications: document.getElementById('toggleAnnounceNotifications').classList.contains('on'),
+        chat_notifications: document.getElementById('toggleChatNotifications').classList.contains('on'),
+
+        privacy_save_history: document.getElementById('togglePrivacySaveHistory').classList.contains('on'),
+        data_preference: document.getElementById('selDataPreference').value
+      };
+
+      // Save to localStorage
+      localStorage.setItem('chatbotSettings', JSON.stringify(settings));
+
+      // Apply settings immediately
+      applyThemeSetting(settings.theme);
+      applyAccentSetting(settings.accent_color);
+      if (settings.compact_display) {
+        document.body.classList.add('compact-mode');
+      } else {
+        document.body.classList.remove('compact-mode');
+      }
+
+      // Show success toast
+      showToast('Settings saved successfully.');
+
+      // Also persist to backend API
+      try {
+        await fetch('/api/settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(settings)
+        });
+      } catch (err) {
+        // Ignored, fallback toast already shown
+      }
+    }
+
+    function switchSettingsTab(btn, tab) {
+      document.querySelectorAll('.settings-nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('settingsTitleHeader').textContent = btn.textContent.trim() + ' Settings';
+
+      // Hide all settings content sections
+      document.querySelectorAll('.settings-tab-content').forEach(el => el.style.display = 'none');
+      
+      // Show the selected settings section
+      const target = document.getElementById('settings-' + tab);
+      if (target) {
+        target.style.display = 'block';
+      }
+    }
+
+    // ==========================================
+    // ADMIN DASHBOARD MODULE
+    // ==========================================
+    let adminCurrentTab = 'overview';
+    let adminStats = null;
+    let adminConversations = [];
+    let adminArticles = [];
+
+    function switchAdminTab(tab) {
+      adminCurrentTab = tab;
+      document.querySelectorAll('#adminSidebar button').forEach(b => {
+        b.classList.toggle('active', b.dataset.admintab === tab);
+      });
+
+      loadAdminTabContent();
+    }
+
+    async function loadAdminView() {
+      switchAdminTab('overview');
+    }
+
+    async function loadAdminTabContent() {
+      const panel = document.getElementById('adminPanelBody');
+      panel.innerHTML = '<div style="text-align:center; padding:30px; color:var(--ink-500);">Loading panel content...</div>';
+
+      try {
+        if (adminCurrentTab === 'overview') {
+          // Fetch stats
+          const res = await fetch('/api/admin/stats');
+          if (!res.ok) throw new Error();
+          adminStats = await res.json();
+
+          panel.innerHTML = `
+          <h2>Admin Dashboard</h2>
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <span class="lbl">KB Articles</span>
+              <span class="val">${adminStats.kbArticlesCount}</span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="lbl">KB Categories</span>
+              <span class="val">${adminStats.kbCategories}</span>
+            </div>
+          </div>
+          
+          <div style="background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:22px; margin-top:20px;">
+            <h4 style="margin:0 0 12px; font-weight:700;">System Status</h4>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:14px;">
+              <div>Knowledge Base: <strong style="color:var(--green);">Online — JSON Mode</strong></div>
+              <div>AI Formatter: <strong style="color:var(--green);">Groq (Active)</strong></div>
+              <div>Authentication: <strong style="color:var(--green);">Not Required</strong></div>
+            </div>
+          </div>
+        `;
+        } else if (adminCurrentTab === 'kbmgr') {
+          // Fetch KB articles
+          const res = await fetch('/api/kb/articles');
+          if (!res.ok) throw new Error();
+          adminArticles = await res.json();
+
+          let tbody = '';
+          adminArticles.forEach(art => {
+            tbody += `
+            <tr>
+              <td style="text-transform:capitalize; font-weight:600;">${escapeHtml(art.category)}</td>
+              <td style="font-weight:700;">${escapeHtml(art.title)}</td>
+              <td style="max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(art.content)}</td>
+              <td>
+                <button class="kb-action-btn kb-btn-edit" onclick="openEditArticle(${art.id})">Edit</button>
+                <button class="kb-action-btn kb-btn-delete" onclick="handleDeleteArticle(${art.id})">Delete</button>
+              </td>
+            </tr>
+          `;
+          });
+
+          panel.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <h2>Knowledge Base Articles</h2>
+            <button class="btn btn-primary" onclick="openAddArticle()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Article</button>
+          </div>
+          
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Content Snippet</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tbody || '<tr><td colspan="4" style="text-align:center; color:var(--ink-400);">No articles in database.</td></tr>'}
+            </tbody>
+          </table>
+        `;
+        } else if (adminCurrentTab === 'chatlogs') {
+          // Fetch conversation logs
+          const res = await fetch('/api/admin/conversations');
+          if (!res.ok) throw new Error();
+          adminConversations = await res.json();
+
+          let tbody = '';
+          adminConversations.forEach(c => {
+            const updated = new Date(c.updated_at).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            tbody += `
+            <tr style="cursor:pointer;" onclick="viewSessionTranscript(${c.id})">
+              <td style="font-weight:700;">${escapeHtml(c.username)}</td>
+              <td>${escapeHtml(c.email)}</td>
+              <td style="font-weight:600; color:var(--blue-700);">${escapeHtml(c.title)}</td>
+              <td style="text-align:center;">${c.message_count}</td>
+              <td style="font-size:12.5px; color:var(--ink-500);">${updated}</td>
+            </tr>
+          `;
+          });
+
+          panel.innerHTML = `
+          <h2>Student Conversations Logs</h2>
+          <p style="color:var(--ink-500); font-size:13.5px; margin-top:-8px; margin-bottom:20px;">Click on any row to view full chat transcript.</p>
+          
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Session Title</th>
+                <th style="text-align:center;">Messages Count</th>
+                <th>Last Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tbody || '<tr><td colspan="5" style="text-align:center; color:var(--ink-400);">No conversation logs yet.</td></tr>'}
+            </tbody>
+          </table>
+        `;
+        }
+      } catch (err) {
+        panel.innerHTML = '<div style="text-align:center; padding:30px; color:#ef4444;">Access denied or failed to load.</div>';
+      }
+    }
+
+    // View Log Transcript Modal
+    async function viewSessionTranscript(sessId) {
+      const body = document.getElementById('transcriptBody');
+      body.innerHTML = '<div style="text-align:center; padding:20px; color:var(--ink-500);">Loading transcript...</div>';
+
+      document.getElementById('transcriptModalBg').classList.add('active');
+
+      try {
+        const res = await fetch(`/api/chat/messages/${sessId}`);
+        const data = await res.json();
+
+        body.innerHTML = '';
+
+        data.forEach(m => {
+          const wrap = document.createElement('div');
+          const isUser = m.sender === 'user';
+          wrap.style.cssText = `
+          padding: 10px 14px;
+          border-radius: 10px;
+          max-width: 85%;
+          font-size: 13.5px;
+          line-height: 1.5;
+          margin-bottom: 4px;
+          ${isUser ? 'align-self: flex-end; background: var(--blue-50); color: var(--blue-700); margin-left: auto;' : 'align-self: flex-start; background: #fff; border: 1px solid var(--line);'}
+        `;
+          wrap.innerHTML = `
+          <div style="font-size:11px; font-weight:700; color:var(--ink-500); margin-bottom:3px;">${isUser ? 'Student' : 'Chatbot'}</div>
+          <div>${escapeHtml(m.message)}</div>
+        `;
+          body.appendChild(wrap);
+        });
+
+      } catch (err) {
+        body.innerHTML = '<div style="text-align:center; color:#ef4444; padding:20px;">Failed to load transcript.</div>';
+      }
+    }
+
+    function closeTranscriptModal(event) {
+      if (!event || event.target.id === 'transcriptModalBg' || event.target.tagName === 'BUTTON') {
+        document.getElementById('transcriptModalBg').classList.remove('active');
+      }
+    }
+
+    // Manage KB Article Add/Edit Modal
+    function openAddArticle() {
+      document.getElementById('adminModalTitle').textContent = 'Add New Article';
+      document.getElementById('txtArticleId').value = '';
+      document.getElementById('frmAdminArticle').reset();
+      document.getElementById('adminModalBg').classList.add('active');
+    }
+
+    function openEditArticle(artId) {
+      const art = adminArticles.find(a => a.id === artId);
+      if (!art) return;
+
+      document.getElementById('adminModalTitle').textContent = 'Edit Article';
+      document.getElementById('txtArticleId').value = art.id;
+      document.getElementById('selArticleCat').value = art.category;
+      document.getElementById('txtArticleTitle').value = art.title;
+      document.getElementById('txtArticleContent').value = art.content;
+
+      document.getElementById('adminModalBg').classList.add('active');
+    }
+
+    function closeAdminModal(event) {
+      if (!event || event.target.id === 'adminModalBg' || event.target.tagName === 'BUTTON') {
+        document.getElementById('adminModalBg').classList.remove('active');
+      }
+    }
+
+    async function handleArticleFormSubmit(event) {
+      event.preventDefault();
+
+      const artId = document.getElementById('txtArticleId').value;
+      const cat = document.getElementById('selArticleCat').value;
+      const title = document.getElementById('txtArticleTitle').value;
+      const content = document.getElementById('txtArticleContent').value;
+
+      const url = artId ? `/api/admin/kb/${artId}` : '/api/admin/kb';
+      const method = artId ? 'PUT' : 'POST';
+
+      try {
+        const res = await fetch(url, {
+          method: method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ category: cat, title: title, content: content })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(data.message || 'Failed to save article.', 'error');
+          return;
+        }
+
+        showToast(data.message || 'Article saved successfully.');
+        closeAdminModal();
+        loadAdminTabContent(); // Reload table
+        loadKBGrid(); // Reload public grid
+
+      } catch (err) {
+        showToast('Connection failed.', 'error');
+      }
+    }
+
+    async function handleDeleteArticle(artId) {
+      if (!confirm('Are you sure you want to delete this article?')) return;
+
+      try {
+        const res = await fetch(`/api/admin/kb/${artId}`, { method: 'DELETE' });
+
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(data.message || 'Failed to delete article.', 'error');
+          return;
+        }
+
+        showToast('Article deleted successfully.');
+        loadAdminTabContent();
+        loadKBGrid();
+
+      } catch (err) {
+        showToast('Connection failed.', 'error');
+      }
+    }
+  </script>
+</body>
+
+</html>

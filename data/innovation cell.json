@@ -1,0 +1,166 @@
+{
+    "id": "innovation-cell-001",
+    "title": "Innovation Cell Committee",
+    "keywords": [
+        "Innovation Cell",
+        "Innovation Committee",
+        "committee members",
+        "innovation committee members",
+        "chairman",
+        "secretary",
+        "members",
+        "Government Polytechnic Proddatur"
+    ],
+    "content": [
+        {
+            "id": "innovation-cell-q001",
+            "question": "What is the Innovation Cell?",
+            "answer": "The Innovation Cell is a committee of Government Polytechnic Proddatur consisting of the Principal and faculty members from different departments."
+        },
+        {
+            "id": "innovation-cell-q002",
+            "question": "Who is the Chairman of the Innovation Cell?",
+            "answer": "P Gurumurthy Reddy, Principal of Government Polytechnic Proddatur, is the Chairman of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q003",
+            "question": "Who is the Secretary of the Innovation Cell?",
+            "answer": "P Rajesh, L/CME, is the Secretary of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q004",
+            "question": "Who are the members of the Innovation Cell?",
+            "answer": "The Innovation Cell includes P Gurumurthy Reddy as Chairman, P Rajesh as Secretary, and V Chandra Sekhar Reddy, S Siddeswar Reddy, S Narendra Kumar, Y Harish, and N Siva Krishna as Members."
+        },
+        {
+            "id": "innovation-cell-q005",
+            "question": "Who is P Gurumurthy Reddy in the Innovation Cell?",
+            "answer": "P Gurumurthy Reddy is the Principal of Government Polytechnic Proddatur and serves as the Chairman of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q006",
+            "question": "Who is P Rajesh in the Innovation Cell?",
+            "answer": "P Rajesh is L/CME and serves as the Secretary of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q007",
+            "question": "Who is V Chandra Sekhar Reddy in the Innovation Cell?",
+            "answer": "V Chandra Sekhar Reddy is L/CE and serves as a Member of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q008",
+            "question": "Who is S Siddeswar Reddy in the Innovation Cell?",
+            "answer": "S Siddeswar Reddy is L/ECE and serves as a Member of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q009",
+            "question": "Who is S Narendra Kumar in the Innovation Cell?",
+            "answer": "S Narendra Kumar is L/EEE and serves as a Member of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q010",
+            "question": "Who is Y Harish in the Innovation Cell?",
+            "answer": "Y Harish is L/ME and serves as a Member of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q011",
+            "question": "Who is N Siva Krishna in the Innovation Cell?",
+            "answer": "N Siva Krishna is L/Physics and serves as a Member of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q012",
+            "question": "How many members are there in the Innovation Cell?",
+            "answer": "There are seven people listed in the Innovation Cell committee: one Chairman, one Secretary, and five Members."
+        },
+        {
+            "id": "innovation-cell-q013",
+            "question": "Which departments are represented in the Innovation Cell?",
+            "answer": "The Innovation Cell includes representatives associated with CME, Civil Engineering, Electronics and Communication Engineering, Electrical and Electronics Engineering, Mechanical Engineering, and Physics, along with the Principal."
+        },
+        {
+            "id": "innovation-cell-q014",
+            "question": "Who is the Innovation Cell Chairman at Government Polytechnic Proddatur?",
+            "answer": "The Innovation Cell Chairman is P Gurumurthy Reddy, Principal."
+        },
+        {
+            "id": "innovation-cell-q015",
+            "question": "Who is the Innovation Cell Secretary at Government Polytechnic Proddatur?",
+            "answer": "The Innovation Cell Secretary is P Rajesh, L/CME."
+        },
+        {
+            "id": "innovation-cell-q016",
+            "question": "Is P Rajesh a member of the Innovation Cell?",
+            "answer": "Yes. P Rajesh is the Secretary of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q017",
+            "question": "Is V Chandra Sekhar Reddy a member of the Innovation Cell?",
+            "answer": "Yes. V Chandra Sekhar Reddy is a Member of the Innovation Cell and is listed as L/CE."
+        },
+        {
+            "id": "innovation-cell-q018",
+            "question": "Is S Siddeswar Reddy a member of the Innovation Cell?",
+            "answer": "Yes. S Siddeswar Reddy is a Member of the Innovation Cell and is listed as L/ECE."
+        },
+        {
+            "id": "innovation-cell-q019",
+            "question": "Is S Narendra Kumar a member of the Innovation Cell?",
+            "answer": "Yes. S Narendra Kumar is a Member of the Innovation Cell and is listed as L/EEE."
+        },
+        {
+            "id": "innovation-cell-q020",
+            "question": "Is Y Harish a member of the Innovation Cell?",
+            "answer": "Yes. Y Harish is a Member of the Innovation Cell and is listed as L/ME."
+        },
+        {
+            "id": "innovation-cell-q021",
+            "question": "Is N Siva Krishna a member of the Innovation Cell?",
+            "answer": "Yes. N Siva Krishna is a Member of the Innovation Cell and is listed as L/Physics."
+        },
+        {
+            "id": "innovation-cell-q022",
+            "question": "What is the role of P Gurumurthy Reddy in the Innovation Cell?",
+            "answer": "P Gurumurthy Reddy serves as the Chairman of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q023",
+            "question": "What is the role of P Rajesh in the Innovation Cell?",
+            "answer": "P Rajesh serves as the Secretary of the Innovation Cell."
+        },
+        {
+            "id": "innovation-cell-q024",
+            "question": "What is the role of V Chandra Sekhar Reddy?",
+            "answer": "V Chandra Sekhar Reddy serves as a Member of the Innovation Cell and is associated with Civil Engineering as L/CE."
+        },
+        {
+            "id": "innovation-cell-q025",
+            "question": "What is the role of S Siddeswar Reddy?",
+            "answer": "S Siddeswar Reddy serves as a Member of the Innovation Cell and is associated with ECE as L/ECE."
+        },
+        {
+            "id": "innovation-cell-q026",
+            "question": "What is the role of S Narendra Kumar?",
+            "answer": "S Narendra Kumar serves as a Member of the Innovation Cell and is associated with EEE as L/EEE."
+        },
+        {
+            "id": "innovation-cell-q027",
+            "question": "What is the role of Y Harish?",
+            "answer": "Y Harish serves as a Member of the Innovation Cell and is associated with Mechanical Engineering as L/ME."
+        },
+        {
+            "id": "innovation-cell-q028",
+            "question": "What is the role of N Siva Krishna?",
+            "answer": "N Siva Krishna serves as a Member of the Innovation Cell and is associated with Physics as L/Physics."
+        },
+        {
+            "id": "innovation-cell-q029",
+            "question": "Where can I find the Innovation Cell information?",
+            "answer": "The Innovation Cell information is available on the official Government Polytechnic Proddatur website under the Committees section."
+        },
+        {
+            "id": "innovation-cell-q030",
+            "question": "What is the official website of Government Polytechnic Proddatur?",
+            "answer": "The official website of Government Polytechnic Proddatur is https://govtpolyproddatur.ac.in/"
+        }
+    ]
+}

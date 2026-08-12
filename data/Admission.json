@@ -1,0 +1,369 @@
+{
+    "page": "Admissions",
+    "section": "Academics / Admissions Data",
+    "college": "Government Polytechnic Proddatur",
+    "source": "https://govtpolyproddatur.ac.in/admissions",
+    "data": [
+        {
+            "id": "ADM001",
+            "title": "Admission Overview",
+            "keywords": [
+                "admissions",
+                "admission",
+                "government polytechnic proddatur",
+                "admission process",
+                "diploma admission"
+            ],
+            "content": [
+                {
+                    "question": "How can I get admission into Government Polytechnic Proddatur?",
+                    "answer": "Students can get admission into Government Polytechnic Proddatur through direct entry into the first year or lateral entry into the second year (third semester), subject to the prescribed rules and regulations."
+                },
+                {
+                    "question": "What are the admission modes available?",
+                    "answer": "There are two admission modes: direct entry into I Year and lateral entry into II Year (III Semester)."
+                },
+                {
+                    "question": "Who governs the admission procedure?",
+                    "answer": "The admission procedure is governed by the Department of Technical Education, Andhra Pradesh, following the rules and regulations prescribed by the Government of Andhra Pradesh."
+                }
+            ]
+        },
+        {
+            "id": "ADM002",
+            "title": "Direct Entry Admission",
+            "keywords": [
+                "direct entry",
+                "first year admission",
+                "I year",
+                "first year",
+                "POLYCET",
+                "SSC"
+            ],
+            "content": [
+                {
+                    "question": "What is direct entry admission?",
+                    "answer": "Direct entry admission is admission into the first year of a diploma programme at Government Polytechnic Proddatur."
+                },
+                {
+                    "question": "How are first year admissions conducted?",
+                    "answer": "First year admissions are based on the ranks obtained in POLYCET, a common entrance test conducted every year by the Department of Technical Education / SBTET-AP."
+                },
+                {
+                    "question": "What entrance examination is required for first year admission?",
+                    "answer": "Students seeking first year admission generally need to appear for POLYCET and obtain a qualifying rank."
+                },
+                {
+                    "question": "What is POLYCET?",
+                    "answer": "POLYCET is a common entrance test used for admission to polytechnic diploma programmes in Andhra Pradesh."
+                },
+                {
+                    "question": "What is the eligibility qualification for POLYCET?",
+                    "answer": "The eligible qualification for appearing in POLYCET is a pass in SSC or an equivalent qualification."
+                },
+                {
+                    "question": "Can students with an equivalent qualification apply for POLYCET?",
+                    "answer": "Yes. Students who have passed SSC or an equivalent qualification can meet the stated educational eligibility for appearing in POLYCET, subject to applicable rules."
+                }
+            ]
+        },
+        {
+            "id": "ADM003",
+            "title": "Spot Admissions",
+            "keywords": [
+                "spot admissions",
+                "vacant seats",
+                "leftover seats",
+                "institute level admission"
+            ],
+            "content": [
+                {
+                    "question": "Does Government Polytechnic Proddatur conduct spot admissions?",
+                    "answer": "Yes. Seats left over after the regular admission process, if any, may be filled through Spot Admissions at the institute level."
+                },
+                {
+                    "question": "When are spot admissions conducted?",
+                    "answer": "Spot Admissions are conducted when seats remain vacant after the regular admission process, subject to Government of Andhra Pradesh regulations and a separate notification."
+                },
+                {
+                    "question": "Are spot admissions conducted according to government rules?",
+                    "answer": "Yes. Spot Admissions are conducted by following the regulations prescribed by the Government of Andhra Pradesh."
+                }
+            ]
+        },
+        {
+            "id": "ADM004",
+            "title": "Lateral Entry Admission",
+            "keywords": [
+                "lateral entry",
+                "II year",
+                "third semester",
+                "III semester",
+                "IVC",
+                "ITI"
+            ],
+            "content": [
+                {
+                    "question": "What is lateral entry admission?",
+                    "answer": "Lateral entry admission allows eligible students to enter directly into the second year, which is the third semester, of a diploma programme."
+                },
+                {
+                    "question": "Which year can I join through lateral entry?",
+                    "answer": "Eligible students can join directly into II Year, which is the III Semester, through lateral entry."
+                },
+                {
+                    "question": "Who can apply for lateral entry?",
+                    "answer": "Students who have completed a relevant Intermediate Vocational Course (IVC) or a relevant ITI trade and have passed the required Bridge Course as prescribed by SBTET-AP may be eligible for lateral entry."
+                },
+                {
+                    "question": "Can I get lateral entry after completing an IVC course?",
+                    "answer": "Yes. Students who have completed a relevant Intermediate Vocational Course (IVC) and passed the Bridge Course as prescribed by SBTET-AP may apply for lateral entry, subject to applicable regulations."
+                },
+                {
+                    "question": "Can ITI students apply for lateral entry?",
+                    "answer": "Yes. Students who have completed a relevant ITI trade and passed the Bridge Course as prescribed by SBTET-AP may be eligible for lateral entry."
+                },
+                {
+                    "question": "What is the lateral entry intake limit?",
+                    "answer": "Lateral entry admissions are limited to 10% of the sanctioned intake of the respective Diploma course."
+                }
+            ]
+        },
+        {
+            "id": "ADM005",
+            "title": "Admission Through IVC",
+            "keywords": [
+                "IVC",
+                "Intermediate Vocational Course",
+                "vocational course",
+                "bridge course",
+                "lateral admission"
+            ],
+            "content": [
+                {
+                    "question": "What is IVC in lateral entry admission?",
+                    "answer": "IVC refers to Intermediate Vocational Course."
+                },
+                {
+                    "question": "What is required for IVC students to get lateral entry?",
+                    "answer": "An IVC student must have completed a relevant Intermediate Vocational Course and passed the Bridge Course according to the norms prescribed by SBTET-AP."
+                },
+                {
+                    "question": "How many lateral entry seats are available for IVC students?",
+                    "answer": "Lateral entry admissions are limited to 10% of the sanctioned intake of the Diploma course."
+                }
+            ]
+        },
+        {
+            "id": "ADM006",
+            "title": "Admission Through ITI",
+            "keywords": [
+                "ITI",
+                "ITI students",
+                "trade",
+                "bridge course",
+                "lateral entry"
+            ],
+            "content": [
+                {
+                    "question": "Can ITI students join Government Polytechnic Proddatur?",
+                    "answer": "Eligible students who have completed a relevant ITI trade and passed the prescribed Bridge Course may be considered for lateral entry into the diploma programme."
+                },
+                {
+                    "question": "What is required for ITI lateral entry?",
+                    "answer": "Students must have completed a relevant ITI trade and passed the Bridge Course according to the norms prescribed by SBTET-AP."
+                },
+                {
+                    "question": "What year do eligible ITI students enter through lateral entry?",
+                    "answer": "Eligible ITI students can enter into II Year, which is the III Semester, through lateral entry."
+                }
+            ]
+        },
+        {
+            "id": "ADM007",
+            "title": "Branch Intake",
+            "keywords": [
+                "intake",
+                "seats",
+                "branches",
+                "courses",
+                "Civil",
+                "Computer",
+                "ECE",
+                "EEE",
+                "Mechanical"
+            ],
+            "content": [
+                {
+                    "question": "What is the intake for Civil Engineering?",
+                    "answer": "The sanctioned intake shown on the Admissions page for Civil Engineering is 66 students."
+                },
+                {
+                    "question": "What is the intake for Computer Engineering?",
+                    "answer": "The sanctioned intake shown on the Admissions page for Computer Engineering is 66 students."
+                },
+                {
+                    "question": "What is the intake for Electronics and Communication Engineering?",
+                    "answer": "The sanctioned intake shown on the Admissions page for Electronics and Communication Engineering is 132 students."
+                },
+                {
+                    "question": "What is the intake for Electrical and Electronics Engineering?",
+                    "answer": "The sanctioned intake shown on the Admissions page for Electrical and Electronics Engineering is 132 students."
+                },
+                {
+                    "question": "What is the intake for Mechanical Engineering?",
+                    "answer": "The sanctioned intake shown on the Admissions page for Mechanical Engineering is 198 students."
+                },
+                {
+                    "question": "Which branch has the highest intake?",
+                    "answer": "Mechanical Engineering has the highest listed intake, with 198 students."
+                },
+                {
+                    "question": "Which branches have an intake of 132 students?",
+                    "answer": "Electronics and Communication Engineering and Electrical and Electronics Engineering each have a listed intake of 132 students."
+                },
+                {
+                    "question": "Which branches have an intake of 66 students?",
+                    "answer": "Civil Engineering and Computer Engineering each have a listed intake of 66 students."
+                }
+            ]
+        },
+        {
+            "id": "ADM008",
+            "title": "Total Branch Intake",
+            "keywords": [
+                "total intake",
+                "total seats",
+                "sanctioned intake",
+                "admission seats"
+            ],
+            "content": [
+                {
+                    "question": "What is the total intake across the listed diploma branches?",
+                    "answer": "The total listed intake across Civil Engineering, Computer Engineering, ECE, EEE and Mechanical Engineering is 594 seats."
+                },
+                {
+                    "question": "How many seats are available across all listed branches?",
+                    "answer": "The Admissions page lists a combined intake of 594 seats across the five listed branches."
+                }
+            ]
+        },
+        {
+            "id": "ADM009",
+            "title": "Year-wise Admission Data",
+            "keywords": [
+                "admission data",
+                "year wise admissions",
+                "2021 admissions",
+                "2022 admissions",
+                "2023 admissions",
+                "2024 admissions",
+                "2025 admissions"
+            ],
+            "content": [
+                {
+                    "question": "Where can I find year-wise admission data?",
+                    "answer": "Year-wise admission data is available on the Admissions page through downloadable admission documents."
+                },
+                {
+                    "question": "Is admission data available for 2021?",
+                    "answer": "Yes. The Admissions page provides an Admissions 2021 document."
+                },
+                {
+                    "question": "Is admission data available for 2022?",
+                    "answer": "Yes. The Admissions page provides an Admissions 2022 document."
+                },
+                {
+                    "question": "Is admission data available for 2023?",
+                    "answer": "Yes. The Admissions page provides an Admissions 2023 document."
+                },
+                {
+                    "question": "Is admission data available for 2024?",
+                    "answer": "Yes. The Admissions page provides an Admissions 2024 document."
+                },
+                {
+                    "question": "Is admission data available for 2025?",
+                    "answer": "Yes. The Admissions page provides an Admissions 2025 document."
+                }
+            ]
+        },
+        {
+            "id": "ADM010",
+            "title": "Academic Information",
+            "keywords": [
+                "academics",
+                "academic calendar",
+                "academic year",
+                "academic activities",
+                "academic information"
+            ],
+            "content": [
+                {
+                    "question": "Where can I find academic information?",
+                    "answer": "Academic information is available on the Academics section of the official Government Polytechnic Proddatur website."
+                },
+                {
+                    "question": "Does the college provide academic calendars?",
+                    "answer": "Yes. The Academics page provides academic calendars for different academic years."
+                },
+                {
+                    "question": "Is the academic calendar for 2025-26 available?",
+                    "answer": "Yes. The Academics page provides an Academic Calendar for 2025-26."
+                },
+                {
+                    "question": "Is the academic calendar for 2024-25 available?",
+                    "answer": "Yes. The Academics page provides an Academic Calendar for 2024-25."
+                },
+                {
+                    "question": "Does the college display academic activities?",
+                    "answer": "Yes. The Academics page contains an Academic Activities Gallery showcasing academic activities."
+                }
+            ]
+        },
+        {
+            "id": "ADM011",
+            "title": "Admission Rules and Regulations",
+            "keywords": [
+                "admission rules",
+                "admission regulations",
+                "DTE",
+                "SBTET AP",
+                "Government of Andhra Pradesh"
+            ],
+            "content": [
+                {
+                    "question": "Are admissions conducted according to Government of Andhra Pradesh rules?",
+                    "answer": "Yes. Admissions are conducted according to the rules and regulations prescribed by the Government of Andhra Pradesh."
+                },
+                {
+                    "question": "What is the role of DTE in admissions?",
+                    "answer": "The Department of Technical Education, Andhra Pradesh governs the admission procedure and implements the applicable admission regulations."
+                },
+                {
+                    "question": "What is the role of SBTET-AP in admissions?",
+                    "answer": "SBTET-AP prescribes relevant norms and regulations applicable to diploma education and the admission process."
+                }
+            ]
+        },
+        {
+            "id": "ADM012",
+            "title": "Admission Contact Information",
+            "keywords": [
+                "admission contact",
+                "college address",
+                "Government Polytechnic Proddatur address",
+                "contact"
+            ],
+            "content": [
+                {
+                    "question": "Where is Government Polytechnic Proddatur located?",
+                    "answer": "Government Polytechnic Proddatur is located at Korrapadu Road, Proddatur, Andhra Pradesh, YSR Kadapa District, PINCODE-516360."
+                },
+                {
+                    "question": "Where should I contact for admission information?",
+                    "answer": "For admission-related information, students should refer to the official Government Polytechnic Proddatur Admissions page and the notifications issued by the concerned authorities."
+                }
+            ]
+        }
+    ]
+}

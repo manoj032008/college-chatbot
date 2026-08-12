@@ -1,0 +1,181 @@
+{
+    "department": {
+        "id": "EEE",
+        "title": "Electrical and Electronics Engineering",
+        "keywords": [
+            "EEE",
+            "Electrical Engineering",
+            "Electrical and Electronics Engineering",
+            "EEE Department",
+            "Government Polytechnic Proddatur",
+            "Electrical Department"
+        ],
+        "content": [
+            {
+                "id": "EEE001",
+                "question": "What is the name of the department?",
+                "answer": "The department is called Electrical and Electronics Engineering (EEE) Department."
+            },
+            {
+                "id": "EEE002",
+                "question": "Does Government Polytechnic Proddatur have an EEE department?",
+                "answer": "Yes. Government Polytechnic Proddatur has an Electrical and Electronics Engineering (EEE) department."
+            },
+            {
+                "id": "EEE003",
+                "question": "What does EEE stand for?",
+                "answer": "EEE stands for Electrical and Electronics Engineering."
+            },
+            {
+                "id": "EEE004",
+                "question": "What is the vision of the EEE department?",
+                "answer": "The vision of the EEE department is to develop Electrical and Electronics Engineering professionals competent to face global challenges in an edifying environment, with technical knowledge, skills, ethics and values, and to serve society for its betterment."
+            },
+            {
+                "id": "EEE005",
+                "question": "What is the mission of the EEE department?",
+                "answer": "The mission of the EEE department is to provide a competitive learning environment through a need-based curriculum developed in collaboration with industry, promote high-quality education and skill development, nurture leadership qualities and ethics, encourage innovation and entrepreneurship, and foster interaction with stakeholders for the growth and sustainability of society and the environment."
+            },
+            {
+                "id": "EEE006",
+                "question": "What is the first mission of the EEE department?",
+                "answer": "The first mission is to provide a competitive learning environment through a need-based curriculum designed in collaboration with industry, emphasizing high-quality education, knowledge transfer and skill development."
+            },
+            {
+                "id": "EEE007",
+                "question": "What is the second mission of the EEE department?",
+                "answer": "The second mission is to nurture higher-order leadership qualities, ethics and values in students so they can become leaders in their chosen professions while maintaining high ethical standards."
+            },
+            {
+                "id": "EEE008",
+                "question": "What is the third mission of the EEE department?",
+                "answer": "The third mission is to encourage the spirit of inquiry and promote innovation and entrepreneurship strengthened with life skills."
+            },
+            {
+                "id": "EEE009",
+                "question": "What is the fourth mission of the EEE department?",
+                "answer": "The fourth mission is to foster effective interaction and networking with stakeholders to work towards the growth and sustainability of society and the environment."
+            },
+            {
+                "id": "EEE010",
+                "question": "Who is the HOD of the EEE department?",
+                "answer": "The Head of the Department (HOD) of Electrical and Electronics Engineering is K. Manjunath."
+            },
+            {
+                "id": "EEE011",
+                "question": "Who is the Senior Lecturer in the EEE department?",
+                "answer": "S. M. Samiulla is listed as a Senior Lecturer in the EEE department."
+            },
+            {
+                "id": "EEE012",
+                "question": "Who are the lecturers in the EEE department?",
+                "answer": "The EEE department faculty listed on the website include S. Narendra Kumar, M. Sindhu, V. Vasantha Lakshmi, A. Venkateswara Rao, S. Noor Mohammad, R. Kalyan Kumar, G. Gayathri Yadav and P. Pavan Kumar Reddy."
+            },
+            {
+                "id": "EEE013",
+                "question": "Who are the faculty members of the EEE department?",
+                "answer": "The faculty profiles listed for the EEE department include K. Manjunath, Shaik Moulana Samiulla, M. Sindhu, G. Gayathri Yadav, Palle Pavan Kumar Reddy, V. Vasantha Lakshmi, Reddypogu Kalyan Kumar, Snoor Mohammad, Avuluri Venkateswara Rao and Shavali Narendra Kumar."
+            },
+            {
+                "id": "EEE014",
+                "question": "What laboratories are available in the EEE department?",
+                "answer": "The EEE department has an Electrical Wiring Lab, Electrical Measurements Lab and Electrical Machines Lab."
+            },
+            {
+                "id": "EEE015",
+                "question": "Is there an Electrical Wiring Lab in the EEE department?",
+                "answer": "Yes. The EEE department has an Electrical Wiring Lab."
+            },
+            {
+                "id": "EEE016",
+                "question": "Is there an Electrical Measurements Lab in the EEE department?",
+                "answer": "Yes. The EEE department has an Electrical Measurements Lab."
+            },
+            {
+                "id": "EEE017",
+                "question": "Is there an Electrical Machines Lab in the EEE department?",
+                "answer": "Yes. The EEE department has an Electrical Machines Lab."
+            },
+            {
+                "id": "EEE018",
+                "question": "What events are conducted by the EEE department?",
+                "answer": "Events listed on the EEE department page include Merit Scholarship Ceremony, Independence Day, Engineer's Day, EEE Engineering Day Celebration, Swachh Bharat, Poly Fest, Parents Meeting, AP Poly Techfest and Industrial Visit."
+            },
+            {
+                "id": "EEE019",
+                "question": "Does the EEE department conduct an Engineering Day celebration?",
+                "answer": "Yes. The EEE department page lists an EEE Engineering Day Celebration."
+            },
+            {
+                "id": "EEE020",
+                "question": "Does the EEE department participate in Poly Fest?",
+                "answer": "Yes. The EEE department page mentions student participation in Poly Fest at a state-level competition held at Vizag."
+            },
+            {
+                "id": "EEE021",
+                "question": "Does the EEE department conduct industrial visits?",
+                "answer": "Yes. Industrial visits are listed among the activities of the EEE department."
+            },
+            {
+                "id": "EEE022",
+                "question": "Does the EEE department conduct parents meetings?",
+                "answer": "Yes. Parents Meeting is listed among the activities of the EEE department."
+            },
+            {
+                "id": "EEE023",
+                "question": "Does the EEE department conduct scholarship ceremonies?",
+                "answer": "Yes. A Merit Scholarship Ceremony for toppers of all branches is listed on the EEE department page."
+            },
+            {
+                "id": "EEE024",
+                "question": "Does the EEE department conduct Swachh Bharat activities?",
+                "answer": "Yes. Swachh Bharat is listed among the EEE department activities."
+            },
+            {
+                "id": "EEE025",
+                "question": "What skills does the EEE department focus on?",
+                "answer": "The EEE department focuses on technical knowledge, professional skills, ethics, values, leadership, innovation, entrepreneurship and life skills."
+            },
+            {
+                "id": "EEE026",
+                "question": "Does the EEE department encourage innovation?",
+                "answer": "Yes. Encouraging innovation and entrepreneurship is part of the department's mission."
+            },
+            {
+                "id": "EEE027",
+                "question": "Does the EEE department focus on industry collaboration?",
+                "answer": "Yes. The department's mission includes a need-based curriculum designed in collaboration with industry."
+            },
+            {
+                "id": "EEE028",
+                "question": "What is the goal of the EEE department?",
+                "answer": "The department aims to develop technically competent Electrical and Electronics Engineering professionals with skills, ethics and values who can contribute to society."
+            },
+            {
+                "id": "EEE029",
+                "question": "How can I find EEE faculty information?",
+                "answer": "Faculty profiles and bio-data information are available through the Electrical and Electronics Engineering department section of the official Government Polytechnic Proddatur website."
+            },
+            {
+                "id": "EEE030",
+                "question": "Where can I find information about the EEE department?",
+                "answer": "EEE department information is available on the official Government Polytechnic Proddatur website under the Electrical and Electronics Engineering department section."
+            },
+            {
+                "id": "EEE031",
+                "question": "What is the intake for Electrical and Electronics Engineering?",
+                "answer": "The current admission information on the college website lists an intake of 132 seats for Electrical and Electronics Engineering."
+            },
+            {
+                "id": "EEE032",
+                "question": "What is the EEE branch intake at Government Polytechnic Proddatur?",
+                "answer": "The EEE branch has an intake of 132 students according to the admission information published on the college website."
+            },
+            {
+                "id": "EEE033",
+                "question": "Can EEE students get information about ECET ranks?",
+                "answer": "Yes. The college website has published ECET rank information for EEE students, including top rankers from different batches."
+            }
+        ]
+    }
+}
