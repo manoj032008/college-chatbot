@@ -1649,14 +1649,17 @@
 
     .chat-suggestions {
       display: flex;
+      flex-wrap: nowrap;
       gap: 8px;
       padding: 10px 20px;
       overflow-x: auto;
+      overflow-y: hidden;
       background: var(--card);
       border-top: 1px solid var(--line);
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none;  /* IE and Edge */
       align-items: center;
+      -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
     }
     .chat-suggestions::-webkit-scrollbar {
       display: none; /* Chrome, Safari, Opera */
@@ -1672,6 +1675,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
     .suggestion-chip:hover {
       background: var(--blue-100);
