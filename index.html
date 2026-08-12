@@ -1647,6 +1647,37 @@
       }
     }
 
+    .chat-suggestions {
+      display: flex;
+      gap: 8px;
+      padding: 10px 20px;
+      overflow-x: auto;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+      align-items: center;
+    }
+    .chat-suggestions::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    .suggestion-chip {
+      flex: 0 0 auto;
+      background: var(--blue-50);
+      color: var(--blue-600);
+      border: 1px solid var(--blue-100);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .suggestion-chip:hover {
+      background: var(--blue-100);
+      color: var(--blue-700);
+    }
+
   </style>
 </head>
 
@@ -1869,6 +1900,16 @@
         </div>
         <div class="chat-body" id="chatBody">
           <!-- Messages will render dynamically -->
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+          <div class="suggestion-chip" onclick="selectSuggestion('What is the admission process?')">What is the admission process?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('What are the college timings?')">What are the college timings?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('What courses are available?')">What courses are available?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('What are the admission requirements?')">What are the admission requirements?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('What are the college fees?')">What are the college fees?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('Who is the principal?')">Who is the principal?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('What facilities are available?')">What facilities are available?</div>
+          <div class="suggestion-chip" onclick="selectSuggestion('What departments are available?')">What departments are available?</div>
         </div>
         <div class="chat-input-bar">
           <textarea id="chatInput" placeholder="Type your message..." rows="1"
@@ -2755,6 +2796,12 @@
         event.preventDefault();
         sendMessageToServer();
       }
+    }
+
+    function selectSuggestion(questionText) {
+      const input = document.getElementById('chatInput');
+      input.value = questionText;
+      sendMessageToServer();
     }
 
     function escapeHtml(s) {
