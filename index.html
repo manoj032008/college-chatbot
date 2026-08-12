@@ -2172,6 +2172,10 @@
   </div>
 
   <script>
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? '' 
+      : 'https://college-chatbot-dnii.onrender.com';
+
     // Global Application State
     let currentUser = null;
     let chatSessions = [];
@@ -2616,7 +2620,7 @@
       body.scrollTop = body.scrollHeight;
 
       try {
-        const res = await fetch('/api/chat/send', {
+        const res = await fetch(API_BASE + '/api/chat/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: text })
@@ -2768,7 +2772,7 @@
       grid.innerHTML = '<div style="grid-column:1/-1; padding:30px; text-align:center; color:var(--ink-500);">Loading Knowledge Base articles...</div>';
 
       try {
-        const res = await fetch('/api/kb/articles');
+        const res = await fetch(API_BASE + '/api/kb/articles');
         if (!res.ok) throw new Error('Failed to load KB');
 
         kbArticles = await res.json();
@@ -3018,7 +3022,7 @@
 
       // Also persist to backend API
       try {
-        await fetch('/api/settings', {
+        await fetch(API_BASE + '/api/settings', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(settings)
@@ -3071,7 +3075,7 @@
       try {
         if (adminCurrentTab === 'overview') {
           // Fetch stats
-          const res = await fetch('/api/admin/stats');
+          const res = await fetch(API_BASE + '/api/admin/stats');
           if (!res.ok) throw new Error();
           adminStats = await res.json();
 
@@ -3099,7 +3103,7 @@
         `;
         } else if (adminCurrentTab === 'kbmgr') {
           // Fetch KB articles
-          const res = await fetch('/api/kb/articles');
+          const res = await fetch(API_BASE + '/api/kb/articles');
           if (!res.ok) throw new Error();
           adminArticles = await res.json();
 
@@ -3140,7 +3144,7 @@
         `;
         } else if (adminCurrentTab === 'chatlogs') {
           // Fetch conversation logs
-          const res = await fetch('/api/admin/conversations');
+          const res = await fetch(API_BASE + '/api/admin/conversations');
           if (!res.ok) throw new Error();
           adminConversations = await res.json();
 
@@ -3191,7 +3195,7 @@
       document.getElementById('transcriptModalBg').classList.add('active');
 
       try {
-        const res = await fetch(`/api/chat/messages/${sessId}`);
+        const res = await fetch(API_BASE + `/api/chat/messages/${sessId}`);
         const data = await res.json();
 
         body.innerHTML = '';
@@ -3261,7 +3265,7 @@
       const title = document.getElementById('txtArticleTitle').value;
       const content = document.getElementById('txtArticleContent').value;
 
-      const url = artId ? `/api/admin/kb/${artId}` : '/api/admin/kb';
+      const url = artId ? API_BASE + `/api/admin/kb/${artId}` : API_BASE + '/api/admin/kb';
       const method = artId ? 'PUT' : 'POST';
 
       try {
@@ -3291,7 +3295,7 @@
       if (!confirm('Are you sure you want to delete this article?')) return;
 
       try {
-        const res = await fetch(`/api/admin/kb/${artId}`, { method: 'DELETE' });
+        const res = await fetch(API_BASE + `/api/admin/kb/${artId}`, { method: 'DELETE' });
 
         const data = await res.json();
         if (!res.ok) {
