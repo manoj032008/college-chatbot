@@ -34,6 +34,32 @@ function getTopN(query) {
   return 5;                    // long query — top 5
 }
 
+// ── Greeting Detection Helper ──────────────────────────────────────────────────
+
+function isGreeting(message) {
+  const normalized = message
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim()
+    .replace(/\s+/g, ' ');
+
+  const greetings = new Set([
+    'hi',
+    'hii',
+    'hiii',
+    'hello',
+    'hey',
+    'hey there',
+    'good morning',
+    'good afternoon',
+    'good evening',
+    'good night',
+    'greetings'
+  ]);
+
+  return greetings.has(normalized);
+}
+
 // ── Chat endpoints ─────────────────────────────────────────────────────────────
 
 /**
@@ -52,6 +78,18 @@ const sendMessage = async (req, res, next) => {
   const cleanMessage = (message || '').trim();
   if (!cleanMessage) {
     return response.error(res, 'Message cannot be empty.', 400);
+  }
+
+  // Check if it's ONLY a greeting
+  if (isGreeting(cleanMessage)) {
+    const botReply = "Hello! 👋 Welcome to Government Polytechnic Proddatur College Chatbot. How can I help you today?";
+    console.log(`[Pipeline] 👋 Greeting detected: "${cleanMessage}". Returning immediate greeting response.`);
+    return res.json({
+      reply:        botReply,
+      timestamp:    new Date().toISOString(),
+      found:        false,
+      resultsCount: 0,
+    });
   }
 
   // Sanitize history — must be an array
