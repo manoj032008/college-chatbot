@@ -11,6 +11,7 @@
  *  • Only reformats what the JSON provides.
  *  • Receives only the relevant context — never the entire knowledge base.
  *  • Supports conversation history for context-aware answers.
+ *  • tryDirectAnswer() bypasses Groq for high-confidence direct KB matches.
  */
 
 const Groq = require('groq-sdk');
@@ -23,11 +24,18 @@ const { formatKbItem, formatMultipleItems } = require('../utils/responseFormatte
 const FALLBACK_MESSAGE =
   "I couldn't find this information in my current college knowledge base. For the latest official information, please visit the Government Polytechnic Proddatur website.\n\n**Government Polytechnic Proddatur:**\nhttps://govtpolyproddatur.ac.in/";
 
-/** Max characters of context to send to Groq (~2000 tokens) */
-const MAX_CONTEXT_CHARS = 6000;
+/** Max characters of context to send to Groq (~1500 tokens) */
+const MAX_CONTEXT_CHARS = 4000;
 
 /** Max conversation history turns to include */
 const MAX_HISTORY_TURNS = 3;
+
+/**
+ * Similarity threshold to bypass Groq and return a direct KB answer.
+ * If the normalized user query closely matches a stored Q&A question,
+ * return the stored answer without an AI call.
+ */
+const DIRECT_ANSWER_THRESHOLD = 0.75;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SYSTEM PROMPT
@@ -46,59 +54,28 @@ CRITICAL RULES — FOLLOW WITHOUT EXCEPTION
 3. **NEVER mention** "JSON", "knowledge base", "context", "Groq", "AI", or any internal system terms.
 4. **NEVER repeat** the user's question back to them.
 5. **NEVER add** extra facts, dates, fees, names, or details not present in the context.
+6. **BRANCH/COURSE COUNT**: The college has EXACTLY the branches listed in the context. Do NOT add, invent, or mention any additional branches beyond what appears in the context. If the context lists 5 branches, list exactly those 5.
 
 ════════════════════════════════════════
 FORMATTING RULES — ALWAYS APPLY
 ════════════════════════════════════════
 
-6. Always write in **professional, grammatically correct English**.
-7. Always use **Markdown formatting**:
+7. Always write in **professional, grammatically correct English**.
+8. **BE CONCISE** — prefer short bullet lists over long paragraphs. Do not pad responses.
+9. Use **Markdown formatting**:
    - Use ### for main section headings
-   - Use #### for sub-section headings  
    - Use **bold** for important labels, names, and key terms
    - Use bullet lists (-) for multiple items
-   - Use tables (| col | col |) when comparing or listing structured data
-   - Separate sections with a blank line
-8. Keep responses **concise and scannable** — use short paragraphs and lists, not walls of text.
-9. If multiple topics appear, **group them under headings** for clarity.
-
-════════════════════════════════════════
-FORMATTING EXAMPLES
-════════════════════════════════════════
-
-Example 1 — Listing lecturers:
-
-### Lecturers in the General Section
-
-The General Section includes the following lecturers:
-
-#### English
-- **P. Sudhakar**
-- **B. Naresh Babu**
-
-#### Physics
-- **Dr. P. Surendra Reddy**
-- **N. Siva Krishna**
-
-#### Mathematics *(Contract)*
-- **P. Pavan Kumar Naidu**
-- **M. V. Madhavi**
-
-Example 2 — Fee structure:
-
-### Fee Structure
-
-| Course | Annual Fee |
-|--------|------------|
-| Diploma in Civil Engineering | ₹12,000 |
-| Diploma in Computer Engineering | ₹14,000 |
+   - Use tables when comparing or listing structured data
+10. For simple factual questions, answer in 2–5 bullet points or lines.
+11. Do NOT produce large essays for simple questions.
 
 ════════════════════════════════════════
 FALLBACK
 ════════════════════════════════════════
 
-10. If the context does not contain the answer, reply EXACTLY with:
-    "I couldn't find this information in my current college knowledge base. For the latest official information, please visit the Government Polytechnic Proddatur website.\n\n**Government Polytechnic Proddatur:**\nhttps://govtpolyproddatur.ac.in/"
+12. If the context does not contain the answer, reply EXACTLY with:
+    "I couldn't find this information in my current college knowledge base. For the latest official information, please visit the Government Polytechnic Proddatur website.\\n\\n**Government Polytechnic Proddatur:**\\nhttps://govtpolyproddatur.ac.in/"
 
 Do NOT add any extra explanation to the fallback message.`;
 
@@ -119,16 +96,91 @@ function getClient() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// DIRECT ANSWER BYPASS (no Groq needed)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Simple word-overlap similarity between two strings (normalized).
+ * Returns a score between 0 and 1.
+ */
+function wordOverlapSimilarity(a, b) {
+  const tokensA = new Set(a.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 1));
+  const tokensB = new Set(b.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 1));
+  if (tokensA.size === 0 || tokensB.size === 0) return 0;
+  let intersection = 0;
+  for (const t of tokensA) {
+    if (tokensB.has(t)) intersection++;
+  }
+  return intersection / Math.max(tokensA.size, tokensB.size);
+}
+
+/**
+ * Try to return a direct answer from the KB without calling Groq.
+ *
+ * Returns a formatted string answer if a high-confidence QA pair is found,
+ * or null if Groq should be used instead.
+ *
+ * @param {string}  userMessage   — the original user question
+ * @param {Array}   matchedItems  — KB entries from search
+ * @returns {string|null}
+ */
+function tryDirectAnswer(userMessage, matchedItems) {
+  if (!matchedItems || matchedItems.length === 0) return null;
+
+  const queryNorm = userMessage.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+
+  // Only attempt direct bypass for the top result
+  const topItem = matchedItems[0];
+  if (!topItem._qa_pairs || topItem._qa_pairs.length === 0) return null;
+
+  let bestScore = 0;
+  let bestAnswer = null;
+
+  for (const qa of topItem._qa_pairs) {
+    if (!qa.question || !qa.answer) continue;
+
+    const questionNorm = qa.question.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+
+    // Exact match (after normalization)
+    if (questionNorm === queryNorm) {
+      bestScore = 1.0;
+      bestAnswer = qa.answer;
+      break;
+    }
+
+    // Containment check
+    if (questionNorm.includes(queryNorm) || queryNorm.includes(questionNorm)) {
+      const score = 0.9;
+      if (score > bestScore) {
+        bestScore = score;
+        bestAnswer = qa.answer;
+      }
+      continue;
+    }
+
+    // Word overlap similarity
+    const sim = wordOverlapSimilarity(queryNorm, questionNorm);
+    if (sim > bestScore) {
+      bestScore = sim;
+      bestAnswer = qa.answer;
+    }
+  }
+
+  if (bestScore >= DIRECT_ANSWER_THRESHOLD && bestAnswer) {
+    console.log(`[Pipeline] ⚡ Direct KB answer found (similarity: ${bestScore.toFixed(2)}) — skipping Groq.`);
+    // Return the raw answer (already formatted in JSON as markdown)
+    return bestAnswer.trim();
+  }
+
+  return null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // HISTORY FORMATTING
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Convert conversation history array to Groq message format.
- * Accepts history items as: { role, content } or { sender, text/message } etc.
- *
- * @param {Array}  history — raw history from frontend
- * @param {number} maxTurns — max number of exchanges to include
- * @returns {Array} array of { role: 'user'|'assistant', content: string }
  */
 function buildHistoryMessages(history, maxTurns = MAX_HISTORY_TURNS) {
   if (!Array.isArray(history) || history.length === 0) return [];
@@ -136,7 +188,6 @@ function buildHistoryMessages(history, maxTurns = MAX_HISTORY_TURNS) {
   const messages = [];
 
   for (const msg of history) {
-    // Normalize role
     let role    = 'user';
     let content = '';
 
@@ -150,7 +201,6 @@ function buildHistoryMessages(history, maxTurns = MAX_HISTORY_TURNS) {
       role    = 'assistant';
       content = msg.content || msg.text || msg.message || '';
     } else {
-      // Default: try to guess from available fields
       content = msg.content || msg.text || msg.message || '';
       if (!content) continue;
     }
@@ -160,7 +210,6 @@ function buildHistoryMessages(history, maxTurns = MAX_HISTORY_TURNS) {
     }
   }
 
-  // Take only the last N turns (user+assistant = 2 messages per turn)
   const maxMessages = maxTurns * 2;
   return messages.slice(-maxMessages);
 }
@@ -169,9 +218,6 @@ function buildHistoryMessages(history, maxTurns = MAX_HISTORY_TURNS) {
 // PLAIN TEXT FALLBACK (when Groq unavailable)
 // ─────────────────────────────────────────────────────────────────────────────
 
-/**
- * Format the matched items without AI — just return the raw Q&A content.
- */
 function _plainFallback(items) {
   if (!items || items.length === 0) return FALLBACK_MESSAGE;
 
@@ -183,7 +229,6 @@ function _plainFallback(items) {
       parts.push(`**${item.title}**`);
     }
 
-    // Try Q&A pairs first
     if (item._qa_pairs && item._qa_pairs.length > 0) {
       for (const { answer } of item._qa_pairs.slice(0, 4)) {
         if (answer) parts.push(`- ${answer}`);
@@ -205,7 +250,8 @@ function _plainFallback(items) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Format one or more matched KB items into a natural language response.
+ * Format one or more matched KB items into a natural language response via Groq.
+ * Only called when tryDirectAnswer() returns null.
  *
  * @param {string}   userMessage   — the user's original question
  * @param {Array}    matchedItems  — array of KB entries from jsonSearchService
@@ -213,7 +259,6 @@ function _plainFallback(items) {
  * @returns {Promise<string>}      — formatted response
  */
 async function formatResponse(userMessage, matchedItems, history = []) {
-  // ── Step 1: Normalize input ────────────────────────────────────────────────
   const items = Array.isArray(matchedItems) ? matchedItems : [matchedItems];
 
   if (!items || items.length === 0) {
@@ -221,17 +266,16 @@ async function formatResponse(userMessage, matchedItems, history = []) {
     return FALLBACK_MESSAGE;
   }
 
-  console.log(`[Pipeline] 🔎 Searching JSON... (${items.length} result(s) to process)`);
-  console.log(`[Pipeline] ✅ Matching Entries Found: ${items.map(i => i.title || i.category || 'untitled').join(' | ')}`);
+  console.log(`[Pipeline] ✅ Matching Entries: ${items.map(i => i.title || i.category || 'untitled').join(' | ')}`);
 
-  // ── Step 2: Build context text ────────────────────────────────────────────
+  // Build context text (only most relevant entries)
   let contextText = items.length === 1
     ? formatKbItem(items[0], userMessage)
     : formatMultipleItems(items, userMessage);
 
   // Truncate context if too long
   if (contextText.length > MAX_CONTEXT_CHARS) {
-    contextText = contextText.substring(0, MAX_CONTEXT_CHARS) + '\n... [additional context truncated]';
+    contextText = contextText.substring(0, MAX_CONTEXT_CHARS) + '\n... [context truncated]';
     console.log(`[Pipeline] ⚠️  Context truncated to ${MAX_CONTEXT_CHARS} chars`);
   }
 
@@ -240,9 +284,8 @@ async function formatResponse(userMessage, matchedItems, history = []) {
     return _plainFallback(items);
   }
 
-  const prompt = `---\nKnowledge Base Context:\n${contextText}\n---\n\nStudent Question: ${userMessage}\n\nUsing ONLY the knowledge base context above, provide a clear, professional, well-formatted Markdown answer:`;
+  const prompt = `---\nKnowledge Base Context:\n${contextText}\n---\n\nStudent Question: ${userMessage}\n\nUsing ONLY the knowledge base context above, provide a concise, well-formatted Markdown answer (prefer bullet lists, be brief):`;
 
-  // Build message sequence: system + optional history + current turn
   const historyMessages = buildHistoryMessages(history);
   const messagesToGroq  = [
     { role: 'system', content: SYSTEM_INSTRUCTION },
@@ -250,7 +293,7 @@ async function formatResponse(userMessage, matchedItems, history = []) {
     { role: 'user',   content: prompt },
   ];
 
-  console.log(`[Pipeline] 📤 Context Sent To Groq... (${contextText.length} chars, model: llama-3.3-70b-versatile)`);
+  console.log(`[Pipeline] 📤 Sending to Groq (${contextText.length} chars, model: llama-3.3-70b-versatile)`);
 
   try {
     const groq       = getClient();
@@ -258,7 +301,7 @@ async function formatResponse(userMessage, matchedItems, history = []) {
       messages:    messagesToGroq,
       model:       'llama-3.3-70b-versatile',
       temperature: 0.1,
-      max_tokens:  1200,
+      max_tokens:  600,
     });
 
     const text = completion.choices[0]?.message?.content || '';
@@ -268,9 +311,7 @@ async function formatResponse(userMessage, matchedItems, history = []) {
       return _plainFallback(items);
     }
 
-    console.log(`[Pipeline] 📥 Groq Response Received... (${text.length} chars)`);
-    console.log('[Pipeline] ✅ Final Response Returned.');
-
+    console.log(`[Pipeline] 📥 Groq Response: ${text.length} chars`);
     return text.trim();
 
   } catch (error) {
@@ -299,5 +340,6 @@ module.exports = {
   formatResponse,
   formatSingleResponse,
   formatMultipleResponses,
+  tryDirectAnswer,
   FALLBACK_MESSAGE,
 };

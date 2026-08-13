@@ -1649,22 +1649,18 @@
       }
     }
 
+    /* ===== CHAT SUGGESTIONS CAROUSEL ===== */
     .chat-suggestions {
       display: flex;
-      flex-wrap: nowrap;
       gap: 8px;
-      padding: 10px 20px;
-      overflow-x: auto;
-      overflow-y: hidden;
+      padding: 10px 16px;
       background: var(--card);
       border-top: 1px solid var(--line);
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none;  /* IE and Edge */
       align-items: center;
-      -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-    }
-    .chat-suggestions::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      overflow: hidden;
+      min-height: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .suggestion-chip {
       flex: 0 0 auto;
@@ -1678,10 +1674,275 @@
       cursor: pointer;
       transition: all 0.2s ease;
       white-space: nowrap;
+      max-width: calc(100% - 16px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
     }
     .suggestion-chip:hover {
       background: var(--blue-100);
       color: var(--blue-700);
+      transform: translateY(-1px);
+    }
+    .suggestion-chip.fade-out {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .suggestion-chip.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    /* ===== HAMBURGER BUTTON (mobile only) ===== */
+    .hamburger-btn {
+      display: none;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--ink-700);
+      border-radius: 8px;
+      flex: none;
+    }
+    .hamburger-btn:hover { background: var(--blue-50); }
+    .hamburger-btn svg { display: block; }
+
+    /* ===== MOBILE DROPDOWN NAV ===== */
+    .mobile-nav-dropdown {
+      display: none;
+      position: fixed;
+      top: 73px;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      z-index: 49;
+      flex-direction: column;
+      padding: 8px 12px 12px;
+      gap: 4px;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.1);
+    }
+    .mobile-nav-dropdown.open {
+      display: flex;
+    }
+    .mobile-nav-dropdown button {
+      border: none;
+      background: transparent;
+      padding: 11px 16px;
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-700);
+      cursor: pointer;
+      text-align: left;
+      transition: all .2s ease;
+    }
+    .mobile-nav-dropdown button:hover {
+      color: var(--blue-700);
+      background: var(--blue-50);
+    }
+    .mobile-nav-dropdown button.active {
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+      color: #fff;
+    }
+
+    /* ===== MOBILE SIDEBAR PANEL ===== */
+    .mobile-sidebar-panel {
+      display: none;
+      flex-direction: column;
+      background: #fbfcfe;
+      border-top: 1px solid var(--line);
+    }
+    .mobile-sidebar-panel.open {
+      display: flex;
+    }
+    .mobile-sidebar-toggle {
+      display: none;
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      background: #f1f5f9;
+      color: var(--ink-700);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      border-top: 1px solid var(--line);
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .mobile-sidebar-toggle:hover { background: var(--blue-50); }
+    .mobile-sidebar-toggle svg { flex: none; }
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+    @media (max-width: 980px) {
+      /* Prevent all horizontal overflow */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* Pages */
+      .page {
+        padding: 24px 16px 80px;
+      }
+
+      /* Hero section */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 24px 0 16px;
+      }
+      .bot-orb-wrap { display: none; }
+
+      /* Feature grid */
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      /* Knowledge Base grid */
+      .kb-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Show hamburger, hide navlinks */
+      .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+      .navlinks { display: none; }
+
+      /* Chat shell — full width, auto height */
+      .chat-shell {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 160px);
+        border-radius: 12px;
+      }
+
+      /* Sidebar: hide on mobile, accessible via toggle panel */
+      .chat-sidebar {
+        display: none;
+      }
+
+      /* Show mobile sidebar toggle button */
+      .mobile-sidebar-toggle { display: flex; }
+
+      /* Chat body takes more space */
+      .chat-body {
+        min-height: 300px;
+        max-height: calc(100vh - 340px);
+      }
+
+      /* Chat bubbles must not overflow */
+      .msg-row {
+        max-width: 95%;
+      }
+      .msg-bubble {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+      }
+      /* Tables inside bubbles: scroll horizontally within bubble only */
+      .msg-bubble table {
+        display: block;
+        overflow-x: auto;
+        max-width: 100%;
+      }
+
+      /* Suggestions: show up to 2 at a time */
+      .chat-suggestions {
+        gap: 6px;
+        padding: 8px 12px;
+        justify-content: center;
+      }
+      .suggestion-chip {
+        font-size: 12.5px;
+        padding: 5px 12px;
+        max-width: calc(50% - 8px);
+      }
+
+      /* Input bar */
+      .chat-input-bar {
+        padding: 10px 12px;
+        gap: 8px;
+      }
+      .chat-input-bar textarea {
+        font-size: 13.5px;
+        padding: 10px 12px;
+      }
+
+      /* Settings */
+      .settings-shell {
+        grid-template-columns: 1fr;
+      }
+      .settings-nav {
+        display: flex;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 8px;
+        gap: 4px;
+      }
+      .settings-nav button {
+        flex: none;
+        white-space: nowrap;
+      }
+      .settings-panel {
+        padding: 20px 16px;
+      }
+
+      /* About */
+      .about-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 24px;
+      }
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Admin stats */
+      .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Auth card */
+      .auth-card {
+        margin: 24px auto;
+        padding: 24px 16px;
+      }
+
+      /* Top nav padding */
+      .topnav {
+        padding: 12px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .kb-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .suggestion-chip {
+        max-width: calc(100% - 8px);
+        font-size: 12px;
+      }
+      .admin-stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .chat-suggestions {
+        flex-direction: column;
+        align-items: stretch;
+      }
     }
 
   </style>
@@ -1709,7 +1970,27 @@
       <button data-page="about">About</button>
       <button id="authNavBtn" onclick="handleAuthNavClick()">Login</button>
     </div>
+
+    <!-- Hamburger for mobile -->
+    <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Toggle navigation">
+      <svg id="hamburgerIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </nav>
+
+  <!-- ===== MOBILE DROPDOWN NAV ===== -->
+  <div class="mobile-nav-dropdown" id="mobileNavDropdown">
+    <button data-page="home" class="active" onclick="mobileGoTo('home')">🏠 Home</button>
+    <button data-page="chat" id="mobileNavChat" style="display:none;" onclick="mobileGoTo('chat')">💬 Chat</button>
+    <button data-page="kb" onclick="mobileGoTo('kb')">📚 Knowledge Base</button>
+    <button data-page="settings" id="mobileNavSettings" style="display:none;" onclick="mobileGoTo('settings')">⚙️ Settings</button>
+    <button data-page="admin" id="mobileNavAdmin" style="display:none;" onclick="mobileGoTo('admin')">🛡️ Admin</button>
+    <button data-page="about" onclick="mobileGoTo('about')">ℹ️ About</button>
+    <button id="mobileAuthNavBtn" onclick="handleAuthNavClick(); closeMobileNav();">Login</button>
+  </div>
 
   <!-- ===== LOGIN / REGISTER ===== -->
   <section class="page" id="login">
@@ -1872,13 +2153,14 @@
   <!-- ===== CHAT ===== -->
   <section class="page" id="chat">
     <div class="chat-shell">
+      <!-- Desktop sidebar (hidden on mobile via CSS) -->
       <div class="chat-sidebar">
         <div class="chat-sidebar-head"
           style="display:flex; justify-content:space-between; align-items:center; width: 100%;">
           <span>Recent Chats</span>
           <button onclick="startNewChatSession()"
             style="border:none; background:transparent; cursor:pointer; color:var(--blue-600); display:flex; align-items:center; justify-content:center; padding:4px;"
-            title="New Chat Session">
+            title="New Chat Session" id="newChatBtnDesktop">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="12" y1="5" x2="12" y2="19" />
               <line x1="5" y1="12" x2="19" y2="12" />
@@ -1888,7 +2170,7 @@
         <div class="chat-list" id="chatList">
           <!-- Chat sessions will render dynamically -->
         </div>
-        <div class="clear-history" onclick="handleClearHistory()">
+        <div class="clear-history" onclick="handleClearHistory()" id="clearHistoryDesktop">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 6h18" />
             <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -1897,6 +2179,7 @@
           Clear History
         </div>
       </div>
+
       <div class="chat-main">
         <div class="chat-head">
           <div class="chat-head-title">
@@ -1907,6 +2190,16 @@
             </div>
           </div>
           <div class="head-icons">
+            <!-- Mobile: New Chat button (shown only on mobile via JS class) -->
+            <button id="newChatBtnMobile" onclick="startNewChatSession()"
+              title="New Chat"
+              style="display:none; border:none; background:var(--blue-50); color:var(--blue-600); border-radius:9px; padding:6px 10px; font-size:12.5px; font-weight:700; cursor:pointer; align-items:center; gap:5px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle;">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              New
+            </button>
             <svg id="saveCurrentChatBtn" onclick="saveCurrentChat()" title="Save / Bookmark this conversation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;">
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
             </svg>
@@ -1915,26 +2208,50 @@
         <div class="chat-body" id="chatBody">
           <!-- Messages will render dynamically -->
         </div>
-        <div class="chat-suggestions" id="chatSuggestions">
-          <div class="suggestion-chip" onclick="selectSuggestion('What is the admission process?')">What is the admission process?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('What are the college timings?')">What are the college timings?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('What courses are available?')">What courses are available?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('What are the admission requirements?')">What are the admission requirements?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('What are the college fees?')">What are the college fees?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('Who is the principal?')">Who is the principal?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('What facilities are available?')">What facilities are available?</div>
-          <div class="suggestion-chip" onclick="selectSuggestion('What departments are available?')">What departments are available?</div>
-        </div>
+        <!-- Suggestion carousel container (JS manages visible chips) -->
+        <div class="chat-suggestions" id="chatSuggestions"></div>
         <div class="chat-input-bar">
           <textarea id="chatInput" placeholder="Type your message..." rows="1"
             onkeydown="handleChatKeyDown(event)"></textarea>
-          <button class="send-btn" onclick="sendMessageToServer()">
+          <button class="send-btn" onclick="sendMessageToServer()" id="sendBtn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 2 11 13" />
               <path d="M22 2 15 22l-4-9-9-4 20-7z" />
             </svg>
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Mobile sidebar toggle button (below chat shell) -->
+    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span id="mobileSidebarToggleText">Recent Chats &amp; Options ▼</span>
+    </button>
+    <!-- Mobile sidebar panel -->
+    <div class="mobile-sidebar-panel" id="mobileSidebarPanel">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px 6px; font-weight:700; font-size:14px; color:var(--ink-900);">
+        <span>Recent Chats</span>
+        <button onclick="startNewChatSession(); toggleMobileSidebar();" id="newChatBtnMobilePanel"
+          style="border:none; background:var(--blue-600); color:#fff; border-radius:8px; padding:6px 12px; font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:5px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          New Chat
+        </button>
+      </div>
+      <div class="chat-list" id="chatListMobile" style="max-height:200px; overflow-y:auto; padding:4px 10px;"></div>
+      <div class="clear-history" onclick="handleClearHistory()" id="clearHistoryMobile"
+        style="margin:8px 14px 14px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18" />
+          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+        </svg>
+        Clear History
       </div>
     </div>
   </section>
@@ -2290,12 +2607,19 @@
         }
       });
 
+      // Sync mobile nav active state
+      document.querySelectorAll('.mobile-nav-dropdown button[data-page]').forEach(b => {
+        b.classList.toggle('active', b.dataset.page === id);
+      });
+
       pages.forEach(p => p.classList.toggle('active', p.id === id));
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Trigger loads based on page transition
       if (id === 'chat') {
         loadChatSessions();
+        // Start suggestion carousel when chat page opens
+        setTimeout(startSuggestionCarousel, 100);
       } else if (id === 'kb') {
         loadKBGrid();
       } else if (id === 'settings') {
@@ -2395,16 +2719,28 @@
       const adminBtn = document.getElementById('navAdmin');
       const authNavBtn = document.getElementById('authNavBtn');
 
+      // Mobile nav buttons
+      const mobileChat = document.getElementById('mobileNavChat');
+      const mobileSettings = document.getElementById('mobileNavSettings');
+      const mobileAdmin = document.getElementById('mobileNavAdmin');
+      const mobileAuth = document.getElementById('mobileAuthNavBtn');
+
       if (user) {
         chatBtn.style.display = 'block';
         settingsBtn.style.display = 'block';
         authNavBtn.textContent = 'Logout';
         authNavBtn.style.color = '#ef4444';
 
+        if (mobileChat) mobileChat.style.display = 'block';
+        if (mobileSettings) mobileSettings.style.display = 'block';
+        if (mobileAuth) { mobileAuth.textContent = 'Logout'; mobileAuth.style.color = '#ef4444'; }
+
         if (user.role === 'admin') {
           adminBtn.style.display = 'block';
+          if (mobileAdmin) mobileAdmin.style.display = 'block';
         } else {
           adminBtn.style.display = 'none';
+          if (mobileAdmin) mobileAdmin.style.display = 'none';
         }
       } else {
         chatBtn.style.display = 'none';
@@ -2412,7 +2748,15 @@
         adminBtn.style.display = 'none';
         authNavBtn.textContent = 'Login';
         authNavBtn.style.color = 'var(--ink-700)';
+
+        if (mobileChat) mobileChat.style.display = 'none';
+        if (mobileSettings) mobileSettings.style.display = 'none';
+        if (mobileAdmin) mobileAdmin.style.display = 'none';
+        if (mobileAuth) { mobileAuth.textContent = 'Login'; mobileAuth.style.color = 'var(--ink-700)'; }
       }
+
+      // Show/hide mobile New Chat button in chat header based on screen width
+      _updateMobileNewChatBtn();
     }
 
     // Handle Login Nav button click
@@ -2547,12 +2891,15 @@
 
     function renderSessionsSidebar() {
       const listDiv = document.getElementById('chatList');
+      const mobileListDiv = document.getElementById('chatListMobile');
       listDiv.innerHTML = '';
 
       const sessions = lsGetSessions();
 
       if (sessions.length === 0) {
-        listDiv.innerHTML = '<div style="padding:20px; text-align:center; color:var(--ink-400); font-size:13px;">No conversations yet.</div>';
+        const emptyMsg = '<div style="padding:20px; text-align:center; color:var(--ink-400); font-size:13px;">No conversations yet.</div>';
+        listDiv.innerHTML = emptyMsg;
+        if (mobileListDiv) mobileListDiv.innerHTML = emptyMsg;
         return;
       }
 
@@ -2561,6 +2908,7 @@
         const dateStr = new Date(sess.updated_at).toLocaleDateString([], { month: 'short', day: 'numeric' });
         const timeStr = new Date(sess.updated_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+        // Create desktop item
         const item = document.createElement('div');
         item.className = `chat-item ${act}`;
         item.onclick = () => selectChatSession(sess.id);
@@ -2569,6 +2917,18 @@
           <span class="s">${dateStr} ${timeStr}</span>
         `;
         listDiv.appendChild(item);
+
+        // Create mobile item
+        if (mobileListDiv) {
+          const mobileItem = document.createElement('div');
+          mobileItem.className = `chat-item ${act}`;
+          mobileItem.onclick = () => { selectChatSession(sess.id); closeMobileSidebar(); };
+          mobileItem.innerHTML = `
+            <span class="t">${escapeHtml(sess.title)}</span>
+            <span class="s">${dateStr} ${timeStr}</span>
+          `;
+          mobileListDiv.appendChild(mobileItem);
+        }
       });
     }
 
@@ -2887,6 +3247,158 @@
       if (!s) return '';
       return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
+
+    // ==========================================
+    // MOBILE NAVIGATION
+    // ==========================================
+
+    function toggleMobileNav() {
+      const dropdown = document.getElementById('mobileNavDropdown');
+      dropdown.classList.toggle('open');
+    }
+
+    function closeMobileNav() {
+      const dropdown = document.getElementById('mobileNavDropdown');
+      if (dropdown) dropdown.classList.remove('open');
+    }
+
+    function mobileGoTo(id) {
+      closeMobileNav();
+      goTo(id);
+      // Update active state in mobile nav
+      document.querySelectorAll('.mobile-nav-dropdown button[data-page]').forEach(b => {
+        b.classList.toggle('active', b.dataset.page === id);
+      });
+    }
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('mobileNavDropdown');
+      const hamburger = document.getElementById('hamburgerBtn');
+      if (dropdown && hamburger && !dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+
+    // ==========================================
+    // MOBILE SIDEBAR PANEL
+    // ==========================================
+
+    function toggleMobileSidebar() {
+      const panel = document.getElementById('mobileSidebarPanel');
+      const toggleText = document.getElementById('mobileSidebarToggleText');
+      if (!panel) return;
+      panel.classList.toggle('open');
+      if (toggleText) {
+        toggleText.textContent = panel.classList.contains('open')
+          ? 'Recent Chats & Options ▲'
+          : 'Recent Chats & Options ▼';
+      }
+    }
+
+    function closeMobileSidebar() {
+      const panel = document.getElementById('mobileSidebarPanel');
+      const toggleText = document.getElementById('mobileSidebarToggleText');
+      if (panel) panel.classList.remove('open');
+      if (toggleText) toggleText.textContent = 'Recent Chats & Options ▼';
+    }
+
+    // Show/hide the mobile New Chat button in chat header based on screen width
+    function _updateMobileNewChatBtn() {
+      const btn = document.getElementById('newChatBtnMobile');
+      if (!btn) return;
+      if (window.innerWidth <= 980) {
+        btn.style.display = 'inline-flex';
+      } else {
+        btn.style.display = 'none';
+      }
+    }
+    window.addEventListener('resize', _updateMobileNewChatBtn);
+    window.addEventListener('DOMContentLoaded', _updateMobileNewChatBtn);
+
+    // ==========================================
+    // SUGGESTION CAROUSEL
+    // ==========================================
+
+    const ALL_SUGGESTIONS = [
+      'What is the admission process?',
+      'What are the college timings?',
+      'What courses are available?',
+      'What are the college fees?',
+      'Who is the principal?',
+      'What facilities are available?',
+      'What departments are available?',
+      'What are the admission requirements?',
+      'What are the exam dates?',
+      'Is there a hostel?',
+      'What are the scholarship options?',
+      'How do I contact the college?',
+    ];
+
+    let _suggestionIndex = 0;
+    let _suggestionTimer = null;
+
+    /**
+     * Determine how many suggestions to show based on available width.
+     */
+    function _getSuggestionCount() {
+      const w = window.innerWidth;
+      if (w <= 480) return 1;
+      if (w <= 768) return 2;
+      return 3;
+    }
+
+    /**
+     * Render the current set of suggestions into #chatSuggestions.
+     * Fades out old chips, updates, then fades in new chips.
+     */
+    function renderSuggestions(animate) {
+      const container = document.getElementById('chatSuggestions');
+      if (!container) return;
+
+      const count = _getSuggestionCount();
+      const total = ALL_SUGGESTIONS.length;
+
+      if (animate) {
+        // Fade out existing chips
+        container.querySelectorAll('.suggestion-chip').forEach(c => {
+          c.classList.add('fade-out');
+          c.classList.remove('fade-in');
+        });
+        setTimeout(() => _buildSuggestionChips(container, count, total), 260);
+      } else {
+        _buildSuggestionChips(container, count, total);
+      }
+    }
+
+    function _buildSuggestionChips(container, count, total) {
+      container.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const idx = (_suggestionIndex + i) % total;
+        const text = ALL_SUGGESTIONS[idx];
+        const chip = document.createElement('div');
+        chip.className = 'suggestion-chip fade-in';
+        chip.setAttribute('title', text);
+        chip.textContent = text;
+        chip.onclick = () => selectSuggestion(text);
+        container.appendChild(chip);
+      }
+    }
+
+    function _advanceSuggestions() {
+      const count = _getSuggestionCount();
+      _suggestionIndex = (_suggestionIndex + count) % ALL_SUGGESTIONS.length;
+      renderSuggestions(true);
+    }
+
+    function startSuggestionCarousel() {
+      renderSuggestions(false);
+      if (_suggestionTimer) clearInterval(_suggestionTimer);
+      _suggestionTimer = setInterval(_advanceSuggestions, 4000);
+    }
+
+    // Re-render suggestions on resize (count may change)
+    window.addEventListener('resize', () => renderSuggestions(false));
 
     // ==========================================
     // KNOWLEDGE BASE MODULE
