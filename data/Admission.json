@@ -195,6 +195,38 @@
             ],
             "content": [
                 {
+                    "question": "What courses are available?",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "What branches are available?",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "What branches are offered?",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "What courses are offered?",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "List the branches in the college.",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "List the courses in the college.",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "How many branches are there?",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
+                    "question": "How many courses are there?",
+                    "answer": "The college offers exactly five engineering branches (diploma courses):\n• Civil Engineering\n• Computer Engineering\n• Electronics and Communication Engineering (ECE)\n• Electrical and Electronics Engineering (EEE)\n• Mechanical Engineering"
+                },
+                {
                     "question": "What is the intake for Civil Engineering?",
                     "answer": "The sanctioned intake shown on the Admissions page for Civil Engineering is 66 students."
                 },

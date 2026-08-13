@@ -24,55 +24,75 @@
     "content": {
         "description": "Government Polytechnic Proddatur follows the standard government polytechnic working hours as prescribed by the Department of Technical Education, Andhra Pradesh. The college operates Monday to Saturday.",
         "college_timings": "Monday to Saturday, 9:30 AM to 4:30 PM",
-        "working_days": "Monday to Saturday (Sunday is a holiday)",
+        "working_days": "Monday to Saturday (Second Saturday & Sunday are holidays)",
         "possible_questions_answers": [
             {
                 "question": "What are the college timings?",
-                "answer": "Government Polytechnic Proddatur operates from Monday to Saturday, 9:30 AM to 5:30 PM. Sundays are holidays."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
+            },
+            {
+                "question": "What are the college working hours?",
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
+            },
+            {
+                "question": "When does college start?",
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
+            },
+            {
+                "question": "When does college close?",
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
+            },
+            {
+                "question": "College timings",
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
+            },
+            {
+                "question": "Working hours",
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "What are the working hours of the college?",
-                "answer": "The working hours of Government Polytechnic Proddatur are 9:30 AM to 5:30 PM, Monday through Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "When does the college start?",
-                "answer": "Government Polytechnic Proddatur starts at 9:30 AM. College functions from Monday to Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "When does the college end?",
-                "answer": "Government Polytechnic Proddatur ends at 5:30 PM. The college is open Monday to Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "Tell me the college timings.",
-                "answer": "Government Polytechnic Proddatur is open Monday to Saturday from 9:30 AM to 5:30 PM."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "What is the college working time?",
-                "answer": "The college working time is 9:30 AM to 5:30 PM, Monday to Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "What are the office hours of the college?",
-                "answer": "The office hours of Government Polytechnic Proddatur are 9:30 AM to 5:30 PM, Monday to Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "What time does the college open?",
-                "answer": "Government Polytechnic Proddatur opens at 9:30 AM. It operates Monday through Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "What time does the college close?",
-                "answer": "Government Polytechnic Proddatur closes at 5:30 PM. It operates Monday through Saturday."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "Is the college open on Sundays?",
-                "answer": "No. Government Polytechnic Proddatur is closed on Sundays. The college operates Monday to Saturday."
+                "answer": "No. The college is closed on Sundays.\nCollege Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "Which days is the college open?",
-                "answer": "Government Polytechnic Proddatur is open Monday to Saturday. Sundays are holidays."
+                "answer": "The college operates Monday to Saturday.\nCollege Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             },
             {
                 "question": "What is the schedule of the college?",
-                "answer": "Government Polytechnic Proddatur follows a Monday to Saturday schedule, from 9:30 AM to 5:30 PM."
+                "answer": "College Timings:\n• Monday–Saturday: 9:30 AM–4:30 PM\n• Second Saturday: Holiday\n• Sunday: Holiday"
             }
         ]
     }

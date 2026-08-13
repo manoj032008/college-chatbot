@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const authMiddleware = require('../middleware/authMiddleware');
 
 const {
   sendMessage,
@@ -9,7 +10,7 @@ const {
 } = require('../controllers/chatController');
 
 // ── Chatbot Routes ──────────────────────────────────────────────────────────
-// Stateless public chatbot — no auth required
+router.use(authMiddleware);
 
 router.post('/send',                  sendMessage);
 router.get('/sessions',               getSessions);

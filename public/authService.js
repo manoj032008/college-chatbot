@@ -1,42 +1,25 @@
-// Local Authentication Service (authService.js)
-// Emulates a lightweight JWT-like auth provider using browser LocalStorage.
+// Authentication Service (authService.js)
+// Interacts with backend API endpoints for register, login, and Google Sign-in.
 'use strict';
 
 class AuthService {
   constructor() {
-    this._usersKey = 'local_users';
-    this._sessionKey = 'local_session';
+    this._tokenKey = 'auth_token';
+    this._sessionKey = 'auth_user';
+  }
 
-    // Seed default admin account if users are empty
-    if (!localStorage.getItem(this._usersKey)) {
-      const defaultUsers = [
-        {
-          id: 'admin-1',
-          username: 'admin',
-          email: 'admin@college.edu',
-          password: 'password123', // stored in plain text/simple for stateless mock
-          role: 'admin'
-        }
-      ];
-      localStorage.setItem(this._usersKey, JSON.stringify(defaultUsers));
+  // Determine API base dynamically to support both local and production environments
+  _getApiBase() {
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return '';
+      }
     }
+    return 'https://college-chatbot-dnii.onrender.com';
   }
 
-  // Get all registered users helper
-  _getUsers() {
-    try {
-      return JSON.parse(localStorage.getItem(this._usersKey)) || [];
-    } catch (e) {
-      return [];
-    }
-  }
-
-  // Save users helper
-  _saveUsers(users) {
-    localStorage.setItem(this._usersKey, JSON.stringify(users));
-  }
-
-  // Validate email pattern
+  // Helper to validate email format on the client side
   _isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -45,12 +28,12 @@ class AuthService {
   /**
    * Register a new user
    */
-  register(username, email, password) {
+  async register(username, email, password) {
     const cleanUsername = (username || '').trim();
     const cleanEmail = (email || '').trim().toLowerCase();
 
-    if (!cleanUsername) {
-      return { success: false, message: 'Username cannot be empty.' };
+    if (!cleanUsername || cleanUsername.length < 3) {
+      return { success: false, message: 'Username must be at least 3 characters.' };
     }
     if (!this._isValidEmail(cleanEmail)) {
       return { success: false, message: 'Please enter a valid email address.' };
@@ -59,72 +42,106 @@ class AuthService {
       return { success: false, message: 'Password must be at least 6 characters.' };
     }
 
-    const users = this._getUsers();
+    try {
+      const response = await fetch(this._getApiBase() + '/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: cleanUsername, email: cleanEmail, password })
+      });
 
-    // Prevent duplicate email registration
-    const emailExists = users.some(u => u.email === cleanEmail);
-    if (emailExists) {
-      return { success: false, message: 'An account with this email already exists.' };
+      const data = await response.json();
+      if (!response.ok) {
+        return { success: false, message: data.message || 'Registration failed.' };
+      }
+
+      return { success: true, message: data.message || 'Registration successful! You can now log in.' };
+    } catch (e) {
+      console.error('Registration fetch error:', e);
+      return { success: false, message: 'Server is currently offline or unreachable. Please try again later.' };
     }
-
-    // Prevent duplicate username registration (optional, but good practice)
-    const usernameExists = users.some(u => u.username.toLowerCase() === cleanUsername.toLowerCase());
-    if (usernameExists) {
-      return { success: false, message: 'Username is already taken.' };
-    }
-
-    const newUser = {
-      id: 'usr-' + Date.now(),
-      username: cleanUsername,
-      email: cleanEmail,
-      password: password,
-      role: 'student' // Default role
-    };
-
-    users.push(newUser);
-    this._saveUsers(users);
-
-    return { success: true, message: 'Registration successful! You can now log in.' };
   }
 
   /**
    * Login a user
    */
-  login(usernameOrEmail, password) {
-    const query = (usernameOrEmail || '').trim().toLowerCase();
+  async login(usernameOrEmail, password) {
+    const query = (usernameOrEmail || '').trim();
     if (!query || !password) {
       return { success: false, message: 'Username/Email and password are required.' };
     }
 
-    const users = this._getUsers();
-    const user = users.find(u => u.username.toLowerCase() === query || u.email === query);
+    try {
+      const response = await fetch(this._getApiBase() + '/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usernameOrEmail: query, password })
+      });
 
-    if (!user || user.password !== password) {
-      return { success: false, message: 'Invalid username/email or password.' };
+      const data = await response.json();
+      if (!response.ok) {
+        return { success: false, message: data.message || 'Login failed.' };
+      }
+
+      // Save token and user details
+      localStorage.setItem(this._tokenKey, data.token);
+      localStorage.setItem(this._sessionKey, JSON.stringify(data.user));
+
+      return { success: true, user: data.user };
+    } catch (e) {
+      console.error('Login fetch error:', e);
+      return { success: false, message: 'Server is currently offline or unreachable. Please try again later.' };
+    }
+  }
+
+  /**
+   * Login with Google
+   */
+  async loginWithGoogle(idToken) {
+    if (!idToken) {
+      return { success: false, message: 'Google authentication failed.' };
     }
 
-    // Set active session (exclude password for security mock)
-    const sessionUser = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      role: user.role
-    };
+    try {
+      const response = await fetch(this._getApiBase() + '/api/auth/google', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken })
+      });
 
-    localStorage.setItem(this._sessionKey, JSON.stringify(sessionUser));
-    return { success: true, user: sessionUser };
+      const data = await response.json();
+      if (!response.ok) {
+        return { success: false, message: data.message || 'Google login failed.' };
+      }
+
+      // Save token and user details
+      localStorage.setItem(this._tokenKey, data.token);
+      localStorage.setItem(this._sessionKey, JSON.stringify(data.user));
+
+      return { success: true, user: data.user };
+    } catch (e) {
+      console.error('Google login fetch error:', e);
+      return { success: false, message: 'Server is currently offline or unreachable. Please try again later.' };
+    }
   }
 
   /**
    * Logout user
    */
   logout() {
+    localStorage.removeItem(this._tokenKey);
     localStorage.removeItem(this._sessionKey);
     return { success: true };
   }
 
   /**
-   * Get active logged in user
+   * Get auth token
+   */
+  getToken() {
+    return localStorage.getItem(this._tokenKey);
+  }
+
+  /**
+   * Get active logged in user from local cache (synchronous helper)
    */
   getCurrentUser() {
     try {
@@ -136,10 +153,56 @@ class AuthService {
   }
 
   /**
-   * Check if user is logged in
+   * Check if user has credentials locally
    */
   isLoggedIn() {
-    return this.getCurrentUser() !== null;
+    return this.getToken() !== null && this.getCurrentUser() !== null;
+  }
+
+  /**
+   * Get Authorization headers object
+   */
+  getAuthHeaders() {
+    const token = this.getToken();
+    return token ? { 'Authorization': 'Bearer ' + token } : {};
+  }
+
+  /**
+   * Verify session token against backend on reload (asynchronous)
+   */
+  async verifySession() {
+    const token = this.getToken();
+    if (!token) {
+      this.logout();
+      return null;
+    }
+
+    try {
+      const response = await fetch(this._getApiBase() + '/api/auth/me', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          ...this.getAuthHeaders()
+        }
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        // If authentication failed (e.g. expired or invalid token), log out
+        if (response.status === 401) {
+          this.logout();
+        }
+        return null;
+      }
+
+      // Keep user details updated in cache
+      localStorage.setItem(this._sessionKey, JSON.stringify(data.user));
+      return data.user;
+    } catch (e) {
+      console.error('Verify session error:', e);
+      // On network failure, we preserve the cached user session so they aren't logged out
+      return this.getCurrentUser();
+    }
   }
 }
 

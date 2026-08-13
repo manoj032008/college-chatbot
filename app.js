@@ -10,6 +10,7 @@ const errorHandler  = require('./middleware/errorHandler');
 // ── Route Imports ──────────────────────────────────────────────────────────────
 const chatRoutes  = require('./routes/chat');
 const adminRoutes = require('./routes/admin');
+const authRoutes  = require('./routes/auth');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname)));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ── API Routes ──────────────────────────────────────────────────────────────────
+app.use('/api/auth',  authRoutes);
 app.use('/api/chat',  chatRoutes);
 app.use('/api/admin', adminRoutes);
 
@@ -64,8 +66,10 @@ app.get('/api/stats', (req, res) => {
   }
 });
 
+const authMiddleware = require('./middleware/authMiddleware');
+
 // ── Settings & KB Endpoints ──────────────────────────────────────────────────────
-app.post('/api/settings',       (req, res) => res.json({ message: 'Settings saved' }));
+app.post('/api/settings', authMiddleware, (req, res) => res.json({ message: 'Settings saved' }));
 app.get('/api/kb/articles',     (req, res) => {
   try {
     const kbService = require('./services/jsonSearchService');
@@ -97,6 +101,8 @@ app.get('/api/health', (req, res) => {
   try {
     const kbService = require('./services/jsonSearchService');
     const stats     = kbService.getStats();
+    const isEphemeral = process.env.RENDER === 'true' && !process.env.PERSISTENT_DISK_PATH;
+    
     res.json({
       status:        'online',
       mode:          'JSON Knowledge Base',
@@ -104,6 +110,11 @@ app.get('/api/health', (req, res) => {
       kb_categories: stats.categories,
       timestamp:     new Date().toISOString(),
       environment:   process.env.NODE_ENV || 'development',
+      database: {
+        type: 'SQLite',
+        ephemeral: isEphemeral,
+        warning: isEphemeral ? 'Render deployment detected. SQLite storage is ephemeral and data will be lost on service restarts.' : null
+      }
     });
   } catch (e) {
     res.json({ status: 'online', mode: 'JSON Knowledge Base', timestamp: new Date().toISOString() });

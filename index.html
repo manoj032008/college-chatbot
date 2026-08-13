@@ -8,6 +8,8 @@
   <!-- marked.js for Markdown rendering -->
   <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
   <script src="/public/authService.js"></script>
+  <!-- Google Identity Services SDK -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     :root {
       --blue-600: #2563eb;
@@ -1752,6 +1754,14 @@
           <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
             Create Account
           </button>
+          <div id="googleBtnWrapper" style="margin-top: 16px; display: none;">
+            <div style="margin: 16px 0; display: flex; align-items: center; text-align: center; color: var(--ink-400); font-size: 14px;">
+              <div style="flex: 1; border-bottom: 1px solid var(--line);"></div>
+              <span style="padding: 0 10px;">or</span>
+              <div style="flex: 1; border-bottom: 1px solid var(--line);"></div>
+            </div>
+            <div id="googleBtnContainer" style="display: flex; justify-content: center; width: 100%;"></div>
+          </div>
         </form>
       </div>
     </div>
@@ -2312,10 +2322,70 @@
     });
 
     // Check auth status
-    function checkTokenAndInitialize() {
-      const user = window.authService.getCurrentUser();
+    async function checkTokenAndInitialize() {
+      const user = await window.authService.verifySession();
       currentUser = user;
       updateNavUI(user);
+
+      // Load Google Sign-In config dynamically
+      try {
+        const configRes = await fetch(API_BASE + '/api/auth/config');
+        if (configRes.ok) {
+          const config = await configRes.json();
+          if (config.googleClientId) {
+            document.getElementById('googleBtnWrapper').style.display = 'block';
+            initGoogleSignIn(config.googleClientId);
+          } else {
+            document.getElementById('googleBtnWrapper').style.display = 'block';
+            document.getElementById('googleBtnContainer').innerHTML = `
+              <div style="color: #ef4444; border: 1px dashed #fecaca; background: #fee2e2; padding: 12px; border-radius: 8px; font-size: 13px; text-align: center; width: 100%; box-sizing: border-box;">
+                <strong>Google Sign-In configuration is missing.</strong><br>
+                Please set the <code>GOOGLE_CLIENT_ID</code> environment variable on the server.
+              </div>
+            `;
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load auth config:', err);
+      }
+    }
+
+    function initGoogleSignIn(clientId) {
+      if (typeof google === 'undefined') {
+        setTimeout(() => initGoogleSignIn(clientId), 500);
+        return;
+      }
+      google.accounts.id.initialize({
+        client_id: clientId,
+        callback: handleGoogleSignInResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById('googleBtnContainer'),
+        { theme: 'outline', size: 'large', width: 320, text: 'continue_with' }
+      );
+    }
+
+    async function handleGoogleSignInResponse(response) {
+      try {
+        const idToken = response.credential;
+        showToast('Signing in with Google...', 'info');
+        const res = await window.authService.loginWithGoogle(idToken);
+        if (!res.success) {
+          showToast(res.message, 'error');
+          return;
+        }
+        
+        currentUser = res.user;
+        updateNavUI(currentUser);
+        showToast(`Welcome back, ${currentUser.username}!`);
+        if (currentUser.role === 'admin') {
+          goTo('admin');
+        } else {
+          goTo('chat');
+        }
+      } catch (err) {
+        showToast('Google Sign-In failed.', 'error');
+      }
     }
 
     // Dynamically update TopNav based on login roles
@@ -2382,7 +2452,7 @@
     }
 
     // Post Login form submission
-    function handleLoginSubmit(event) {
+    async function handleLoginSubmit(event) {
       event.preventDefault();
       const userVal = document.getElementById('txtLoginUser').value;
       const passVal = document.getElementById('txtLoginPass').value;
@@ -2392,7 +2462,8 @@
         return;
       }
 
-      const res = window.authService.login(userVal, passVal);
+      showToast('Signing in...', 'info');
+      const res = await window.authService.login(userVal, passVal);
       if (!res.success) {
         showToast(res.message, 'error');
         return;
@@ -2412,13 +2483,14 @@
     }
 
     // Post Register form submission
-    function handleRegisterSubmit(event) {
+    async function handleRegisterSubmit(event) {
       event.preventDefault();
       const userVal = document.getElementById('txtRegUser').value;
       const emailVal = document.getElementById('txtRegEmail').value;
       const passVal = document.getElementById('txtRegPass').value;
 
-      const res = window.authService.register(userVal, emailVal, passVal);
+      showToast('Registering account...', 'info');
+      const res = await window.authService.register(userVal, emailVal, passVal);
       if (!res.success) {
         showToast(res.message, 'warning');
         return;
@@ -2667,7 +2739,10 @@
       try {
         const res = await fetch(API_BASE + '/api/chat/send', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            ...window.authService.getAuthHeaders()
+          },
           body: JSON.stringify({ message: text })
         });
 
@@ -3075,7 +3150,10 @@
       try {
         await fetch(API_BASE + '/api/settings', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            ...window.authService.getAuthHeaders()
+          },
           body: JSON.stringify(settings)
         });
       } catch (err) {
@@ -3126,7 +3204,9 @@
       try {
         if (adminCurrentTab === 'overview') {
           // Fetch stats
-          const res = await fetch(API_BASE + '/api/admin/stats');
+          const res = await fetch(API_BASE + '/api/admin/stats', {
+            headers: window.authService.getAuthHeaders()
+          });
           if (!res.ok) throw new Error();
           adminStats = await res.json();
 
@@ -3195,7 +3275,9 @@
         `;
         } else if (adminCurrentTab === 'chatlogs') {
           // Fetch conversation logs
-          const res = await fetch(API_BASE + '/api/admin/conversations');
+          const res = await fetch(API_BASE + '/api/admin/conversations', {
+            headers: window.authService.getAuthHeaders()
+          });
           if (!res.ok) throw new Error();
           adminConversations = await res.json();
 
@@ -3246,7 +3328,9 @@
       document.getElementById('transcriptModalBg').classList.add('active');
 
       try {
-        const res = await fetch(API_BASE + `/api/chat/messages/${sessId}`);
+        const res = await fetch(API_BASE + `/api/chat/messages/${sessId}`, {
+          headers: window.authService.getAuthHeaders()
+        });
         const data = await res.json();
 
         body.innerHTML = '';
@@ -3322,7 +3406,10 @@
       try {
         const res = await fetch(url, {
           method: method,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            ...window.authService.getAuthHeaders()
+          },
           body: JSON.stringify({ category: cat, title: title, content: content })
         });
 
@@ -3346,7 +3433,10 @@
       if (!confirm('Are you sure you want to delete this article?')) return;
 
       try {
-        const res = await fetch(API_BASE + `/api/admin/kb/${artId}`, { method: 'DELETE' });
+        const res = await fetch(API_BASE + `/api/admin/kb/${artId}`, { 
+          method: 'DELETE',
+          headers: window.authService.getAuthHeaders()
+        });
 
         const data = await res.json();
         if (!res.ok) {
