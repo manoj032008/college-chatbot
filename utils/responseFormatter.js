@@ -186,16 +186,41 @@ function pickRelevantQAs(qaPairs, query, maxPairs = 3) {
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/\s+/).filter(w => w.length > 2);
 
+  // High-value entity keywords that must dominate scoring when present in both
+  // the query and a QA pair. This ensures "hod of ece" picks the HOD pair,
+  // not the vision/mission pair just because it has more keyword overlaps.
+  const ENTITY_KEYWORDS = [
+    'hod', 'head', 'principal', 'name', 'who', 'timings', 'timing', 'hours',
+    'fee', 'fees', 'admission', 'hostel', 'contact', 'phone', 'address',
+    'faculty', 'lecturer', 'intake', 'seats', 'lab', 'laboratories',
+  ];
+
   const scored = qaPairs.map(qa => {
     const text = `${qa.question} ${qa.answer}`.toLowerCase();
     let score = 0;
+
+    // Standard keyword overlap
     for (const word of queryWords) {
       if (text.includes(word)) score++;
     }
+
     // Exact phrase match bonus
     if (text.includes(queryLower)) score += 5;
+
     // Question exact match bonus
     if (qa.question && qa.question.toLowerCase().includes(queryLower)) score += 3;
+
+    // ── Entity keyword bonus ──────────────────────────────────────────────────
+    // If both the user's query AND this QA pair contain an entity keyword,
+    // give a large bonus so entity-specific pairs always win over generic ones.
+    for (const entityKw of ENTITY_KEYWORDS) {
+      const queryHasEntity = queryLower.includes(entityKw);
+      const qaHasEntity    = text.includes(entityKw);
+      if (queryHasEntity && qaHasEntity) {
+        score += 10; // Large bonus — ensures the HOD/principal/timing pair wins
+      }
+    }
+
     return { qa, score };
   });
 

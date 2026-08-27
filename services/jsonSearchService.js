@@ -397,38 +397,38 @@ function intentBoostForEntry(entry, intent) {
 
   switch (intent.type) {
     case 'hod_eee':
-      if (isEEE) return 80;                        // strong boost for correct dept
-      if (isPrincipal) return -100;                // hard block principal
-      if (isOthers) return -50;                    // suppress cross-topic entries
-      if (isECE || isCSE || isCivil || isMech) return -50;  // wrong dept penalty
+      if (isEEE) return 120;                       // strong boost for correct dept
+      if (isPrincipal) return -200;                // absolute block: principal NEVER shows for HOD queries
+      if (isOthers) return -100;                   // hard suppress: others.json can't contaminate HOD results
+      if (isECE || isCSE || isCivil || isMech) return -100;  // wrong dept — hard blocked
       return 0;
 
     case 'hod_ece':
-      if (isECE) return 80;
-      if (isPrincipal) return -100;
-      if (isOthers) return -50;
-      if (isEEE || isCSE || isCivil || isMech) return -50;
+      if (isECE) return 120;
+      if (isPrincipal) return -200;
+      if (isOthers) return -100;
+      if (isEEE || isCSE || isCivil || isMech) return -100;
       return 0;
 
     case 'hod_cse':
-      if (isCSE) return 80;
-      if (isPrincipal) return -100;
-      if (isOthers) return -50;
-      if (isEEE || isECE || isCivil || isMech) return -50;
+      if (isCSE) return 120;
+      if (isPrincipal) return -200;
+      if (isOthers) return -100;
+      if (isEEE || isECE || isCivil || isMech) return -100;
       return 0;
 
     case 'hod_civil':
-      if (isCivil) return 80;
-      if (isPrincipal) return -100;
-      if (isOthers) return -50;
-      if (isEEE || isECE || isCSE || isMech) return -50;
+      if (isCivil) return 120;
+      if (isPrincipal) return -200;
+      if (isOthers) return -100;
+      if (isEEE || isECE || isCSE || isMech) return -100;
       return 0;
 
     case 'hod_mech':
-      if (isMech) return 80;
-      if (isPrincipal) return -100;
-      if (isOthers) return -50;
-      if (isEEE || isECE || isCSE || isCivil) return -50;
+      if (isMech) return 120;
+      if (isPrincipal) return -200;
+      if (isOthers) return -100;
+      if (isEEE || isECE || isCSE || isCivil) return -100;
       return 0;
 
     case 'hod_general':
@@ -950,7 +950,12 @@ class JsonSearchService {
         'others.json',
         'alumuni.json',
         'contact.json',
-        'college-timings.json'
+        'college-timings.json',
+        // Principal's message must be searchable for principal-specific queries
+        'principal_s message.json',
+        // Fee and download info
+        'fee_structure.json',
+        'downloads.json',
       ];
       const fileLower = sourceFile.toLowerCase();
       showInKnowledgeBase = mainFiles.includes(fileLower);
@@ -1363,24 +1368,45 @@ class JsonSearchService {
 
     // ── EXACT-MATCH SHORT-CIRCUIT ─────────────────────────────────────────────
     // Check the pre-built index for a normalized exact match.
-    // If found, skip scoring entirely and return immediately.
+    // IMPORTANT: Validate the matched entry against the detected intent before
+    // returning — an exact question match in the wrong category (e.g. a principal
+    // entry matched for a HOD query) must be rejected and fall through to scoring.
     const userNormForIndex = _normalizeStoredQuestion(query);
     if (userNormForIndex && this.exactMatchIndex.has(userNormForIndex)) {
-      const { entry, answer } = this.exactMatchIndex.get(userNormForIndex);
-      console.log(`[EXACT-MATCH] ⚡ Direct index hit for "${userNormForIndex}" → "${entry.title}" (${entry.source_file})`);
-      return [entry];
+      const { entry } = this.exactMatchIndex.get(userNormForIndex);
+      const entryIntentBoost = intentBoostForEntry(entry, intent);
+      if (entryIntentBoost > -50) {
+        console.log(`[EXACT-MATCH] ⚡ Direct index hit for "${userNormForIndex}" → "${entry.title}" (${entry.source_file})`);
+        return [entry];
+      } else {
+        console.log(`[EXACT-MATCH] ⚠️  Index hit REJECTED — intent mismatch (boost=${entryIntentBoost}): "${entry.title}" vs intent "${intent.type}"`);
+      }
     }
 
     // Also try the raw normalized query in the index
     if (normalizedQuery && this.exactMatchIndex.has(normalizedQuery)) {
       const { entry } = this.exactMatchIndex.get(normalizedQuery);
-      console.log(`[EXACT-MATCH] ⚡ Raw normalized index hit → "${entry.title}"`);
-      return [entry];
+      const entryIntentBoost = intentBoostForEntry(entry, intent);
+      if (entryIntentBoost > -50) {
+        console.log(`[EXACT-MATCH] ⚡ Raw normalized index hit → "${entry.title}"`);
+        return [entry];
+      } else {
+        console.log(`[EXACT-MATCH] ⚠️  Raw index hit REJECTED — intent mismatch (boost=${entryIntentBoost}): "${entry.title}"`);
+      }
     }
 
     // Score all entries (base score + intent boost)
     const scored = [];
     for (const entry of this.entries) {
+      // ── Enforce showInKnowledgeBase — skip non-main entries unless intent
+      // strongly targets them. This prevents committee files, supplementary
+      // data files, etc. from contaminating results for unrelated queries.
+      if (!entry.showInKnowledgeBase) {
+        const quickBoost = intentBoostForEntry(entry, intent);
+        // Only allow non-main entries if intent specifically favours them
+        if (quickBoost < 60) continue;
+      }
+
       const baseScore   = this._scoreEntry(entry, keywords, expandedKeywords, normalizedQuery, wasSpellingCorrected);
       const boost       = intentBoostForEntry(entry, intent);
       const totalScore  = baseScore + boost;
@@ -1395,6 +1421,8 @@ class JsonSearchService {
     // fuzzy title matching to avoid false negatives for short queries
     if (scored.length === 0 && normalizedQuery.length > 2) {
       for (const entry of this.entries) {
+        // Skip non-main entries in fallback too
+        if (!entry.showInKnowledgeBase) continue;
         const titleScore = fuzzyScore(normalizedQuery, entry._title_lower);
         if (titleScore >= 0.60) {
           const boost = intentBoostForEntry(entry, intent);
@@ -1412,10 +1440,51 @@ class JsonSearchService {
     scored.sort((a, b) => b.score - a.score);
 
     // Log top candidates before dedup
-    console.log(`[RESULTS] Top candidates:`);
-    scored.slice(0, 5).forEach(({ entry, score }) => {
+    console.log(`[RESULTS] Top candidates before intent-filter:`);
+    scored.slice(0, 6).forEach(({ entry, score }) => {
       console.log(`  [${score.toFixed(1)}] "${entry.title}" (${entry.source_file})`);
     });
+
+    // ── Hard categorical filter for specific HOD intents ─────────────────────
+    // For queries like "hod of ece", ONLY entries from the correct dept file
+    // should be returned. This is a HARD gate — not a score modifier.
+    // The others.json Grievance Cell lists ALL HODs + Principal in one sentence,
+    // so without this filter Groq sees mixed context and gives wrong answers.
+    if (intent.type && intent.type.startsWith('hod_') && intent.type !== 'hod_general') {
+      const deptFileMap = {
+        'hod_ece':   'ece.json',
+        'hod_cse':   'computer engineering.json',
+        'hod_civil': 'civil engineering.json',
+        'hod_mech':  'mechanical engineering.json',
+        'hod_eee':   'eee.json',
+      };
+      const expectedFile = deptFileMap[intent.type];
+      if (expectedFile) {
+        const deptOnly = scored.filter(({ entry }) =>
+          entry.source_file.toLowerCase() === expectedFile.toLowerCase()
+        );
+        if (deptOnly.length > 0) {
+          // Replace scored with ONLY correct dept entries
+          scored.length = 0;
+          scored.push(...deptOnly);
+          console.log(`[INTENT-FILTER] 🎯 Hard dept filter: only "${expectedFile}" (${deptOnly.length} entr${deptOnly.length === 1 ? 'y' : 'ies'} kept)`);
+        } else {
+          console.log(`[INTENT-FILTER] ⚠️  No entries from "${expectedFile}" — keeping all scored results as fallback`);
+        }
+      }
+    }
+
+    // ── Hard filter for principal intent — only principal file entries ────────
+    if (intent.type === 'principal') {
+      const principalOnly = scored.filter(({ entry }) =>
+        entry.source_file.toLowerCase().includes('principal')
+      );
+      if (principalOnly.length > 0) {
+        scored.length = 0;
+        scored.push(...principalOnly);
+        console.log(`[INTENT-FILTER] 🎯 Hard principal filter: ${principalOnly.length} principal entr${principalOnly.length === 1 ? 'y' : 'ies'} kept`);
+      }
+    }
 
     // ── Determine effective result limit ─────────────────────────────────────
     // If intent gave us a maxResults, use that; otherwise use the caller's topN.
