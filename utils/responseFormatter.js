@@ -178,9 +178,10 @@ function extractQAPairs(content) {
 /**
  * Given an array of Q&A pairs and a query string, return the top N most relevant.
  * Uses simple keyword overlap scoring.
+ * Default maxPairs reduced to 3 to avoid context bloat.
  */
-function pickRelevantQAs(qaPairs, query, maxPairs = 5) {
-  if (!query || qaPairs.length <= maxPairs) return qaPairs;
+function pickRelevantQAs(qaPairs, query, maxPairs = 3) {
+  if (!query || qaPairs.length <= maxPairs) return qaPairs.slice(0, maxPairs);
 
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/\s+/).filter(w => w.length > 2);
@@ -193,14 +194,14 @@ function pickRelevantQAs(qaPairs, query, maxPairs = 5) {
     }
     // Exact phrase match bonus
     if (text.includes(queryLower)) score += 5;
+    // Question exact match bonus
+    if (qa.question && qa.question.toLowerCase().includes(queryLower)) score += 3;
     return { qa, score };
   });
 
-  // Sort by score, but always include top scorers + first pair as fallback
+  // Sort by score descending, take top maxPairs
   scored.sort((a, b) => b.score - a.score);
-  const top = scored.slice(0, maxPairs).map(s => s.qa);
-
-  return top;
+  return scored.slice(0, maxPairs).map(s => s.qa);
 }
 
 // ── Format a single KB entry into a readable text block ──────────────────────
@@ -223,11 +224,19 @@ function formatKbItem(item, query = '') {
   const qaPairs = extractQAPairs(item.content);
 
   if (qaPairs.length > 0) {
-    const relevant = pickRelevantQAs(qaPairs, query, 6);
+    // Pick the most relevant Q&A pairs (max 3)
+    const relevant = pickRelevantQAs(qaPairs, query, 3);
+
+    // Deduplicate answers before including — don't include the same answer twice
+    const seenAnswers = new Set();
     for (const { question, answer } of relevant) {
+      if (!answer) continue;
+      const answerKey = answer.trim().toLowerCase().replace(/\s+/g, ' ');
+      if (seenAnswers.has(answerKey)) continue;
+      seenAnswers.add(answerKey);
       if (question) parts.push(`Q: ${question}`);
-      if (answer)   parts.push(`A: ${answer}`);
-      if (question || answer) parts.push('');
+      parts.push(`A: ${answer}`);
+      parts.push('');
     }
   }
 

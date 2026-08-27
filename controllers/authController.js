@@ -74,11 +74,13 @@ exports.register = async (req, res) => {
     const passwordHash = bcrypt.hashSync(password, salt);
     const userId = 'usr-' + Date.now();
 
-    // Insert user (role is student by default, unless it's 'admin' for a special seed or configured)
+    // Insert user
     db.prepare(`
       INSERT INTO users (id, username, email, password_hash, role)
       VALUES (?, ?, ?, ?, 'student')
     `).run(userId, cleanUsername, cleanEmail, passwordHash);
+    
+    console.log(`[Auth Debug] Registration INSERT succeeded for username: ${cleanUsername}, email: ${cleanEmail}`);
 
     return res.status(201).json({
       success: true,
@@ -108,6 +110,8 @@ exports.login = async (req, res) => {
       WHERE LOWER(username) = ? OR LOWER(email) = ?
     `).get(query, query);
 
+    console.log(`[Auth Debug] Login lookup for '${query}' result: ${user ? 'Found (ID: ' + user.id + ')' : 'Not Found'}`);
+
     if (!user) {
       return res.status(400).json({ success: false, message: 'Invalid username/email or password.' });
     }
@@ -122,6 +126,8 @@ exports.login = async (req, res) => {
 
     // Compare passwords
     const isMatch = bcrypt.compareSync(password, user.password_hash);
+    console.log(`[Auth Debug] Password verification for user '${user.username}' result: ${isMatch ? 'Success' : 'Failed'}`);
+    
     if (!isMatch) {
       return res.status(400).json({ success: false, message: 'Invalid username/email or password.' });
     }

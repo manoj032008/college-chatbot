@@ -9,6 +9,7 @@ if (!fs.existsSync(dataDir)) {
 }
 
 const dbPath = path.join(dataDir, 'users.db');
+console.log(`[DB Initialization] Absolute database path: ${dbPath}`);
 const db = new Database(dbPath);
 
 // Initialize tables

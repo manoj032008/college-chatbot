@@ -15,7 +15,10 @@ const authRoutes  = require('./routes/auth');
 const app = express();
 
 // ── Security & Parsing Middleware ───────────────────────────────────────────────
-app.use(helmet({ contentSecurityPolicy: false }));
+app.use(helmet({ 
+  contentSecurityPolicy: false,
+  crossOriginOpenerPolicy: false
+}));
 const allowedOrigins = [
   'https://gptproddaturclgchatbot.netlify.app'
 ];

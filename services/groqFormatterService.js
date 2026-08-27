@@ -24,18 +24,20 @@ const { formatKbItem, formatMultipleItems } = require('../utils/responseFormatte
 const FALLBACK_MESSAGE =
   "I couldn't find this information in my current college knowledge base. For the latest official information, please visit the Government Polytechnic Proddatur website.\n\n**Government Polytechnic Proddatur:**\nhttps://govtpolyproddatur.ac.in/";
 
-/** Max characters of context to send to Groq (~1500 tokens) */
-const MAX_CONTEXT_CHARS = 4000;
+/** Max characters of context to send to Groq (~1200 tokens) */
+const MAX_CONTEXT_CHARS = 3000;
 
 /** Max conversation history turns to include */
-const MAX_HISTORY_TURNS = 3;
+const MAX_HISTORY_TURNS = 2;
 
 /**
  * Similarity threshold to bypass Groq and return a direct KB answer.
- * If the normalized user query closely matches a stored Q&A question,
- * return the stored answer without an AI call.
+ * Lowered to 0.65 so that well-normalized question matches reliably bypass Groq.
  */
-const DIRECT_ANSWER_THRESHOLD = 0.75;
+const DIRECT_ANSWER_THRESHOLD = 0.65;
+
+/** Groq model — llama-3.1-8b-instant is much faster for simple Q&A */
+const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SYSTEM PROMPT
@@ -43,7 +45,7 @@ const DIRECT_ANSWER_THRESHOLD = 0.75;
 
 const SYSTEM_INSTRUCTION = `You are the official AI assistant of **Government Polytechnic Proddatur (GPT Proddatur)**, Andhra Pradesh, India.
 
-Your ONLY job is to reformat and present the information from the provided Knowledge Base Context in clear, professional, well-structured English.
+Your ONLY job is to answer the student's question using the information in the Knowledge Base Context below.
 
 ════════════════════════════════════════
 CRITICAL RULES — FOLLOW WITHOUT EXCEPTION
@@ -54,30 +56,41 @@ CRITICAL RULES — FOLLOW WITHOUT EXCEPTION
 3. **NEVER mention** "JSON", "knowledge base", "context", "Groq", "AI", or any internal system terms.
 4. **NEVER repeat** the user's question back to them.
 5. **NEVER add** extra facts, dates, fees, names, or details not present in the context.
-6. **BRANCH/COURSE COUNT**: The college has EXACTLY the branches listed in the context. Do NOT add, invent, or mention any additional branches beyond what appears in the context. If the context lists 5 branches, list exactly those 5.
+6. **BRANCH/COURSE COUNT**: The college has EXACTLY the branches listed in the context. Do NOT add, invent, or mention any additional branches beyond what appears in the context.
+7. **FOCUS STRICTLY ON THE QUESTION**: If multiple context entries are provided, use ONLY the entry or entries directly relevant to the user's specific question. Ignore context entries that answer a different question.
+8. **DEDUPLICATION** — This is MANDATORY:
+   - If the same fact, sentence, name, or bullet point appears in the context more than once, state it ONLY ONCE in your answer.
+   - NEVER repeat the same sentence or bullet point twice.
+   - NEVER write the same person's name or title more than once.
+   - If multiple context entries say the same thing, pick the clearest one and ignore the rest.
+9. **DEPARTMENT ISOLATION**: If the question asks about a specific department (e.g., EEE, ECE, CSE), answer ONLY using information about that department. Do NOT include information about other departments, the principal, or unrelated committees.
 
 ════════════════════════════════════════
-FORMATTING RULES — ALWAYS APPLY
+FORMATTING AND LENGTH RULES
 ════════════════════════════════════════
 
-7. Always write in **professional, grammatically correct English**.
-8. **BE CONCISE** — prefer short bullet lists over long paragraphs. Do not pad responses.
-9. Use **Markdown formatting**:
-   - Use ### for main section headings
-   - Use **bold** for important labels, names, and key terms
-   - Use bullet lists (-) for multiple items
-   - Use tables when comparing or listing structured data
-10. For simple factual questions, answer in 2–5 bullet points or lines.
-11. Do NOT produce large essays for simple questions.
+10. **ANSWER LENGTH — always match the question type**:
+    - Simple factual question (who/what/when/where): **1–2 sentences maximum**. No bullet list needed.
+    - List question (what are the branches / facilities / etc.): **Short bullet list only**.
+    - Explanation question: **Concise paragraph or short bullets**.
+    - Only give a detailed response when the user explicitly asks for details, 8-marks, or "explain in full".
+11. Always write in **professional, grammatically correct English**.
+12. Use **Markdown formatting** where appropriate:
+    - Use **bold** for important names and key terms.
+    - Use bullet lists (-) for multiple items.
+    - Do NOT use headers for simple 1-2 line answers.
+13. **Do NOT pad responses.** Do NOT add unnecessary introductions, summaries, or conclusions.
 
 ════════════════════════════════════════
 FALLBACK
 ════════════════════════════════════════
 
-12. If the context does not contain the answer, reply EXACTLY with:
+14. If the context does not contain the answer, reply EXACTLY with:
     "I couldn't find this information in my current college knowledge base. For the latest official information, please visit the Government Polytechnic Proddatur website.\\n\\n**Government Polytechnic Proddatur:**\\nhttps://govtpolyproddatur.ac.in/"
 
 Do NOT add any extra explanation to the fallback message.`;
+
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CLIENT INITIALIZATION (lazy)
@@ -127,48 +140,69 @@ function wordOverlapSimilarity(a, b) {
 function tryDirectAnswer(userMessage, matchedItems) {
   if (!matchedItems || matchedItems.length === 0) return null;
 
-  const queryNorm = userMessage.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+  // Normalize the user's query — strip punctuation, lowercase, trim
+  const queryRaw  = userMessage.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+  // Also compute a stopword-stripped version for better matching
+  const queryNorm = queryRaw
+    .split(/\s+/)
+    .filter(w => w.length > 1 && !new Set(['a','an','the','is','are','of','in','on','at','by','for','with','about','from','and','or','who','what','how','when','where','tell','me','give','show','please','info','information','details']).has(w))
+    .join(' ');
 
   // Only attempt direct bypass for the top result
   const topItem = matchedItems[0];
   if (!topItem._qa_pairs || topItem._qa_pairs.length === 0) return null;
 
-  let bestScore = 0;
+  let bestScore  = 0;
   let bestAnswer = null;
 
   for (const qa of topItem._qa_pairs) {
     if (!qa.question || !qa.answer) continue;
 
-    const questionNorm = qa.question.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+    const storedRaw  = qa.question.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+    // Stopword-stripped stored question
+    const storedNorm = storedRaw
+      .split(/\s+/)
+      .filter(w => w.length > 1 && !new Set(['a','an','the','is','are','of','in','on','at','by','for','with','about','from','and','or','who','what','how','when','where','tell','me','give','show','please','info','information','details']).has(w))
+      .join(' ');
 
-    // Exact match (after normalization)
-    if (questionNorm === queryNorm) {
-      bestScore = 1.0;
+    // Exact raw match (after normalization)
+    if (storedRaw === queryRaw) {
+      bestScore  = 1.0;
       bestAnswer = qa.answer;
       break;
     }
 
-    // Containment check
-    if (questionNorm.includes(queryNorm) || queryNorm.includes(questionNorm)) {
-      const score = 0.9;
-      if (score > bestScore) {
-        bestScore = score;
-        bestAnswer = qa.answer;
-      }
+    // Exact normalized match (stopwords stripped from both sides)
+    if (storedNorm && queryNorm && storedNorm === queryNorm) {
+      const score = 0.95;
+      if (score > bestScore) { bestScore = score; bestAnswer = qa.answer; }
       continue;
     }
 
-    // Word overlap similarity
-    const sim = wordOverlapSimilarity(queryNorm, questionNorm);
+    // Containment check (raw)
+    if (storedRaw.includes(queryRaw) || queryRaw.includes(storedRaw)) {
+      const score = 0.90;
+      if (score > bestScore) { bestScore = score; bestAnswer = qa.answer; }
+      continue;
+    }
+
+    // Containment check (normalized)
+    if (storedNorm && queryNorm && (storedNorm.includes(queryNorm) || queryNorm.includes(storedNorm))) {
+      const score = 0.85;
+      if (score > bestScore) { bestScore = score; bestAnswer = qa.answer; }
+      continue;
+    }
+
+    // Word overlap similarity (normalized tokens)
+    const sim = wordOverlapSimilarity(queryNorm, storedNorm);
     if (sim > bestScore) {
-      bestScore = sim;
+      bestScore  = sim;
       bestAnswer = qa.answer;
     }
   }
 
   if (bestScore >= DIRECT_ANSWER_THRESHOLD && bestAnswer) {
     console.log(`[Pipeline] ⚡ Direct KB answer found (similarity: ${bestScore.toFixed(2)}) — skipping Groq.`);
-    // Return the raw answer (already formatted in JSON as markdown)
     return bestAnswer.trim();
   }
 
@@ -246,6 +280,57 @@ function _plainFallback(items) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// RESPONSE DEDUPLICATION — post-process Groq output
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Remove duplicate sentences and bullet points from the AI response.
+ * Preserves order — keeps the FIRST occurrence of each unique sentence.
+ *
+ * @param {string} text — the raw Groq response
+ * @returns {string}   — deduplicated response
+ */
+function deduplicateResponse(text) {
+  if (!text || typeof text !== 'string') return text;
+
+  const lines = text.split('\n');
+  const seen = new Set();
+  const result = [];
+
+  for (const line of lines) {
+    // Normalize line for comparison: lowercase, strip markdown symbols, collapse spaces
+    const normalized = line
+      .replace(/^[\s\-\*\#\>]+/, '')  // strip leading markdown
+      .replace(/\*\*/g, '')           // strip bold markers
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+
+    if (!normalized) {
+      // Preserve empty lines (but deduplicate consecutive blank lines)
+      if (result.length > 0 && result[result.length - 1] !== '') {
+        result.push(line);
+      }
+      continue;
+    }
+
+    // Short lines (headers, short labels) are always kept
+    if (normalized.length < 15) {
+      result.push(line);
+      continue;
+    }
+
+    if (!seen.has(normalized)) {
+      seen.add(normalized);
+      result.push(line);
+    }
+    // else: duplicate line — silently skip it
+  }
+
+  return result.join('\n').trim();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN FORMATTING FUNCTIONS
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -284,7 +369,7 @@ async function formatResponse(userMessage, matchedItems, history = []) {
     return _plainFallback(items);
   }
 
-  const prompt = `---\nKnowledge Base Context:\n${contextText}\n---\n\nStudent Question: ${userMessage}\n\nUsing ONLY the knowledge base context above, provide a concise, well-formatted Markdown answer (prefer bullet lists, be brief):`;
+  const prompt = `---\nKnowledge Base Context:\n${contextText}\n---\n\nStudent Question: ${userMessage}\n\nUsing ONLY the knowledge base context above, answer the question concisely. For a simple factual question, use 1-2 sentences. For lists, use brief bullets. Never repeat information.`;
 
   const historyMessages = buildHistoryMessages(history);
   const messagesToGroq  = [
@@ -293,15 +378,15 @@ async function formatResponse(userMessage, matchedItems, history = []) {
     { role: 'user',   content: prompt },
   ];
 
-  console.log(`[Pipeline] 📤 Sending to Groq (${contextText.length} chars, model: llama-3.3-70b-versatile)`);
+  console.log(`[Pipeline] 📤 Sending to Groq (${contextText.length} chars, model: ${GROQ_MODEL})`);
 
   try {
     const groq       = getClient();
     const completion = await groq.chat.completions.create({
       messages:    messagesToGroq,
-      model:       'llama-3.3-70b-versatile',
+      model:       GROQ_MODEL,
       temperature: 0.1,
-      max_tokens:  600,
+      max_tokens:  400,
     });
 
     const text = completion.choices[0]?.message?.content || '';
@@ -311,8 +396,10 @@ async function formatResponse(userMessage, matchedItems, history = []) {
       return _plainFallback(items);
     }
 
-    console.log(`[Pipeline] 📥 Groq Response: ${text.length} chars`);
-    return text.trim();
+    // Post-process: remove duplicate sentences/bullets from Groq output
+    const deduplicated = deduplicateResponse(text.trim());
+    console.log(`[Pipeline] 📥 Groq Response: ${text.length} chars → deduplicated: ${deduplicated.length} chars`);
+    return deduplicated;
 
   } catch (error) {
     console.error('[Groq] ❌ Error calling API:', error.message || error);

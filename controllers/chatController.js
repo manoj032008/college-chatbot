@@ -96,14 +96,15 @@ try {
 
 /**
  * How many top results to retrieve from the KB.
- * For short/specific questions: fewer results are cleaner.
- * For broad questions: more context helps Groq give comprehensive answers.
+ * NOTE: Intent detection inside searchMultiple() will further cap results
+ * for specific questions (HOD, principal, timings → 1-2 max).
+ * These values only apply for general/broad queries.
  */
 function getTopN(query) {
   const words = query.trim().split(/\s+/).length;
-  if (words <= 2)  return 3;   // short query — top 3
-  if (words <= 5)  return 4;   // medium query — top 4
-  return 5;                    // long query — top 5
+  if (words <= 3)  return 2;   // short query — top 2
+  if (words <= 6)  return 3;   // medium query — top 3
+  return 4;                    // long query — top 4
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

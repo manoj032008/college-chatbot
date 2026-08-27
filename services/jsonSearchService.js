@@ -17,7 +17,7 @@
 
 const fs   = require('fs');
 const path = require('path');
-const { fuzzyScore, isFuzzyMatch } = require('../utils/fuzzySearch');
+const { fuzzyScore, isFuzzyMatch, normalizeForExactMatch } = require('../utils/fuzzySearch');
 const { extractQAPairs }           = require('../utils/responseFormatter');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -145,14 +145,18 @@ const SYNONYM_MAP = {
   mechanical:     ['mechanical engineering', 'me', 'mech', 'mech dept'],
   electrical:     ['electrical engineering', 'eee', 'ee', 'electrical dept', 'electrical electronics'],
   electronics:    ['ece', 'electronics communication', 'ec', 'electronics dept'],
-  computer:       ['cse', 'cs', 'computer engineering', 'computer science', 'comp', 'it'],
+  computer:       ['cse', 'cs', 'computer engineering', 'computer science', 'comp', 'cme', 'dcme'],
   branches:       ['departments', 'courses', 'diploma', 'programs', 'engineering', 'streams', 'sections'],
 
-  // People — NOTE: 'principle' is handled by SPELLING_CORRECTIONS (→ principal) before this runs
-  principal:      ['head of institution', 'director', 'hod', 'head', 'gurumurthy', 'gurumurthy reddy',
-                   'p gurumurthy', 'principal name', 'name of principal', 'college principal',
+  // People
+  // IMPORTANT: 'hod' and 'head' are NOT aliased to 'principal'.
+  // They are separate intents handled by _detectIntent().
+  // 'principle' is handled by SPELLING_CORRECTIONS (→ principal) before this runs.
+  principal:      ['gurumurthy', 'gurumurthy reddy', 'p gurumurthy',
+                   'principal name', 'name of principal', 'college principal',
                    'principal of college', 'principal of the college', "principal's message",
-                   'principal message'],
+                   'principal message', 'head of institution', 'head of college',
+                   'institution head', 'college head'],
   faculty:        ['teachers', 'lecturers', 'professors', 'staff', 'lecturer', 'instructor'],
   alumni:         ['old students', 'alumni committee', 'ex-students', 'alumnus', 'alumini', 'alumuni'],
 
@@ -202,6 +206,308 @@ const SYNONYM_MAP = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ENTITY DETECTION HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function detectQueryEntities(query) {
+  const q = query.toLowerCase();
+  const entities = {
+    dept: null,
+    topic: null
+  };
+
+  if (/\b(eee|electrical|ee)\b/i.test(q)) entities.dept = 'eee';
+  else if (/\b(ece|electronics|ec|dece)\b/i.test(q)) entities.dept = 'ece';
+  else if (/\b(cse|computer|cme|dcme)\b/i.test(q)) entities.dept = 'cse';
+  else if (/\bcivil\b/i.test(q)) entities.dept = 'civil';
+  else if (/\b(mechanical|mech)\b/i.test(q)) entities.dept = 'mech';
+
+  const topics = ['hod', 'principal', 'fees', 'admission', 'courses', 'hostel', 'scholarship', 'placements', 'timings', 'contact', 'facilities', 'laboratories', 'departments'];
+  for (const t of topics) {
+    if (new RegExp('\\b' + t + '\\b', 'i').test(q)) {
+      entities.topic = t;
+      break;
+    }
+  }
+
+  return entities;
+}
+
+function getEntryEntities(entry) {
+  const file = (entry.source_file || '').toLowerCase();
+  const cat = (entry.source_category || '').toLowerCase();
+  const title = (entry._title_lower || '').toLowerCase();
+
+  let dept = null;
+  if (file.includes('eee') || cat.includes('eee')) dept = 'eee';
+  else if (file.includes('ece') || cat.includes('ece')) dept = 'ece';
+  else if (file.includes('computer') || cat.includes('computer') || file.includes('cse') || cat.includes('cse')) dept = 'cse';
+  else if (file.includes('civil') || cat.includes('civil')) dept = 'civil';
+  else if (file.includes('mechanical') || cat.includes('mechanical')) dept = 'mech';
+
+  let topic = null;
+  const topics = ['hod', 'principal', 'fees', 'admission', 'courses', 'hostel', 'scholarship', 'placements', 'timings', 'contact', 'facilities', 'laboratories', 'departments'];
+  for (const t of topics) {
+    if (file.includes(t) || cat.includes(t) || title.includes(t)) {
+      topic = t;
+      break;
+    }
+  }
+
+  return { dept, topic };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INTENT DETECTION — maps user queries to specific, high-precision intents
+// so we can boost the correct KB entry overwhelmingly above others.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Detected intent shape:
+ *   { type: string, department?: string, maxResults: number }
+ *
+ * type values:
+ *   'principal'          → who is the principal
+ *   'hod_ece'            → who is HOD of ECE
+ *   'hod_cse'            → who is HOD of CSE/Computer Engineering
+ *   'hod_civil'          → who is HOD of Civil
+ *   'hod_mech'           → who is HOD of Mechanical
+ *   'hod_eee'            → who is HOD of Electrical
+ *   'hod_general'        → who is HOD (no dept specified)
+ *   'timings'            → college timings
+ *   'courses'            → available branches/courses
+ *   'fees'               → fee structure
+ *   'admission'          → admission process
+ *   'contact'            → contact information
+ *   'faculty_ece'        → faculty of ECE dept
+ *   'faculty_cse'        → faculty of CSE dept
+ *   'ece_dept'           → ECE department general info
+ *   'cse_dept'           → CSE department general info
+ *   'civil_dept'         → Civil dept
+ *   'mech_dept'          → Mechanical dept
+ *   'eee_dept'           → Electrical dept
+ *   null                 → no specific intent detected
+ */
+function detectIntent(normalizedQuery) {
+  const q = normalizedQuery;
+
+  // ── HOD / Head of Department patterns ─────────────────────────────────────
+  // These MUST come before department-only patterns
+  const hodPatterns = [
+    { pattern: /\b(hod|head|in-?charge|incharge)\b.*(ece|electronics|communication)/i,       intent: 'hod_ece',    max: 1 },
+    { pattern: /\b(ece|electronics|communication).*(hod|head|in-?charge|incharge)\b/i,       intent: 'hod_ece',    max: 1 },
+    { pattern: /\bwho\b.*(head|leads|runs|hod).*(ece|electronics)/i,                         intent: 'hod_ece',    max: 1 },
+    { pattern: /\b(hod|head|in-?charge|incharge)\b.*(cse|computer|cme)/i,                   intent: 'hod_cse',    max: 1 },
+    { pattern: /\b(cse|computer|cme).*(hod|head|in-?charge|incharge)\b/i,                   intent: 'hod_cse',    max: 1 },
+    { pattern: /\bwho\b.*(head|leads|runs|hod).*(cse|computer)/i,                            intent: 'hod_cse',    max: 1 },
+    { pattern: /\b(hod|head|in-?charge|incharge)\b.*(civil)/i,                              intent: 'hod_civil',  max: 1 },
+    { pattern: /\bcivil.*(hod|head|in-?charge|incharge)\b/i,                                intent: 'hod_civil',  max: 1 },
+    { pattern: /\b(hod|head|in-?charge|incharge)\b.*(mechanical|mech)/i,                    intent: 'hod_mech',   max: 1 },
+    { pattern: /\b(mechanical|mech).*(hod|head|in-?charge|incharge)\b/i,                    intent: 'hod_mech',   max: 1 },
+    { pattern: /\b(hod|head|in-?charge|incharge)\b.*(electrical|eee)/i,                     intent: 'hod_eee',    max: 1 },
+    { pattern: /\b(electrical|eee).*(hod|head|in-?charge|incharge)\b/i,                     intent: 'hod_eee',    max: 1 },
+    { pattern: /\b(hod|head of department|department head)\b/i,                              intent: 'hod_general',max: 2 },
+  ];
+  for (const { pattern, intent, max } of hodPatterns) {
+    if (pattern.test(q)) {
+      return { type: intent, maxResults: max };
+    }
+  }
+
+  // ── Principal ─────────────────────────────────────────────────────────────
+  if (/\b(principal|gurumurthy|head of institution|head of college)\b/i.test(q)) {
+    return { type: 'principal', maxResults: 1 };
+  }
+
+  // ── College Timings ───────────────────────────────────────────────────────
+  if (/\b(timing|timings|working hours|office hours|college time|schedule|when.*start|when.*end|when.*open|when.*close)\b/i.test(q)) {
+    return { type: 'timings', maxResults: 1 };
+  }
+
+  // ── Courses / Branches ────────────────────────────────────────────────────
+  if (/\b(courses|branches|departments|programs|streams|what.*available|available.*branch|available.*course|how many.*branch)\b/i.test(q)) {
+    return { type: 'courses', maxResults: 2 };
+  }
+
+  // ── Fees ─────────────────────────────────────────────────────────────────
+  if (/\b(fee|fees|fee structure|tuition|charges|cost|payment|how much)\b/i.test(q)) {
+    return { type: 'fees', maxResults: 2 };
+  }
+
+  // ── Admission ─────────────────────────────────────────────────────────────
+  if (/\b(admission|admissions|polycet|how to join|how to apply|enroll|lateral entry|direct entry)\b/i.test(q)) {
+    return { type: 'admission', maxResults: 2 };
+  }
+
+  // ── Contact ───────────────────────────────────────────────────────────────
+  if (/\b(contact|phone|mobile|email|address|location|where is|how to reach|website|korrapadu)\b/i.test(q)) {
+    return { type: 'contact', maxResults: 1 };
+  }
+
+  // ── Faculty (department-specific) ─────────────────────────────────────────
+  if (/\bfaculty\b.*(ece|electronics)/i.test(q) || /(ece|electronics).*\bfaculty\b/i.test(q)) {
+    return { type: 'faculty_ece', maxResults: 1 };
+  }
+  if (/\bfaculty\b.*(cse|computer|cme)/i.test(q) || /(cse|computer|cme).*\bfaculty\b/i.test(q)) {
+    return { type: 'faculty_cse', maxResults: 1 };
+  }
+
+  // ── Department-specific info ──────────────────────────────────────────────
+  if (/\b(ece|electronics.*(communication)?|dece)\b/i.test(q)) {
+    return { type: 'ece_dept', maxResults: 2 };
+  }
+  if (/\b(cse|computer engineering|cme|dcme)\b/i.test(q)) {
+    return { type: 'cse_dept', maxResults: 2 };
+  }
+  if (/\bcivil\b/i.test(q)) {
+    return { type: 'civil_dept', maxResults: 2 };
+  }
+  if (/\b(mechanical|mech)\b/i.test(q)) {
+    return { type: 'mech_dept', maxResults: 2 };
+  }
+  if (/\b(electrical|eee)\b/i.test(q)) {
+    return { type: 'eee_dept', maxResults: 2 };
+  }
+
+  return { type: null, maxResults: null };
+}
+
+/**
+ * Given a detected intent, return a score boost for entries that match it.
+ * Returns a non-negative number to ADD to the entry's score.
+ */
+function intentBoostForEntry(entry, intent) {
+  if (!intent || !intent.type) return 0;
+
+  const cat     = (entry.source_category || '').toLowerCase();
+  const file    = (entry.source_file || '').toLowerCase();
+
+  // Helper: is this from others.json (broad mixed-topic file)?
+  const isOthers = file.includes('others');
+
+  // Helper: is this a principal-file entry?
+  const isPrincipal = file.includes('principal') || cat.includes('principal');
+
+  // Helper: which dept does this entry belong to?
+  const isEEE   = cat.includes('eee') || file.includes('eee');
+  const isECE   = cat.includes('ece') || file.includes('ece');
+  const isCSE   = cat.includes('computer') || file.includes('computer');
+  const isCivil = cat.includes('civil') || file.includes('civil');
+  const isMech  = cat.includes('mechanical') || file.includes('mechanical');
+
+  switch (intent.type) {
+    case 'hod_eee':
+      if (isEEE) return 80;                        // strong boost for correct dept
+      if (isPrincipal) return -100;                // hard block principal
+      if (isOthers) return -50;                    // suppress cross-topic entries
+      if (isECE || isCSE || isCivil || isMech) return -50;  // wrong dept penalty
+      return 0;
+
+    case 'hod_ece':
+      if (isECE) return 80;
+      if (isPrincipal) return -100;
+      if (isOthers) return -50;
+      if (isEEE || isCSE || isCivil || isMech) return -50;
+      return 0;
+
+    case 'hod_cse':
+      if (isCSE) return 80;
+      if (isPrincipal) return -100;
+      if (isOthers) return -50;
+      if (isEEE || isECE || isCivil || isMech) return -50;
+      return 0;
+
+    case 'hod_civil':
+      if (isCivil) return 80;
+      if (isPrincipal) return -100;
+      if (isOthers) return -50;
+      if (isEEE || isECE || isCSE || isMech) return -50;
+      return 0;
+
+    case 'hod_mech':
+      if (isMech) return 80;
+      if (isPrincipal) return -100;
+      if (isOthers) return -50;
+      if (isEEE || isECE || isCSE || isCivil) return -50;
+      return 0;
+
+    case 'hod_general':
+      // Generic HOD — boost all dept files, suppress principal
+      if (isPrincipal) return -40;
+      if (isEEE || isECE || isCSE || isCivil || isMech) return 30;
+      return 0;
+
+    case 'principal':
+      if (isPrincipal) return 80;
+      // Strongly penalize department files for a principal-specific query
+      if (isECE || isCSE || isCivil || isMech || isEEE) return -50;
+      if (isOthers) return -20;
+      return 0;
+
+    case 'timings':
+      if (cat.includes('college-timings') || cat.includes('timings') || file.includes('timings')) return 80;
+      if (isOthers) return -30;
+      return 0;
+
+    case 'courses':
+    case 'admission':
+      if (cat.includes('admission') || file.includes('admission')) return 60;
+      if (isOthers) return 20;
+      return 0;
+
+    case 'fees':
+      if (cat.includes('fee') || file.includes('fee')) return 80;
+      if (isOthers) return -30;
+      return 0;
+
+    case 'contact':
+      if (cat.includes('contact') || file.includes('contact')) return 80;
+      if (isOthers) return -30;
+      return 0;
+
+    case 'faculty_ece':
+    case 'ece_dept':
+      if (isECE) return 60;
+      if (isPrincipal) return -60;
+      if (isOthers) return -30;
+      if (isEEE || isCSE || isCivil || isMech) return -30;
+      return 0;
+
+    case 'faculty_cse':
+    case 'cse_dept':
+      if (isCSE) return 60;
+      if (isPrincipal) return -60;
+      if (isOthers) return -30;
+      if (isEEE || isECE || isCivil || isMech) return -30;
+      return 0;
+
+    case 'civil_dept':
+      if (isCivil) return 60;
+      if (isPrincipal) return -40;
+      if (isOthers) return -20;
+      if (isEEE || isECE || isCSE || isMech) return -30;
+      return 0;
+
+    case 'mech_dept':
+      if (isMech) return 60;
+      if (isPrincipal) return -40;
+      if (isOthers) return -20;
+      if (isEEE || isECE || isCSE || isCivil) return -30;
+      return 0;
+
+    case 'eee_dept':
+      if (isEEE) return 60;
+      if (isPrincipal) return -40;
+      if (isOthers) return -20;
+      if (isECE || isCSE || isCivil || isMech) return -30;
+      return 0;
+
+    default:
+      return 0;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // STOP WORDS — filtered before scoring
 // ─────────────────────────────────────────────────────────────────────────────
 const STOP_WORDS = new Set([
@@ -221,24 +527,70 @@ const STOP_WORDS = new Set([
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
+// STORED-QUESTION NORMALIZATION
+// Used to compare stored KB questions against user's normalized query fairly.
+// Strips stop words, expands abbreviations so "Who is the HOD of EEE?"
+// normalizes to the same tokens as the user's "who is hod of eee".
+// ─────────────────────────────────────────────────────────────────────────────
+
+const _NORM_STOPWORDS = new Set([
+  'a', 'an', 'the', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+  'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
+  'should', 'may', 'might', 'shall', 'can', 'of', 'in', 'on', 'at', 'by',
+  'for', 'with', 'about', 'from', 'up', 'into', 'through', 'and', 'or',
+  'what', 'which', 'who', 'whom', 'how', 'when', 'where', 'why',
+  'tell', 'give', 'show', 'me', 'please', 'info', 'information', 'details',
+]);
+
+const _NORM_ABBREV = {
+  'eee': 'eee', 'electrical': 'eee', 'ee': 'eee',
+  'ece': 'ece', 'electronics': 'ece', 'ec': 'ece', 'dece': 'ece',
+  'cse': 'cse', 'computer': 'cse', 'cme': 'cse', 'dcme': 'cse',
+  'civil': 'civil', 'ce': 'civil',
+  'mechanical': 'mech', 'mech': 'mech', 'me': 'mech',
+  'hod': 'hod', 'head': 'hod', 'incharge': 'hod',
+  'principal': 'principal', 'gurumurthy': 'principal',
+  'fees': 'fee', 'fee': 'fee', 'tuition': 'fee',
+  'admission': 'admission', 'admissions': 'admission',
+  'timings': 'timings', 'timing': 'timings', 'time': 'timings',
+  'hostel': 'hostel', 'hostels': 'hostel',
+  'department': 'dept', 'departments': 'dept', 'dept': 'dept',
+  'branch': 'branch', 'branches': 'branch',
+};
+
+function _normalizeStoredQuestion(q) {
+  if (!q) return '';
+  return q
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .map(w => _NORM_ABBREV[w] || w)
+    .filter(w => w.length > 1 && !_NORM_STOPWORDS.has(w))
+    .join(' ')
+    .trim();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // SCORING WEIGHTS
 // ─────────────────────────────────────────────────────────────────────────────
 const SCORE = {
-  EXACT_TITLE:          30,
-  PARTIAL_TITLE:        18,
-  FUZZY_TITLE:          12,
-  TITLE_KW_HIT:          8,
-  EXACT_KEYWORD:        15,
-  PARTIAL_KEYWORD:       9,
-  FUZZY_KEYWORD:         5,
-  CATEGORY_MATCH:       12,
-  CATEGORY_PARTIAL:      7,
-  QA_QUESTION_EXACT:    20,
-  QA_QUESTION_FUZZY:    10,
-  QA_TEXT_HIT:           6,
-  CONTENT_HIT:           4,
-  SYNONYM_BONUS:         3,
-  SPELLING_CORRECTED:    5,
+  EXACT_TITLE:              30,
+  PARTIAL_TITLE:            18,
+  FUZZY_TITLE:              12,
+  TITLE_KW_HIT:              8,
+  EXACT_KEYWORD:            15,
+  PARTIAL_KEYWORD:           9,
+  FUZZY_KEYWORD:             5,
+  CATEGORY_MATCH:           12,
+  CATEGORY_PARTIAL:          7,
+  // ── QA matching — these MUST dominate to ensure exact-question entries win ──
+  QA_QUESTION_EXACT:       100,  // was 20 — now overwhelmingly dominant
+  QA_QUESTION_NEAR_EXACT:   70,  // normalized-match (stopwords stripped)
+  QA_QUESTION_FUZZY:        35,  // was 10
+  QA_TEXT_HIT:              15,  // was 6
+  CONTENT_HIT:               4,
+  SYNONYM_BONUS:             3,
+  SPELLING_CORRECTED:        5,
 };
 
 // Minimum score to include in results
@@ -263,6 +615,12 @@ class JsonSearchService {
 
     this.watcher = null;
 
+    /**
+     * exactMatchIndex: Map<normalizedQuestion → entry>
+     * Built at load time. Enables O(1) exact-match lookup.
+     */
+    this.exactMatchIndex = new Map();
+
     // Perform initial boot scan
     this.loadAllData();
     this.setupWatcher();
@@ -274,11 +632,13 @@ class JsonSearchService {
    * Scan /data and /knowledge, read every .json file, normalize entries, build index.
    */
   loadAllData() {
-    this.entries       = [];
-    this.byCategory    = {};
-    this.filesLoaded   = 0;
-    this.filesSkipped  = 0;
-    this.ignoredFiles  = [];
+    this.entries          = [];
+    this.byCategory       = {};
+    this.exactMatchMap    = new Map(); // legacy compat
+    this.exactMatchIndex  = new Map(); // new O(1) lookup index
+    this.filesLoaded      = 0;
+    this.filesSkipped     = 0;
+    this.ignoredFiles     = [];
     this.validationErrors = [];
     this.indexedQuestionsCount = 0;
 
@@ -326,11 +686,25 @@ class JsonSearchService {
       this._loadFile(fileItem.filename, fileItem.dirInfo);
     }
 
-    // Build category index
+    // Build category index AND exact-match index
     for (const entry of this.entries) {
       const cat = entry.source_category;
       if (!this.byCategory[cat]) this.byCategory[cat] = [];
       this.byCategory[cat].push(entry);
+
+      // Index every QA question in this entry for O(1) exact lookup
+      if (entry._qa_pairs && entry._qa_pairs.length > 0) {
+        for (const qa of entry._qa_pairs) {
+          if (!qa.question) continue;
+          const normQ = _normalizeStoredQuestion(qa.question);
+          if (normQ && normQ.length > 3) {
+            // Store: normQ → { entry, answer }
+            if (!this.exactMatchIndex.has(normQ)) {
+              this.exactMatchIndex.set(normQ, { entry, answer: qa.answer });
+            }
+          }
+        }
+      }
     }
 
     // Print Detailed Startup Log
@@ -868,19 +1242,34 @@ class JsonSearchService {
         if (!qa.question) continue;
         const qLower = qa.question.toLowerCase();
 
-        // Exact question match
+        // ── Exact raw string match ───────────────────────────────────────────
         if (qLower === normalizedQuery) {
           bestQaScore = Math.max(bestQaScore, SCORE.QA_QUESTION_EXACT);
           continue;
         }
 
-        // Containment check
+        // ── Normalized match: strip stopwords from both sides ────────────────
+        // This handles: stored "Who is the HOD of EEE?" vs user "who hod eee"
+        const qNorm = _normalizeStoredQuestion(qa.question);
+        const uNorm = _normalizeStoredQuestion(normalizedQuery);
+        if (qNorm && uNorm && qNorm === uNorm) {
+          bestQaScore = Math.max(bestQaScore, SCORE.QA_QUESTION_NEAR_EXACT);
+          continue;
+        }
+
+        // ── Containment check (raw) ──────────────────────────────────────────
         if (qLower.includes(normalizedQuery) || normalizedQuery.includes(qLower)) {
           bestQaScore = Math.max(bestQaScore, SCORE.QA_QUESTION_FUZZY);
           continue;
         }
 
-        // Fuzzy question match
+        // ── Normalized containment ───────────────────────────────────────────
+        if (qNorm && uNorm && (qNorm.includes(uNorm) || uNorm.includes(qNorm))) {
+          bestQaScore = Math.max(bestQaScore, SCORE.QA_QUESTION_FUZZY);
+          continue;
+        }
+
+        // ── Fuzzy question match ─────────────────────────────────────────────
         const qs = fuzzyScore(normalizedQuery, qLower);
         if (qs >= 0.80) {
           bestQaScore = Math.max(bestQaScore, SCORE.QA_QUESTION_FUZZY);
@@ -888,7 +1277,15 @@ class JsonSearchService {
           bestQaScore = Math.max(bestQaScore, SCORE.QA_TEXT_HIT);
         }
 
-        // Keyword overlap in stored question — count how many of our keywords appear
+        // Normalized fuzzy
+        if (qNorm && uNorm) {
+          const qsNorm = fuzzyScore(uNorm, qNorm);
+          if (qsNorm >= 0.80) {
+            bestQaScore = Math.max(bestQaScore, SCORE.QA_QUESTION_FUZZY);
+          }
+        }
+
+        // ── Keyword overlap in stored question ───────────────────────────────
         let kwHits = 0;
         for (const kw of keywords) {
           if (kw.length > 2 && qLower.includes(kw)) kwHits++;
@@ -950,16 +1347,47 @@ class JsonSearchService {
 
     const expandedKeywords = this._expandWithSynonyms(keywords);
 
-    // Debug log
-    console.log(`[Search] Query: "${query}" → Normalized: "${normalizedQuery}" | SpellingFixed: ${wasSpellingCorrected}`);
-    console.log(`[Search] Keywords: [${keywords.join(', ')}] → Expanded to ${expandedKeywords.length} terms`);
+    // ── Intent Detection ─────────────────────────────────────────────────────
+    // Run on the ORIGINAL query (before normalization can strip dept names)
+    const intent = detectIntent(query);
 
-    // Score all entries
+    // Debug log
+    console.log(`\n[SEARCH] User query: ${query}`);
+    console.log(`[SEARCH] Normalized: "${normalizedQuery}" | SpellingFixed: ${wasSpellingCorrected}`);
+    console.log(`[SEARCH] Keywords: [${keywords.join(', ')}] → Expanded to ${expandedKeywords.length} terms`);
+    if (intent.type) {
+      console.log(`[INTENT] Detected: ${intent.type} (maxResults override: ${intent.maxResults})`);
+    } else {
+      console.log(`[INTENT] None detected — general search`);
+    }
+
+    // ── EXACT-MATCH SHORT-CIRCUIT ─────────────────────────────────────────────
+    // Check the pre-built index for a normalized exact match.
+    // If found, skip scoring entirely and return immediately.
+    const userNormForIndex = _normalizeStoredQuestion(query);
+    if (userNormForIndex && this.exactMatchIndex.has(userNormForIndex)) {
+      const { entry, answer } = this.exactMatchIndex.get(userNormForIndex);
+      console.log(`[EXACT-MATCH] ⚡ Direct index hit for "${userNormForIndex}" → "${entry.title}" (${entry.source_file})`);
+      return [entry];
+    }
+
+    // Also try the raw normalized query in the index
+    if (normalizedQuery && this.exactMatchIndex.has(normalizedQuery)) {
+      const { entry } = this.exactMatchIndex.get(normalizedQuery);
+      console.log(`[EXACT-MATCH] ⚡ Raw normalized index hit → "${entry.title}"`);
+      return [entry];
+    }
+
+    // Score all entries (base score + intent boost)
     const scored = [];
     for (const entry of this.entries) {
-      const score = this._scoreEntry(entry, keywords, expandedKeywords, normalizedQuery, wasSpellingCorrected);
-      if (score >= MIN_SCORE) {
-        scored.push({ entry, score });
+      const baseScore   = this._scoreEntry(entry, keywords, expandedKeywords, normalizedQuery, wasSpellingCorrected);
+      const boost       = intentBoostForEntry(entry, intent);
+      const totalScore  = baseScore + boost;
+      // Only include if total score is positive (boost alone cannot pull in
+      // an entry that has ZERO base relevance — negative boost entries filtered)
+      if (totalScore >= MIN_SCORE && baseScore >= 0) {
+        scored.push({ entry, score: totalScore });
       }
     }
 
@@ -969,33 +1397,46 @@ class JsonSearchService {
       for (const entry of this.entries) {
         const titleScore = fuzzyScore(normalizedQuery, entry._title_lower);
         if (titleScore >= 0.60) {
-          scored.push({ entry, score: titleScore * 20 });
+          const boost = intentBoostForEntry(entry, intent);
+          const total = titleScore * 20 + boost;
+          if (total > 0) scored.push({ entry, score: total });
         }
       }
     }
 
     if (scored.length === 0) {
+      console.log(`[RESULTS] No results found above threshold.`);
       return [];
     }
 
     scored.sort((a, b) => b.score - a.score);
 
-    // Log top candidates
-    scored.slice(0, 3).forEach(({ entry, score }) => {
-      console.log(`[Search] Candidate: "${entry.title}" (score: ${score.toFixed(1)})`);
+    // Log top candidates before dedup
+    console.log(`[RESULTS] Top candidates:`);
+    scored.slice(0, 5).forEach(({ entry, score }) => {
+      console.log(`  [${score.toFixed(1)}] "${entry.title}" (${entry.source_file})`);
     });
 
-    // Deduplicate by title
+    // ── Determine effective result limit ─────────────────────────────────────
+    // If intent gave us a maxResults, use that; otherwise use the caller's topN.
+    const effectiveMax = (intent.maxResults !== null && intent.maxResults !== undefined)
+      ? Math.min(intent.maxResults, topN)
+      : topN;
+
+    // ── Deduplicate by title + source_file ───────────────────────────────────
     const seen    = new Set();
     const unique  = [];
     for (const { entry, score } of scored) {
-      const key = entry._title_lower || entry.source_category;
+      // Key combines title + file to avoid two different files with same title
+      const key = `${entry._title_lower}|${entry.source_file}`;
       if (!seen.has(key)) {
         seen.add(key);
         unique.push({ entry, score });
-        if (unique.length >= topN) break;
+        if (unique.length >= effectiveMax) break;
       }
     }
+
+    console.log(`[FINAL] Returning ${unique.length} result(s): ${unique.map(u => `"${u.entry.title}"`).join(', ')}`);
 
     return unique.map(u => u.entry);
   }

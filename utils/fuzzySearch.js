@@ -119,13 +119,91 @@ function isFuzzyMatch(query, target, threshold = 0.55) {
 /**
  * Given an array of strings, returns those that fuzzy-match the query,
  * sorted by score descending.
+ * @param {string}   query     — the user query
+ * @param {string[]} targets   — array of candidate strings
+ * @param {number}   threshold — minimum score [0..1] to include
+ * @returns {{ target: string, score: number }[]}
  */
-function fuzzyFilter(query, candidates, threshold = 0.45) {
-  return candidates
-    .map(c => ({ text: c, score: fuzzyScore(query, c) }))
-    .filter(x => x.score >= threshold)
-    .sort((a, b) => b.score - a.score)
-    .map(x => x.text);
+function fuzzyFilter(query, targets, threshold = 0.55) {
+  if (!query || !Array.isArray(targets)) return [];
+  return targets
+    .map(target => ({ target, score: fuzzyScore(query, target) }))
+    .filter(r => r.score >= threshold)
+    .sort((a, b) => b.score - a.score);
 }
 
-module.exports = { fuzzyScore, isFuzzyMatch, fuzzyFilter, levenshtein, jaroWinkler, tokenOverlap };
+function normalizeForExactMatch(q) {
+  if (!q) return '';
+  let normalized = q.toLowerCase();
+
+  // Remove unnecessary punctuation (replace with space to keep words separate)
+  normalized = normalized.replace(/[''"?!.,;:()[\]{}_-]/g, ' ');
+
+  // Normalize variations like "who is", "who's", "whos", etc.
+  normalized = normalized.replace(/\bwho's\b/g, 'who is');
+  normalized = normalized.replace(/\bwhos\b/g, 'who is');
+  normalized = normalized.replace(/\bwhat's\b/g, 'what is');
+  normalized = normalized.replace(/\bwhats\b/g, 'what is');
+  normalized = normalized.replace(/\bhow's\b/g, 'how is');
+  normalized = normalized.replace(/\bhows\b/g, 'how is');
+
+  const words = normalized.split(/\s+/);
+
+  const fillerWords = new Set([
+    'the', 'of', 'a', 'an', 'department', 'dept', 'branch', 'engineering', 'college', 'is', 'are', 'was', 'were',
+    'to', 'for', 'in', 'on', 'at', 'by', 'with', 'from', 'about', 'and', 'or', 'any', 'some', 'please', 'know',
+    'tell', 'give', 'show', 'me', 'info', 'information', 'details'
+  ]);
+
+  // Mini spelling mapping specifically for normalization
+  const miniSpelling = {
+    'principle': 'principal',
+    'princple': 'principal',
+    'principl': 'principal',
+    'princpal': 'principal',
+    'addmission': 'admission',
+    'admision': 'admission',
+    'fees': 'fee',
+    'fess': 'fee',
+    'exams': 'exam',
+    'collage': 'college',
+    'govt': 'government',
+    'scolarship': 'scholarship',
+    'timing': 'timings',
+    'timngs': 'timings',
+    'time': 'timings'
+  };
+
+  const mappedWords = words.map(w => {
+    let word = w;
+    if (miniSpelling[word]) {
+      word = miniSpelling[word];
+    }
+
+    // Mappings and abbreviations
+    if (word === 'eee' || word === 'electrical' || word === 'ee') return 'eee';
+    if (word === 'ece' || word === 'electronics' || word === 'ec' || word === 'dece') return 'ece';
+    if (word === 'cse' || word === 'cs' || w === 'cme' || w === 'dcme') return 'cse';
+    if (word === 'civil' || word === 'ce') return 'civil';
+    if (word === 'mechanical' || word === 'mech' || word === 'me') return 'mech';
+    if (word === 'hod' || word === 'head') return 'hod';
+    if (word === 'principal' || word === 'gurumurthy') return 'principal';
+
+    // Singular/plural and normalization
+    if (word === 'timings' || word === 'timing' || word === 'time') return 'timings';
+    if (word === 'fees' || word === 'fee') return 'fees';
+    if (word === 'admissions' || word === 'admission') return 'admission';
+    if (word === 'hostels' || word === 'hostel') return 'hostel';
+    if (word === 'scholarships' || word === 'scholarship') return 'scholarship';
+    if (word === 'placements' || word === 'placement') return 'placement';
+    if (word === 'facilities' || word === 'facility') return 'facility';
+    if (word === 'laboratories' || word === 'labs' || word === 'lab') return 'lab';
+    if (word === 'departments' || word === 'branches' || word === 'courses') return 'courses';
+
+    return word;
+  }).filter(w => w.length > 0 && !fillerWords.has(w));
+
+  return mappedWords.join(' ');
+}
+
+module.exports = { fuzzyScore, isFuzzyMatch, fuzzyFilter, levenshtein, jaroWinkler, tokenOverlap, normalizeForExactMatch };
