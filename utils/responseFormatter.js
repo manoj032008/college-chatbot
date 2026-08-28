@@ -74,8 +74,16 @@ function extractQAPairs(content) {
   if (Array.isArray(content)) {
     const pairs = [];
     for (const item of content) {
-      if (typeof item === 'object' && item !== null && (item.question || item.answer)) {
-        pairs.push({ question: (item.question || '').trim(), answer: (item.answer || '').trim() });
+      if (typeof item === 'object' && item !== null) {
+        if (item.question || item.answer) {
+          pairs.push({ question: (item.question || '').trim(), answer: (item.answer || '').trim() });
+        } else if (item.content) {
+          const subPairs = extractQAPairs(item.content);
+          for (const sub of subPairs) {
+            const q = sub.question || item.title || '';
+            pairs.push({ question: q.trim(), answer: sub.answer.trim() });
+          }
+        }
       } else if (typeof item === 'string' && item.trim()) {
         pairs.push({ question: '', answer: item.trim() });
       }
